@@ -30,6 +30,7 @@
   - [💻 代码](#-代码)
   - [🖼️ 图像](#️-图像)
   - [🎬 视频生成](#-视频生成)
+  - [🌍 世界模型](#-世界模型)
   - [🎙️ 语音、音频与音乐](#️-语音音频与音乐)
   - [🔎 向量检索与重排序](#-向量检索与重排序)
   - [👁️ 视觉编码与检测](#️-视觉编码与检测)
@@ -37,6 +38,7 @@
   - [🧩 全模态 Omni（一站式）](#-全模态-omni一站式)
   - [🤖 智能体与工具调用](#-智能体与工具调用)
   - [🏠 本地私有化部署](#-本地私有化部署)
+  - [📱 端侧 / 边缘设备模型](#-端侧--边缘设备模型)
 - [📚 完整机构目录](#-完整机构目录)
 - [📊 评测与榜单](#-评测与榜单)
 - [🛠️ 用大模型做产品](#️-用大模型做产品)
@@ -65,6 +67,9 @@ mindmap
     🎬 视频生成
       文生视频
       图生视频
+    🌍 世界模型
+      可交互/可探索世界
+      机器人/物理AI仿真
     🎙️ 语音音频与音乐
       语音合成 TTS
       语音克隆
@@ -85,6 +90,8 @@ mindmap
     🏠 本地私有化部署
       消费级显卡可跑
       企业私有化
+    📱 端侧 / 边缘设备
+      手机 / NPU / 笔记本
 ```
 
 > 如果上方的思维导图在 GitHub 上显示为纯文本而非图表（GitHub 的 mermaid 渲染偶尔滞后），可以打开 [mermaid.live](https://mermaid.live) 或在 VS Code 中查看本文件。
@@ -115,13 +122,27 @@ mindmap
 |---|---|---|
 | 看图/理解图像（视觉） | GPT-5（视觉）、Gemini、Claude 5、Qwen-VL、InternVL | 读懂截图、图表、文档、照片 |
 | 文生图 | Midjourney、GPT Image（OpenAI）、Imagen（Google）、FLUX（Black Forest Labs）、Stable Diffusion、即梦/豆包（字节跳动） | 从照片级写实到快速低成本迭代都有覆盖 |
+| 商用安全/企业级（知识产权有保障） | [Adobe Firefly](https://www.adobe.com/products/firefly.html) | 仅用授权/Adobe Stock 内容训练，企业使用有完整知识产权赔偿保障 |
+| 图片内文字渲染准确（海报、标识、界面原型） | [Ideogram](https://ideogram.ai) | 在生成图像中渲染清晰、准确文字/排版的能力数一数二 |
+| 矢量图/SVG 输出，适合设计工作 | [Recraft](https://www.recraft.ai) | 原生导出可编辑路径的 SVG 矢量图，支持品牌色板控制 |
 
 ### 🎬 视频生成
 
 | 场景 | 推荐模型 | 为什么 |
 |---|---|---|
-| 文生视频 | Sora 2（OpenAI）、Veo（Google DeepMind）、可灵 Kling（快手）、海螺 Hailuo（MiniMax）、Luma Dream Machine | 目前写实度与时长的第一梯队 |
+| 文生视频 | Sora 2（OpenAI）、Veo（Google DeepMind）、可灵 Kling（快手）、海螺 Hailuo（MiniMax）、Luma Dream Machine、[Pika](https://pika.art) | 目前写实度与时长的第一梯队 |
 | 图生视频/动画 | 可灵、海螺、Runway Gen-4、Luma | 把一张静态图动画成短视频 |
+
+### 🌍 世界模型
+
+和上面的视频生成不同：这类模型不是生成一段线性的视频片段，而是生成一个你（或智能体）可以**实时探索、交互**的环境。
+
+| 场景 | 推荐模型 | 为什么 |
+|---|---|---|
+| 可交互/可探索的生成式世界 | [Genie 4](https://deepmind.google/models/genie/)（Google DeepMind）、[Marble](https://worldlabs.ai)（World Labs）、[Oasis 2.0](https://oasis-model.github.io/)（Decart + Etched） | 从一句提示或一张图片实时生成可探索的 3D/游戏式世界，而不只是看一段视频 |
+| 机器人/物理 AI 仿真 | [NVIDIA Cosmos 3](https://www.nvidia.com/en-us/ai/cosmos/) | 面向物理推理与动作预测的开放世界基础模型，提供 Super/Nano/Edge 多种尺寸 |
+
+> 这个方向变化很快，还有几家（腾讯混元世界、Runway 的通用世界模型研究、Odyssey）正在冒头，但官方信息还不够确凿，暂不收录链接，值得持续关注。另外：Meta 的 **V-JEPA2**（见上文[视觉编码与检测](#️-视觉编码与检测)）也被 Meta 定位为用于物理推理的「世界模型」；Google DeepMind 的 **SIMA 2** 是另一个相关但不同的东西——它是一个**在** Genie 这类世界里行动的智能体，而不是生成世界的模型本身。
 
 ### 🎙️ 语音、音频与音乐
 
@@ -129,7 +150,8 @@ mindmap
 |---|---|---|
 | 语音合成 TTS | OpenAI 语音、ElevenLabs、MiniMax 语音 | 语调自然，覆盖多语言/口音 |
 | 语音克隆 | ElevenLabs、MiniMax、CosyVoice（阿里巴巴） | 几秒参考音频即可克隆声音 |
-| 音乐生成 | Suno、Udio | 一句文字提示生成完整歌曲（人声+伴奏） |
+| 完整歌曲生成（人声+伴奏） | Suno、Udio、[ElevenLabs Music](https://elevenlabs.io/music)、[Lyria](https://ai.google.dev/gemini-api/docs/models/lyria-3.5)（Google） | 一句文字提示生成可直接商用的完整歌曲（60秒–3分钟） |
+| 开源权重/可本地部署的音乐生成 | [MusicGen / AudioCraft](https://github.com/facebookresearch/audiocraft)（Meta）、[Stable Audio](https://stability.ai/stable-audio)（Stability AI） | 本地跑，不依赖 API——AudioCraft 完全开放权重 |
 
 ### 🔎 向量检索与重排序
 
@@ -143,6 +165,7 @@ RAG、搜索、「找相似」这类功能背后都是这类模型——它们�
 | 追求极致精度，仅限研究用途 | NV-Embed（NVIDIA） | 曾登顶 MTEB 榜首——但**仅限非商业使用**（CC-BY-NC-4.0），不能用于生产环境 |
 | 高效/可量化，适合大规模部署 | mxbai-embed（Mixedbread AI） | 支持俄罗斯套娃（Matryoshka）+ 二值量化，向量存储成本大幅降低而精度几乎不变 |
 | 图文向量（Vision-Language Embedding） | SigLIP / SigLIP2（Google）、CLIP（OpenAI） | 把图像和文本映射到同一向量空间——零样本分类、以图搜图 |
+| 一个模型覆盖文本/代码/图像/视频/音频向量化 | EmbeddingGemma（Google，Gemma 4 家族成员） | 统一的向量空间，不用为每种模态单独拼接一个模型 |
 | 检索结果重排序 | Cohere Rerank、BGE-reranker（智源）、Jina Reranker | 对候选结果重新打分，精度远高于只用向量检索 |
 
 > 这类模型通常用 `sentence-transformers`、`transformers` 部署，或者导出为 **ONNX** 格式用 ONNX Runtime 做 CPU/边缘端快速推理。ONNX 本身是一种模型**格式/运行时**，不是某个具体模型——所以这里不会把它列成一行，但在上面这些模型、以及下面[本地私有化部署](#-本地私有化部署)里的小尺寸开源对话模型的部署文档里，你会经常看到它。
@@ -172,6 +195,7 @@ RAG、搜索、「找相似」这类功能背后都是这类模型——它们�
 | Paraformer / FunASR | 阿里巴巴达摩院 | 中文优先的语音识别工具包——同时支持 VAD、标点、说话人识别 | MIT | [github.com/modelscope/FunASR](https://github.com/modelscope/FunASR) |
 | Qwen-Audio / Qwen3-Omni | 阿里巴巴 | 理解语音、音乐与声音；Qwen3-Omni 原生支持 19 种语言的语音输入、10 种语言的语音输出 | Apache 2.0（具体版本有差异） | [qwen.ai](https://qwen.ai) |
 | NVIDIA Canary / Parakeet | NVIDIA | 多语言语音识别+翻译（Canary，25 种语言）与快速流式识别（Parakeet） | 通常为 CC-BY-4.0——请按具体版本核实 | [huggingface.co/nvidia](https://huggingface.co/nvidia) |
+| Chirp 3 | Google Cloud | 企业级语音识别——20 亿参数，24 种正式支持+77 种以上预览语言，说话人分离能力强 | Google Cloud API（非开源权重） | [cloud.google.com/speech-to-text](https://cloud.google.com/speech-to-text) |
 
 > **顺带一提，很有名的另一个「基础模型」：** [AlphaFold](https://deepmind.google/science/alphafold/)（Google DeepMind）大概是语言/视觉/语音之外，整个 AI 领域里最出名的「基础模型」——它能根据氨基酸序列预测蛋白质的三维结构，其创造者也因此获得了 2024 年诺贝尔化学奖。AlphaFold 2 的代码是 Apache 2.0，但 AlphaFold 3 的模型权重仅能通过 AlphaFold Server 以非商业方式使用。
 
@@ -191,8 +215,24 @@ RAG、搜索、「找相似」这类功能背后都是这类模型——它们�
 
 | 场景 | 推荐模型 | 为什么 |
 |---|---|---|
-| 消费级显卡/笔记本可跑 | Phi、Gemma、通义千问小尺寸、Llama 小尺寸 | 1B–8B 级别，量化后本地可跑 |
+| 消费级显卡/笔记本可跑（1B–8B） | 通义千问 Qwen3（0.6B–8B）、Llama 3.2（1B/3B）、Phi-4-mini、Gemma 3（1B–12B） | 当前这一代小尺寸指令模型，量化后本地可跑 |
+| 手机 / 端侧 / 边缘设备 | MiniCPM（面壁智能/清华）、Gemma 3n、SmolLM2/SmolLM3（Hugging Face） | 专门针对手机和资源受限的边缘硬件调优，不只是「尺寸小」——另见下方端侧模型专项调研 |
+| 轻量级多模态（小尺寸视觉语言模型） | SmolVLM、Moondream、PaliGemma 2（Google） | 图像理解能力在普通硬件上也能跑起来 |
 | 企业私有化部署 | Llama 4、通义千问（开源）、DeepSeek-V3、智谱 GLM、Granite（IBM）、Falcon（TII） | Apache 2.0 类许可证，有企业级支持选项 |
+
+### 📱 端侧 / 边缘设备模型
+
+这不只是「小」——这些模型是专门为手机、笔记本 NPU 或嵌入式芯片打造的，往往由硬件/系统厂商自己出品，部署方式也和「下载一个 .safetensors 文件」不一样。
+
+| 模型 | 机构 | 「端侧」特性 | 开源/闭源 | 链接 |
+|---|---|---|---|---|
+| Apple Foundation Models | 苹果 | 驱动 iPhone/iPad/Mac 上的 Siri/Apple Intelligence；现已通过 Foundation Models 框架（Swift API）开放给第三方应用调用 | 闭源，仅限 API | [developer.apple.com/documentation/foundationmodels](https://developer.apple.com/documentation/foundationmodels) |
+| Aion Instruct（取代 Phi Silica） | 微软 | 面向 Copilot+ PC 的 NPU/GPU/CPU 模型；原本仅支持 NPU 的 Phi Silica 将在 2027 年 1 月前被其取代 | 闭源，与 Windows 深度集成 | [learn.microsoft.com/windows/ai/apis/phi-silica](https://learn.microsoft.com/en-us/windows/ai/apis/phi-silica) |
+| LFM2.5 | Liquid AI | 非 Transformer 架构（液态/混合架构），明确定位为「设备原生」模型——230M 到 24B-A2B MoE 不等，还有图文边缘变体 | 开源权重（具体许可证因版本而异——使用前请核实） | [liquid.ai](https://www.liquid.ai/) |
+| Ministral 3（3B/8B/14B） | Mistral AI | 明确为「边缘与本地场景」打造——笔记本、RTX PC、Jetson 设备 | Apache 2.0 | [mistral.ai/news/mistral-3](https://mistral.ai/news/mistral-3/) |
+| Falcon-Edge（Falcon-E） | TII | 1B/3B，三元 BitNet 架构（1.58-bit 权重）——专为 CPU（而非 GPU）运行设计 | 许可证未确认——请查看 HF 模型卡 | [huggingface.co/blog/tiiuae/falcon-edge](https://huggingface.co/blog/tiiuae/falcon-edge) |
+
+> **以下是部署平台/工具，不是模型**，别搞混了：**Qualcomm AI Hub**（把 300+ 个开源模型编译适配到骁龙 NPU/GPU/CPU 上运行）、**llama.cpp / GGUF**（把模型量化到能在 CPU/边缘硬件上跑的标准格式）、**Core ML / LiteRT（原 TensorFlow Lite）/ MediaPipe**（苹果和谷歌各自的移动端推理运行时）。和前面 ONNX 那条注释是一个道理。
 
 ---
 
@@ -281,7 +321,7 @@ mindmap
 | <img src="https://www.google.com/s2/favicons?domain=moonshot.ai&sz=64" width="24"> | **月之暗面** 🇨🇳 | Kimi（K3，K2 的继任版本） | 超长上下文、智能体/工具调用基准领先 | 修改版 MIT | [moonshot.ai](https://www.moonshot.ai) |
 | <img src="https://www.google.com/s2/favicons?domain=01.ai&sz=64" width="24"> | **零一万物** 🇨🇳 | Yi 系列 | 中英双语、效率优先 | Apache 2.0 | [01.ai](https://www.01.ai) |
 | <img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=64" width="24"> | **Microsoft** 🇺🇸 | Phi 系列 | 「数据最优」小模型，适合端侧/边缘部署 | MIT | [azure.microsoft.com/phi](https://azure.microsoft.com/en-us/products/phi) |
-| <img src="https://www.google.com/s2/favicons?domain=ai.google.dev&sz=64" width="24"> | **Google** 🇺🇸 | Gemma 系列 | 源自 Gemini 研究成果的轻量级开源模型 | Gemma 许可 | [ai.google.dev/gemma](https://ai.google.dev/gemma) |
+| <img src="https://www.google.com/s2/favicons?domain=ai.google.dev&sz=64" width="24"> | **Google** 🇺🇸 | Gemma 4 家族（及专项变体：PaliGemma——图文理解、MedGemma——医疗、EmbeddingGemma——向量化、ShieldGemma——安全分类、FunctionGemma——端侧函数调用） | 源自 Gemini 研究成果的轻量级开源模型 | Gemma 许可 | [deepmind.google/models/gemma](https://deepmind.google/models/gemma/) |
 | <img src="https://www.google.com/s2/favicons?domain=nvidia.com&sz=64" width="24"> | **NVIDIA** 🇺🇸 | Nemotron 系列 | 面向 NVIDIA GPU 优化/蒸馏，训练后处理工具链完善 | NVIDIA Open Model License | [nvidia.com/nemotron](https://www.nvidia.com/en-us/ai/nemotron/) |
 | <img src="https://www.google.com/s2/favicons?domain=ibm.com&sz=64" width="24"> | **IBM** 🇺🇸 | Granite 系列 | 面向企业，训练数据来源公开透明 | Apache 2.0 | [ibm.com/granite](https://www.ibm.com/granite) |
 | <img src="https://www.google.com/s2/favicons?domain=falconllm.tii.ae&sz=64" width="24"> | **TII** 🇦🇪 | Falcon 系列 | 中东地区代表性开源模型，阿拉伯语与多语言能力强 | Apache 2.0（Falcon 2+） | [falconllm.tii.ae](https://falconllm.tii.ae) |

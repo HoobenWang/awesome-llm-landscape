@@ -30,6 +30,7 @@ Most "awesome LLM" lists are organized by *who made the model*. That's useful on
   - [💻 Code](#-code)
   - [🖼️ Image](#️-image)
   - [🎬 Video Generation](#-video-generation)
+  - [🌍 World Models](#-world-models)
   - [🎙️ Audio, Voice & Music](#️-audio-voice--music)
   - [🔎 Embeddings, Retrieval & Reranking](#-embeddings-retrieval--reranking)
   - [👁️ Vision Encoders & Detection](#️-vision-encoders--detection)
@@ -37,6 +38,7 @@ Most "awesome LLM" lists are organized by *who made the model*. That's useful on
   - [🧩 Omni (All-in-One Multimodal)](#-omni-all-in-one-multimodal)
   - [🤖 Agents & Tool Use](#-agents--tool-use)
   - [🏠 Self-Hosted / On-Prem](#-self-hosted--on-prem)
+  - [📱 On-Device / Edge Models](#-on-device--edge-models)
 - [📚 Full Directory by Organization](#-full-directory-by-organization)
 - [📊 Evaluation & Benchmarks](#-evaluation--benchmarks)
 - [🛠️ Build With LLMs](#️-build-with-llms)
@@ -65,6 +67,9 @@ mindmap
     🎬 Video Generation
       Text-to-video
       Image-to-video
+    🌍 World Models
+      Interactive/playable worlds
+      Robotics / physical-AI sim
     🎙️ Audio, Voice & Music
       Text-to-speech
       Voice cloning
@@ -85,6 +90,8 @@ mindmap
     🏠 Self-Hosted / On-Prem
       Runs on consumer GPU
       Enterprise on-prem
+    📱 On-Device / Edge
+      Phone / NPU / laptop
 ```
 
 > If the diagram above renders as plain text instead of a graphic, open this file on [mermaid.live](https://mermaid.live) or in VS Code — GitHub's mermaid renderer occasionally lags.
@@ -115,13 +122,27 @@ Note: a few rows below (image/video/audio generation) aren't *language* models i
 |---|---|---|
 | Understand/describe an image (vision) | GPT-5 (vision), Gemini, Claude 5, Qwen-VL, InternVL | Read screenshots, charts, documents, photos |
 | Generate an image from text | Midjourney, GPT Image (OpenAI), Imagen (Google), FLUX (Black Forest Labs), Stable Diffusion, 即梦/Doubao (ByteDance) | Range from photoreal to fast/cheap iteration |
+| Commercially-safe / enterprise (IP indemnified) | [Adobe Firefly](https://www.adobe.com/products/firefly.html) | Trained only on licensed/Adobe Stock content; full IP indemnification for enterprise use |
+| Accurate text rendering inside images (posters, UI mockups) | [Ideogram](https://ideogram.ai) | Best-in-class at rendering legible text/typography within a generated image |
+| Vector/SVG output for design work | [Recraft](https://www.recraft.ai) | Native SVG export with editable vector paths and brand-palette control |
 
 ### 🎬 Video Generation
 
 | Scenario | Recommended | Why |
 |---|---|---|
-| Text-to-video | Sora 2 (OpenAI), Veo (Google DeepMind), Kling 可灵 (Kuaishou), 海螺 Hailuo (MiniMax), Luma Dream Machine | Current frontier for realism and shot length |
+| Text-to-video | Sora 2 (OpenAI), Veo (Google DeepMind), Kling 可灵 (Kuaishou), 海螺 Hailuo (MiniMax), Luma Dream Machine, [Pika](https://pika.art) | Current frontier for realism and shot length |
 | Image-to-video / animation | Kling, Hailuo, Runway Gen-4, Luma | Animate a still image into a short clip |
+
+### 🌍 World Models
+
+Distinct from video generation above: these don't just produce a linear clip — they generate **interactive, explorable environments** you (or an agent) can act inside, in real time.
+
+| Scenario | Recommended | Why |
+|---|---|---|
+| Interactive/playable generated worlds | [Genie 4](https://deepmind.google/models/genie/) (Google DeepMind), [Marble](https://worldlabs.ai) (World Labs), [Oasis 2.0](https://oasis-model.github.io/) (Decart + Etched) | Explore a generated 3D/game-like world in real time from a prompt or image, not just watch a clip |
+| Robotics / physical-AI simulation | [NVIDIA Cosmos 3](https://www.nvidia.com/en-us/ai/cosmos/) | Open world-foundation model for physical reasoning + action prediction; ships in Super/Nano/Edge sizes |
+
+> This space is moving fast and a few more players (Tencent Hunyuan World, Runway's general-world-model research, Odyssey) are emerging but weren't confident/verified enough to link here yet — worth watching. Also: Meta's **V-JEPA2** (in [Vision Encoders](#️-vision-encoders--detection) above) is marketed by Meta as a "world model" for physical reasoning, and Google DeepMind's **SIMA 2** is a related-but-different thing — an agent that *acts inside* worlds like Genie, rather than a model that generates them.
 
 ### 🎙️ Audio, Voice & Music
 
@@ -129,7 +150,8 @@ Note: a few rows below (image/video/audio generation) aren't *language* models i
 |---|---|---|
 | Text-to-speech | OpenAI audio, ElevenLabs, MiniMax voice | Natural prosody, many languages/accents |
 | Voice cloning | ElevenLabs, MiniMax, CosyVoice (Alibaba) | Few seconds of reference audio to clone a voice |
-| Music generation | Suno, Udio | Full songs (vocals + instrumental) from a text prompt |
+| Full song generation (vocals + instrumental) | Suno, Udio, [ElevenLabs Music](https://elevenlabs.io/music), [Lyria](https://ai.google.dev/gemini-api/docs/models/lyria-3.5) (Google) | Commercial-ready full songs (60s–3min) from a text prompt |
+| Open-weight / self-hostable music generation | [MusicGen / AudioCraft](https://github.com/facebookresearch/audiocraft) (Meta), [Stable Audio](https://stability.ai/stable-audio) (Stability AI) | Run locally, no API dependency — AudioCraft is fully open-weight |
 
 ### 🔎 Embeddings, Retrieval & Reranking
 
@@ -143,6 +165,7 @@ The models underneath every RAG / search / "find similar" pipeline — they turn
 | Efficient / quantizable at scale | mxbai-embed (Mixedbread AI) | Matryoshka + binary quantization — much cheaper vector storage at near-equal accuracy |
 | Chasing best raw MTEB score, research only | NV-Embed (NVIDIA) | Was #1 on MTEB — but **non-commercial license only** (CC-BY-NC-4.0), not for production use |
 | Vision-language embeddings | SigLIP / SigLIP2 (Google), CLIP (OpenAI) | Map images and text into the same embedding space — zero-shot classification, image search |
+| One embedding model across text, code, image, video, audio | EmbeddingGemma (Google, part of the Gemma 4 family) | A single unified embedding space instead of stitching together separate per-modality models |
 | Reranking retrieved results | Cohere Rerank, BGE-reranker (BAAI), Jina Reranker | Re-score a candidate list for much better top-k precision than embeddings alone |
 
 > These are usually deployed via `sentence-transformers`, `transformers`, or exported to **ONNX** and served with ONNX Runtime for fast CPU/edge inference. ONNX itself is a model *format/runtime* — not a model — so you won't see it as a row here, but you'll see it a lot in the deployment docs for the models above (and for the small open-weight chat models in [Self-Hosted](#-self-hosted--on-prem) below).
@@ -172,6 +195,7 @@ The counterpart to the text-to-speech models above — turning speech *into* tex
 | Paraformer / FunASR | Alibaba DAMO Academy | Chinese-first ASR toolkit — also does VAD, punctuation, speaker ID | MIT | [github.com/modelscope/FunASR](https://github.com/modelscope/FunASR) |
 | Qwen-Audio / Qwen3-Omni | Alibaba | Understands speech, music & sound; Qwen3-Omni natively handles speech in 19 languages in, 10 out | Apache 2.0 (varies by checkpoint) | [qwen.ai](https://qwen.ai) |
 | NVIDIA Canary / Parakeet | NVIDIA | Multilingual ASR + translation (Canary, 25 langs) and fast streaming ASR (Parakeet) | Typically CC-BY-4.0 — confirm per checkpoint | [huggingface.co/nvidia](https://huggingface.co/nvidia) |
+| Chirp 3 | Google Cloud | Enterprise ASR — 2B params, 24 GA + 77+ preview languages, strong speaker diarization | Google Cloud API (not open-weight) | [cloud.google.com/speech-to-text](https://cloud.google.com/speech-to-text) |
 
 > **Also famous, if you're curious:** [AlphaFold](https://deepmind.google/science/alphafold/) (Google DeepMind) is arguably the most famous "foundation model" in all of AI outside language/vision/speech — it predicts 3D protein structure from an amino-acid sequence, and its creators won a Nobel Prize in Chemistry for it in 2024. AlphaFold 2's code is Apache 2.0, but AlphaFold 3's model weights are only available non-commercially via the AlphaFold Server.
 
@@ -191,8 +215,24 @@ The counterpart to the text-to-speech models above — turning speech *into* tex
 
 | Scenario | Recommended | Why |
 |---|---|---|
-| Runs on a consumer GPU / laptop | Phi, Gemma, small Qwen, small Llama | 1B–8B range, quantizes down to run locally |
+| Runs on a consumer GPU / laptop (1B–8B) | Qwen3 (0.6B–8B), Llama 3.2 (1B/3B), Phi-4-mini, Gemma 3 (1B–12B) | Current generation of small instruct models; quantizes down to run locally |
+| Phone / on-device / edge | MiniCPM (OpenBMB), Gemma 3n, SmolLM2/SmolLM3 (Hugging Face) | Specifically tuned for phones and constrained edge hardware, not just "small" — see also the dedicated edge-model research note below |
+| Small vision-language (lightweight multimodal) | SmolVLM, Moondream, PaliGemma 2 (Google) | Image understanding that still fits on modest hardware |
 | Enterprise on-prem deployment | Llama 4, Qwen (open), DeepSeek-V3, GLM, Granite (IBM), Falcon (TII) | Apache-2.0-style licenses, enterprise support options |
+
+### 📱 On-Device / Edge Models
+
+Not just "small" — these are built specifically for a phone, laptop NPU, or embedded chip, often by the hardware/OS vendor itself, with a deployment story that's different from "download a .safetensors file."
+
+| Model | Organization | What Makes It "Edge" | Open/Closed | Link |
+|---|---|---|---|---|
+| Apple Foundation Models | Apple | Powers Siri/Apple Intelligence on iPhone/iPad/Mac; now exposed to third-party apps via the Foundation Models framework (Swift API) | Closed, API-only | [developer.apple.com/documentation/foundationmodels](https://developer.apple.com/documentation/foundationmodels) |
+| Aion Instruct (replacing Phi Silica) | Microsoft | NPU/GPU/CPU model for Copilot+ PCs; Phi Silica (NPU-only) is being retired by Jan 2027 in favor of this | Closed, Windows-integrated | [learn.microsoft.com/windows/ai/apis/phi-silica](https://learn.microsoft.com/en-us/windows/ai/apis/phi-silica) |
+| LFM2.5 | Liquid AI | Non-transformer (liquid/hybrid) architecture explicitly built as "device-native" models — 230M to 24B-A2B MoE, plus a vision-language edge variant | Open-weight (license varies by checkpoint — verify before use) | [liquid.ai](https://www.liquid.ai/) |
+| Ministral 3 (3B/8B/14B) | Mistral AI | Explicitly built "for edge and local use" — laptops, RTX PCs, Jetson devices | Apache 2.0 | [mistral.ai/news/mistral-3](https://mistral.ai/news/mistral-3/) |
+| Falcon-Edge (Falcon-E) | TII | 1B/3B, ternary BitNet (1.58-bit weights) — built to run on CPU instead of GPU | License unconfirmed — check the HF model card | [huggingface.co/blog/tiiuae/falcon-edge](https://huggingface.co/blog/tiiuae/falcon-edge) |
+
+> **These are deployment *platforms/tooling*, not models** — don't confuse them for one: **Qualcomm AI Hub** (compiles 300+ open models for Snapdragon NPU/GPU/CPU execution), **llama.cpp / GGUF** (the standard format for quantizing a model to run on CPU/edge hardware), and **Core ML / LiteRT (formerly TensorFlow Lite) / MediaPipe** (Apple's and Google's mobile inference runtimes). Same idea as the ONNX note above.
 
 ---
 
@@ -281,7 +321,7 @@ Weights you can download, fine-tune, and self-host.
 | <img src="https://www.google.com/s2/favicons?domain=moonshot.ai&sz=64" width="24"> | **Moonshot AI** 🇨🇳 | Kimi (K3, successor to K2) | Ultra-long context, agentic/tool-use benchmarks | Modified MIT | [moonshot.ai](https://www.moonshot.ai) |
 | <img src="https://www.google.com/s2/favicons?domain=01.ai&sz=64" width="24"> | **01.AI** 🇨🇳 | Yi series | Bilingual efficiency-focused models | Apache 2.0 | [01.ai](https://www.01.ai) |
 | <img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=64" width="24"> | **Microsoft** 🇺🇸 | Phi series | Small, high-quality "data-optimal" models for edge/on-device | MIT | [azure.microsoft.com/phi](https://azure.microsoft.com/en-us/products/phi) |
-| <img src="https://www.google.com/s2/favicons?domain=ai.google.dev&sz=64" width="24"> | **Google** 🇺🇸 | Gemma series | Lightweight open models derived from Gemini research | Gemma license | [ai.google.dev/gemma](https://ai.google.dev/gemma) |
+| <img src="https://www.google.com/s2/favicons?domain=ai.google.dev&sz=64" width="24"> | **Google** 🇺🇸 | Gemma 4 family (plus specialized variants: PaliGemma — vision-language, MedGemma — medical, EmbeddingGemma — embeddings, ShieldGemma — safety classifier, FunctionGemma — edge function-calling) | Lightweight open models derived from Gemini research | Gemma license | [deepmind.google/models/gemma](https://deepmind.google/models/gemma/) |
 | <img src="https://www.google.com/s2/favicons?domain=nvidia.com&sz=64" width="24"> | **NVIDIA** 🇺🇸 | Nemotron series | Distilled/optimized for NVIDIA GPU inference, strong post-training tooling | NVIDIA Open Model License | [nvidia.com/nemotron](https://www.nvidia.com/en-us/ai/nemotron/) |
 | <img src="https://www.google.com/s2/favicons?domain=ibm.com&sz=64" width="24"> | **IBM** 🇺🇸 | Granite series | Enterprise-focused, documented training-data provenance | Apache 2.0 | [ibm.com/granite](https://www.ibm.com/granite) |
 | <img src="https://www.google.com/s2/favicons?domain=falconllm.tii.ae&sz=64" width="24"> | **TII** 🇦🇪 | Falcon series | Leading open model from the Middle East, strong Arabic + multilingual support | Apache 2.0 (Falcon 2+) | [falconllm.tii.ae](https://falconllm.tii.ae) |

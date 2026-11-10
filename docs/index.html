@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Awesome LLM Landscape — 大模型全景图谱</title>
-<meta name="description" content="A mind-map style guide to mainstream LLMs / 思维导图式主流大语言模型全景指南">
+<title>Awesome LLM Landscape — 怎么选模型？</title>
+<meta name="description" content="A task-first mind map to help you pick the right AI model / 从场景出发的大模型选型思维导图">
 <style>
   :root {
     --bg: #f7f7f9;
@@ -57,7 +57,7 @@
     text-align: center;
   }
   h1 {
-    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    font-size: clamp(1.4rem, 4vw, 2.1rem);
     margin: 0 0 6px;
     background: linear-gradient(90deg, var(--accent), var(--accent-2));
     -webkit-background-clip: text;
@@ -76,6 +76,7 @@
     flex-wrap: wrap;
     margin-bottom: 8px;
   }
+  .controls.secondary { margin-bottom: 18px; }
   button, a.btn {
     font: inherit;
     font-size: 0.85rem;
@@ -111,6 +112,11 @@
     margin-top: 0;
     font-size: 1.1rem;
   }
+  section.card p.hint {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: -6px;
+  }
   .mermaid-wrap {
     overflow-x: auto;
   }
@@ -118,12 +124,6 @@
     display: flex;
     justify-content: center;
     min-width: 600px;
-  }
-  .loading {
-    color: var(--text-muted);
-    font-size: 0.85rem;
-    text-align: center;
-    padding: 24px;
   }
   footer {
     width: 100%;
@@ -141,6 +141,7 @@
     flex-wrap: wrap;
     margin-bottom: 10px;
   }
+  [hidden] { display: none !important; }
   @media (max-width: 640px) {
     .mermaid { min-width: 100%; }
     section.card { padding: 14px; border-radius: 12px; }
@@ -150,9 +151,13 @@
 <body>
 
 <header>
-  <h1 data-i18n="title">大模型全景图谱 · Awesome LLM Landscape</h1>
-  <p class="subtitle" data-i18n="subtitle">一份思维导图优先、带 Logo 的主流大语言模型指南</p>
+  <h1 data-i18n="title">怎么选模型？· Which Model Should You Use?</h1>
+  <p class="subtitle" data-i18n="subtitle">从你想做的事出发，直接找到合适的模型</p>
   <div class="controls">
+    <button id="btn-mode-scenario" aria-pressed="true" data-i18n="modeScenario">🎯 按场景</button>
+    <button id="btn-mode-org" aria-pressed="false" data-i18n="modeOrg">📚 按机构</button>
+  </div>
+  <div class="controls secondary">
     <button id="btn-zh" aria-pressed="true">中文</button>
     <button id="btn-en" aria-pressed="false">English</button>
     <button id="btn-theme" title="Toggle theme">🌓</button>
@@ -160,23 +165,35 @@
 </header>
 
 <main>
-  <section class="card">
-    <h2 data-i18n="overviewTitle">🗺️ 全景总览</h2>
-    <div class="mermaid-wrap">
-      <pre class="mermaid" id="mindmap-overview"></pre>
-    </div>
-  </section>
+  <div id="group-scenario">
+    <section class="card">
+      <h2 data-i18n="scenarioTitle">🎯 按场景选模型</h2>
+      <p class="hint" data-i18n="scenarioHint">每个分支末端就是推荐模型——想做什么，往下找就行。完整的「为什么选它」说明在仓库 README 里。</p>
+      <div class="mermaid-wrap">
+        <pre class="mermaid" id="mindmap-scenario"></pre>
+      </div>
+    </section>
+  </div>
 
-  <section class="card">
-    <h2 data-i18n="chinaTitle">🇨🇳 国产大模型生态</h2>
-    <div class="mermaid-wrap">
-      <pre class="mermaid" id="mindmap-china"></pre>
-    </div>
-  </section>
+  <div id="group-org" hidden>
+    <section class="card">
+      <h2 data-i18n="overviewTitle">🗺️ 全景总览</h2>
+      <div class="mermaid-wrap">
+        <pre class="mermaid" id="mindmap-overview"></pre>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 data-i18n="chinaTitle">🇨🇳 国产大模型生态</h2>
+      <div class="mermaid-wrap">
+        <pre class="mermaid" id="mindmap-china"></pre>
+      </div>
+    </section>
+  </div>
 
   <section class="card">
     <h2 data-i18n="moreTitle">📊 查看完整表格与评测资源</h2>
-    <p data-i18n="moreText">本页只展示思维导图总览。每个分支对应的模型详情表格（Logo、机构、许可证、评测与应用链接）都在仓库 README 中维护。</p>
+    <p data-i18n="moreText">本页只展示思维导图。每个分支对应的详情表格（推荐理由、Logo、机构、许可证、评测与应用链接）都在仓库 README 中维护。</p>
     <div class="links">
       <a class="btn" href="../README.md">📄 English README</a>
       <a class="btn" href="../README.zh-CN.md">📄 简体中文 README</a>
@@ -194,13 +211,41 @@
 
   const i18n = {
     zh: {
-      title: "大模型全景图谱 · Awesome LLM Landscape",
-      subtitle: "一份思维导图优先、带 Logo 的主流大语言模型指南",
+      title: "怎么选模型？· Which Model Should You Use?",
+      subtitle: "从你想做的事出发，直接找到合适的模型",
+      modeScenario: "🎯 按场景",
+      modeOrg: "📚 按机构",
+      scenarioTitle: "🎯 按场景选模型",
+      scenarioHint: "每个分支末端就是推荐模型——想做什么，往下找就行。完整的「为什么选它」说明在仓库 README 里。",
       overviewTitle: "🗺️ 全景总览",
       chinaTitle: "🇨🇳 国产大模型生态",
       moreTitle: "📊 查看完整表格与评测资源",
-      moreText: "本页只展示思维导图总览。每个分支对应的模型详情表格（Logo、机构、许可证、评测与应用链接）都在仓库 README 中维护。",
+      moreText: "本页只展示思维导图。每个分支对应的详情表格（推荐理由、Logo、机构、许可证、评测与应用链接）都在仓库 README 中维护。",
       footer: "内容持续更新中，欢迎提交 PR 修正或补充 · MIT License",
+      scenario: `mindmap
+  root((怎么选模型？))
+    💬 文本 · 对话与推理
+      日常问答写作: 豆包·通义千问·GPT-5
+      复杂推理编程: Claude 5·DeepSeek-R1
+      超长文档: Gemini·Kimi K2
+    💻 代码
+      IDE智能体编程: Claude 5·GPT-5
+      本地离线补全: Qwen-Coder·DeepSeek-Coder
+    🖼️ 图像
+      看图理解: GPT-5·Gemini·Qwen-VL
+      文生图: FLUX·SD·即梦
+    🎬 视频生成
+      文生视频: Sora·Veo·可灵
+      图生视频: 可灵·海螺
+    🎙️ 语音音频
+      合成与克隆: ElevenLabs·MiniMax
+    🧩 全模态 Omni
+      一站式: GPT-5·Gemini·Qwen-Omni
+    🤖 智能体工具调用
+      自动化任务: Claude 5·GLM·Kimi K2
+    🏠 本地私有化部署
+      消费显卡: Phi·Gemma·Qwen小尺寸
+      企业私有化: Llama 4·DeepSeek·GLM`,
       overview: `mindmap
   root((大模型全景))
     🏢 闭源
@@ -266,13 +311,41 @@
       多模态`
     },
     en: {
-      title: "Awesome LLM Landscape",
-      subtitle: "A mind-map first, logo-illustrated guide to mainstream LLMs",
+      title: "Which Model Should You Use?",
+      subtitle: "Start from what you're trying to do, land on the right model",
+      modeScenario: "🎯 By Scenario",
+      modeOrg: "📚 By Organization",
+      scenarioTitle: "🎯 Pick by What You're Doing",
+      scenarioHint: "Every branch ends in the model(s) people actually use for that task — the full \"why\" for each is in the repo README.",
       overviewTitle: "🗺️ Mind Map Overview",
       chinaTitle: "🇨🇳 Chinese LLM Ecosystem",
       moreTitle: "📊 Full Tables & Evaluation Resources",
-      moreText: "This page shows the mind-map overview only. Detail tables for every branch (logos, organizations, licenses, evaluation & app links) live in the repo README.",
+      moreText: "This page shows mind maps only. Detail tables for every branch (reasoning, logos, organizations, licenses, evaluation & app links) live in the repo README.",
       footer: "Updated regularly — PRs to correct or extend are welcome · MIT License",
+      scenario: `mindmap
+  root((Which Model?))
+    💬 Text · Chat & Reasoning
+      Everyday Q&A/writing: GPT-5·Gemini·Doubao
+      Deep reasoning/coding: Claude 5·DeepSeek-R1
+      Ultra-long documents: Gemini·Kimi K2
+    💻 Code
+      IDE/agentic coding: Claude 5·GPT-5
+      Local offline completion: Qwen-Coder·DeepSeek-Coder
+    🖼️ Image
+      Vision understanding: GPT-5·Gemini·Qwen-VL
+      Text-to-image: FLUX·Stable Diffusion·Imagen
+    🎬 Video Generation
+      Text-to-video: Sora·Veo·Kling
+      Image-to-video: Kling·Hailuo
+    🎙️ Audio & Voice
+      TTS & cloning: ElevenLabs·MiniMax
+    🧩 Omni (All-in-One)
+      Single model: GPT-5·Gemini·Qwen-Omni
+    🤖 Agents & Tool Use
+      Autonomous tasks: Claude 5·GLM·Kimi K2
+    🏠 Self-Hosted / On-Prem
+      Consumer GPU: Phi·Gemma·small Qwen
+      Enterprise on-prem: Llama 4·DeepSeek·GLM`,
       overview: `mindmap
   root((LLM Landscape))
     🏢 Proprietary
@@ -340,6 +413,7 @@
   };
 
   let lang = "zh";
+  let mode = "scenario";
 
   function getMermaidTheme() {
     const explicit = document.documentElement.getAttribute("data-theme");
@@ -356,16 +430,31 @@
     });
     document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
 
+    const scenarioEl = document.getElementById("mindmap-scenario");
     const overviewEl = document.getElementById("mindmap-overview");
     const chinaEl = document.getElementById("mindmap-china");
-    overviewEl.removeAttribute("data-processed");
-    chinaEl.removeAttribute("data-processed");
+    scenarioEl.textContent = t.scenario;
     overviewEl.textContent = t.overview;
     chinaEl.textContent = t.china;
+    [scenarioEl, overviewEl, chinaEl].forEach(el => el.removeAttribute("data-processed"));
+
+    document.getElementById("group-scenario").hidden = mode !== "scenario";
+    document.getElementById("group-org").hidden = mode !== "org";
 
     mermaid.initialize({ startOnLoad: false, theme: getMermaidTheme(), securityLevel: "strict" });
-    await mermaid.run({ nodes: [overviewEl, chinaEl] });
+    const targets = mode === "scenario" ? [scenarioEl] : [overviewEl, chinaEl];
+    await mermaid.run({ nodes: targets });
   }
+
+  function setMode(next) {
+    mode = next;
+    document.getElementById("btn-mode-scenario").setAttribute("aria-pressed", String(next === "scenario"));
+    document.getElementById("btn-mode-org").setAttribute("aria-pressed", String(next === "org"));
+    render();
+  }
+
+  document.getElementById("btn-mode-scenario").addEventListener("click", () => setMode("scenario"));
+  document.getElementById("btn-mode-org").addEventListener("click", () => setMode("org"));
 
   document.getElementById("btn-zh").addEventListener("click", () => {
     lang = "zh";

@@ -12,32 +12,133 @@
 </p>
 
 <p align="center">
-A mind-map style, logo-illustrated guide to today's mainstream Large Language Models — who makes them, what they're good at, and how they relate to each other.
+  <b>Start from what you're trying to do — chat, code, generate an image, make a video, clone a voice — and land directly on the model(s) people actually use for it.</b>
 </p>
 
 <p align="center">
   🌐 <a href="https://hoobenwang.github.io/awesome-llm-landscape/"><b>Live interactive mind map (GitHub Pages)</b></a>
 </p>
 
-Most "awesome LLM" lists are long, flat bullet dumps. This one is organized as a **mind map** first, so you can see the shape of the landscape at a glance, then drill into tables with **logos** for fast visual recognition, plus links to benchmarks and real-world applications.
+Most "awesome LLM" lists are organized by *who made the model*. That's useful once you already know what you want — but it doesn't answer the question most people actually have: **"I need to do X, which model should I use?"** This repo leads with a **task-first mind map** for exactly that, then gives you a full **by-organization** directory (with logos, for fast visual recognition) for when you want the complete picture.
 
 > Inspired by [uhub/awesome-llm](https://github.com/uhub/awesome-llm), [hannibal046/Awesome-LLM](https://github.com/hannibal046/Awesome-LLM), [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps), and [Awesome-LLM-Evaluation](https://alopatenko.github.io/LLMEvaluation/).
 
 ## Contents
 
-- [🗺️ Mind Map Overview](#️-mind-map-overview)
-- [🏢 Proprietary (Closed-Weight) Models](#-proprietary-closed-weight-models)
-- [🧩 Open-Weight Models](#-open-weight-models)
-- [🇨🇳 Chinese LLM Ecosystem](#-chinese-llm-ecosystem)
-- [🖼️ Multimodal Models](#️-multimodal-models)
-- [🛠️ Build With LLMs](#️-build-with-llms)
+- [🎯 Quick Picker — What Are You Trying to Do?](#-quick-picker--what-are-you-trying-to-do)
+  - [💬 Text: Chat & Reasoning](#-text-chat--reasoning)
+  - [💻 Code](#-code)
+  - [🖼️ Image](#️-image)
+  - [🎬 Video Generation](#-video-generation)
+  - [🎙️ Audio & Voice](#️-audio--voice)
+  - [🧩 Omni (All-in-One Multimodal)](#-omni-all-in-one-multimodal)
+  - [🤖 Agents & Tool Use](#-agents--tool-use)
+  - [🏠 Self-Hosted / On-Prem](#-self-hosted--on-prem)
+- [📚 Full Directory by Organization](#-full-directory-by-organization)
 - [📊 Evaluation & Benchmarks](#-evaluation--benchmarks)
+- [🛠️ Build With LLMs](#️-build-with-llms)
 - [🔗 Related Awesome Lists](#-related-awesome-lists)
 - [🤝 Contributing](#-contributing)
 
 ---
 
-## 🗺️ Mind Map Overview
+## 🎯 Quick Picker — What Are You Trying to Do?
+
+```mermaid
+mindmap
+  root((Which Model?))
+    💬 Text · Chat & Reasoning
+      Everyday Q&A / writing
+      Deep reasoning / coding
+      Ultra-long documents
+      Chinese-optimized writing
+    💻 Code
+      IDE / agentic coding
+      Local offline completion
+    🖼️ Image
+      Vision understanding
+      Text-to-image generation
+    🎬 Video Generation
+      Text-to-video
+      Image-to-video
+    🎙️ Audio & Voice
+      Text-to-speech
+      Voice cloning
+    🧩 Omni (All-in-One)
+      One model, every modality
+    🤖 Agents & Tool Use
+      Autonomous task execution
+    🏠 Self-Hosted / On-Prem
+      Runs on consumer GPU
+      Enterprise on-prem
+```
+
+> If the diagram above renders as plain text instead of a graphic, open this file on [mermaid.live](https://mermaid.live) or in VS Code — GitHub's mermaid renderer occasionally lags.
+
+Note: a few rows below (image/video/audio generation) aren't *language* models in the strict sense — they're diffusion or audio models — but they're part of the same "which model do I reach for" decision, so they're included here for completeness.
+
+### 💬 Text: Chat & Reasoning
+
+| Scenario | Recommended | Why |
+|---|---|---|
+| Everyday Q&A / writing | GPT-5, Claude 5 Sonnet, Gemini, Doubao, Qwen | Best balance of quality, speed, and cost for daily use |
+| Deep reasoning / coding agents | Claude 5 Opus, GPT-5 (o-series), DeepSeek-R1, Qwen3-Max | Strongest step-by-step reasoning and long-horizon planning |
+| Ultra-long documents/codebases (200K–1M+ tokens) | Gemini, DeepSeek, Qwen, Kimi K2 | Native long-context windows without heavy quality drop-off |
+| Chinese writing & creative tasks | ERNIE, Qwen, Doubao | Tuned specifically for Chinese nuance and style |
+| Privacy / self-host / offline | Llama 4, Qwen (open), DeepSeek-V3, GLM, Mistral | Download the weights, run on your own hardware |
+
+### 💻 Code
+
+| Scenario | Recommended | Why |
+|---|---|---|
+| IDE copilot / agentic coding (plans, edits, runs tests) | Claude 5 (Sonnet/Opus), GPT-5 | Top scores on SWE-bench-style real-world issue resolution |
+| Local/offline code completion | Qwen-Coder, DeepSeek-Coder, Phi | Small enough to run on a laptop or single GPU |
+
+### 🖼️ Image
+
+| Scenario | Recommended | Why |
+|---|---|---|
+| Understand/describe an image (vision) | GPT-5 (vision), Gemini, Claude 5, Qwen-VL, InternVL | Read screenshots, charts, documents, photos |
+| Generate an image from text | GPT Image (OpenAI), Imagen (Google), FLUX (Black Forest Labs), Stable Diffusion, 即梦/Doubao (ByteDance) | Range from photoreal to fast/cheap iteration |
+
+### 🎬 Video Generation
+
+| Scenario | Recommended | Why |
+|---|---|---|
+| Text-to-video | Sora 2 (OpenAI), Veo (Google DeepMind), Kling 可灵 (Kuaishou), 海螺 Hailuo (MiniMax) | Current frontier for realism and shot length |
+| Image-to-video / animation | Kling, Hailuo, Runway Gen-4 | Animate a still image into a short clip |
+
+### 🎙️ Audio & Voice
+
+| Scenario | Recommended | Why |
+|---|---|---|
+| Text-to-speech | OpenAI audio, ElevenLabs, MiniMax voice | Natural prosody, many languages/accents |
+| Voice cloning | ElevenLabs, MiniMax, CosyVoice (Alibaba) | Few seconds of reference audio to clone a voice |
+
+### 🧩 Omni (All-in-One Multimodal)
+
+| Scenario | Recommended | Why |
+|---|---|---|
+| One model for text + image + audio + video in/out | GPT-5, Gemini, Qwen-Omni | Avoids stitching together separate specialized models |
+
+### 🤖 Agents & Tool Use
+
+| Scenario | Recommended | Why |
+|---|---|---|
+| Autonomous multi-step tasks, computer/tool use | Claude 5 (agent/computer-use), GLM, Kimi K2, GPT-5 (function calling) | Strongest benchmarks for planning + tool invocation over many steps |
+
+### 🏠 Self-Hosted / On-Prem
+
+| Scenario | Recommended | Why |
+|---|---|---|
+| Runs on a consumer GPU / laptop | Phi, Gemma, small Qwen, small Llama | 1B–8B range, quantizes down to run locally |
+| Enterprise on-prem deployment | Llama 4, Qwen (open), DeepSeek-V3, GLM, Granite (IBM), Falcon (TII) | Apache-2.0-style licenses, enterprise support options |
+
+---
+
+## 📚 Full Directory by Organization
+
+Prefer browsing by company instead? Here's the same landscape organized the traditional way.
 
 ```mermaid
 mindmap
@@ -85,13 +186,7 @@ mindmap
       Coding
 ```
 
-> GitHub doesn't always keep its mermaid renderer current — if the mind map above shows as plain text instead of a diagram, open the file directly on [mermaid.live](https://mermaid.live) or view it in VS Code.
-
-Each branch below is a detail table: a logo for quick recognition, the organization, the model family, what it's best known for, and links.
-
----
-
-## 🏢 Proprietary (Closed-Weight) Models
+### 🏢 Proprietary (Closed-Weight) Models
 
 Flagship models you access only through an API or app — weights are not released.
 
@@ -112,7 +207,7 @@ Flagship models you access only through an API or app — weights are not releas
 | <img src="https://www.google.com/s2/favicons?domain=minimax.io&sz=64" width="24"> | **MiniMax** 🇨🇳 | abab series | Long-context chat, multimodal agents | [minimax.io](https://www.minimax.io) |
 | <img src="https://www.google.com/s2/favicons?domain=clova.ai&sz=64" width="24"> | **Naver** 🇰🇷 | HyperCLOVA X | Korean-language flagship, regional alternative to US/China giants | [clova.ai](https://clova.ai) |
 
-## 🧩 Open-Weight Models
+### 🧩 Open-Weight Models
 
 Weights you can download, fine-tune, and self-host.
 
@@ -132,9 +227,9 @@ Weights you can download, fine-tune, and self-host.
 | <img src="https://www.google.com/s2/favicons?domain=falconllm.tii.ae&sz=64" width="24"> | **TII** 🇦🇪 | Falcon series | Leading open model from the Middle East, strong Arabic + multilingual support | Apache 2.0 (Falcon 2+) | [falconllm.tii.ae](https://falconllm.tii.ae) |
 | <img src="https://www.google.com/s2/favicons?domain=allenai.org&sz=64" width="24"> | **Allen Institute for AI** 🇺🇸 | OLMo series | "Fully open" — training data, code, and weights all released | Apache 2.0 | [allenai.org/olmo](https://allenai.org/olmo) |
 
-## 🇨🇳 Chinese LLM Ecosystem
+### 🇨🇳 Chinese LLM Ecosystem
 
-A closer look at the fast-moving Chinese market, since it spans both of the categories above.
+A closer look at the fast-moving Chinese market, since it spans both tables above.
 
 ```mermaid
 mindmap
@@ -149,7 +244,7 @@ mindmap
       文心一言 ERNIE
       豆包 Doubao
       腾讯混元 Hunyuan
-      商汤 SenseChat
+      商汤日日新
       讯飞星火 Spark
       MiniMax abab
     应用场景
@@ -168,22 +263,6 @@ mindmap
 | Chinese writing & creative tasks | ERNIE, Qwen |
 | Agentic tool-use | GLM, Kimi |
 
-## 🖼️ Multimodal Models
-
-Models that go beyond text — vision, audio, and "omni" any-to-any models.
-
-| | Model | Organization | Modalities |
-|---|---|---|---|
-| <img src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" width="24"> | GPT-5 (multimodal) | OpenAI | Text, image, audio, video |
-| <img src="https://www.google.com/s2/favicons?domain=deepmind.google&sz=64" width="24"> | Gemini (native multimodal) | Google DeepMind | Text, image, audio, video, code execution |
-| <img src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=64" width="24"> | Claude 5 (vision) | Anthropic | Text, image, PDFs/documents |
-| <img src="https://www.google.com/s2/favicons?domain=qwen.ai&sz=64" width="24"> | Qwen-VL / Qwen-Omni | Alibaba | Text, image, video, audio |
-| <img src="https://www.google.com/s2/favicons?domain=opengvlab.com&sz=64" width="24"> | InternVL | Shanghai AI Lab | Text, image (open weights) |
-
-## 🛠️ Build With LLMs
-
-Want to *use* these models instead of just reading about them? See **[Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps)** for 50+ real, runnable projects: RAG pipelines, autonomous agents, MCP servers, voice agents, and more.
-
 ## 📊 Evaluation & Benchmarks
 
 Picking a model means knowing how it's measured. Start here:
@@ -195,6 +274,10 @@ Picking a model means knowing how it's measured. Start here:
 - **SWE-bench** — real-world GitHub issue resolution for coding agents.
 - **LiveCodeBench** — contamination-resistant, continuously-refreshed coding benchmark.
 
+## 🛠️ Build With LLMs
+
+Want to *use* these models instead of just reading about them? See **[Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps)** for 50+ real, runnable projects: RAG pipelines, autonomous agents, MCP servers, voice agents, and more.
+
 ## 🔗 Related Awesome Lists
 
 - [uhub/awesome-llm](https://github.com/uhub/awesome-llm)
@@ -204,7 +287,7 @@ Picking a model means knowing how it's measured. Start here:
 
 ## 🤝 Contributing
 
-New model, wrong logo, outdated version number? PRs are very welcome — see [CONTRIBUTING.md](CONTRIBUTING.md). This landscape moves fast; this list is only useful if it stays current.
+New model, wrong logo, outdated version number, or a scenario we haven't covered? PRs are very welcome — see [CONTRIBUTING.md](CONTRIBUTING.md). This landscape moves fast; this list is only useful if it stays current.
 
 ## License
 

@@ -12,32 +12,133 @@
 </p>
 
 <p align="center">
-一份以<b>思维导图</b>呈现、带<b>品牌 Logo</b> 标识的主流大语言模型（LLM）全景指南——谁在做模型、各家擅长什么、彼此之间是什么关系，一目了然。
+  <b>从你想做的事出发——聊天、写代码、生成图片、做视频、克隆声音——直接找到大家实际在用的那个模型。</b>
 </p>
 
 <p align="center">
   🌐 <a href="https://hoobenwang.github.io/awesome-llm-landscape/"><b>在线交互式思维导图（GitHub Pages）</b></a>
 </p>
 
-市面上多数「awesome LLM」仓库都是又长又平的列表，很难一眼看出全貌。这份仓库优先用**思维导图**呈现整体脉络，再用带 **Logo** 的表格方便快速识别，并附上评测与实战应用的参考链接。
+大多数「awesome LLM」仓库都是按「谁做的模型」来组织的。这对你已经知道自己要什么的时候有用，但回答不了大多数人真正的问题：**「我要做 X，该用哪个模型？」** 这份仓库优先给你一张**按场景划分**的思维导图，直接回答这个问题；然后再提供一份完整的**按机构**目录（带 Logo，方便快速识别），满足你想看全貌的需求。
 
 > 参考自 [uhub/awesome-llm](https://github.com/uhub/awesome-llm)、[hannibal046/Awesome-LLM](https://github.com/hannibal046/Awesome-LLM)、[Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) 以及 [Awesome-LLM-Evaluation](https://alopatenko.github.io/LLMEvaluation/)。
 
 ## 目录
 
-- [🗺️ 思维导图总览](#️-思维导图总览)
-- [🏢 闭源模型（Proprietary）](#-闭源模型proprietary)
-- [🧩 开源模型（Open-Weight）](#-开源模型open-weight)
-- [🇨🇳 国产大模型生态](#-国产大模型生态)
-- [🖼️ 多模态模型](#️-多模态模型)
-- [🛠️ 用大模型做产品](#️-用大模型做产品)
+- [🎯 快速选型：你想做什么？](#-快速选型你想做什么)
+  - [💬 文本：对话与推理](#-文本对话与推理)
+  - [💻 代码](#-代码)
+  - [🖼️ 图像](#️-图像)
+  - [🎬 视频生成](#-视频生成)
+  - [🎙️ 语音音频](#️-语音音频)
+  - [🧩 全模态 Omni（一站式）](#-全模态-omni一站式)
+  - [🤖 智能体与工具调用](#-智能体与工具调用)
+  - [🏠 本地私有化部署](#-本地私有化部署)
+- [📚 完整机构目录](#-完整机构目录)
 - [📊 评测与榜单](#-评测与榜单)
+- [🛠️ 用大模型做产品](#️-用大模型做产品)
 - [🔗 相关 Awesome 列表](#-相关-awesome-列表)
 - [🤝 贡献指南](#-贡献指南)
 
 ---
 
-## 🗺️ 思维导图总览
+## 🎯 快速选型：你想做什么？
+
+```mermaid
+mindmap
+  root((怎么选模型？))
+    💬 文本 · 对话与推理
+      日常问答写作
+      复杂推理编程
+      超长文档处理
+      中文创作优化
+    💻 代码
+      IDE / 智能体编程
+      本地离线补全
+    🖼️ 图像
+      看图理解
+      文生图生成
+    🎬 视频生成
+      文生视频
+      图生视频
+    🎙️ 语音音频
+      语音合成 TTS
+      语音克隆
+    🧩 全模态 Omni
+      一个模型全搞定
+    🤖 智能体与工具调用
+      自动化任务执行
+    🏠 本地私有化部署
+      消费级显卡可跑
+      企业私有化
+```
+
+> 如果上方的思维导图在 GitHub 上显示为纯文本而非图表（GitHub 的 mermaid 渲染偶尔滞后），可以打开 [mermaid.live](https://mermaid.live) 或在 VS Code 中查看本文件。
+
+注：下面图像/视频/语音生成这几类严格来说不算「语言模型」——它们是扩散模型或音频模型——但选模型时大家会放在一起比较，所以一并收录。
+
+### 💬 文本：对话与推理
+
+| 场景 | 推荐模型 | 为什么 |
+|---|---|---|
+| 日常问答 / 写作 | GPT-5、Claude 5 Sonnet、Gemini、豆包、通义千问 | 质量、速度、成本最均衡，适合日常使用 |
+| 复杂推理 / 编程智能体 | Claude 5 Opus、GPT-5（o 系列）、DeepSeek-R1、通义千问 Max | 多步推理与长程规划能力最强 |
+| 超长文档/代码库（20 万–100 万+ tokens） | Gemini、DeepSeek、通义千问、Kimi K2 | 原生长上下文，质量不会明显下降 |
+| 中文写作与创意生成 | 文心一言、通义千问、豆包 | 专门针对中文语感与风格优化 |
+| 隐私 / 本地部署 / 离线 | Llama 4、通义千问（开源）、DeepSeek-V3、智谱 GLM、Mistral | 下载权重，跑在自己的硬件上 |
+
+### 💻 代码
+
+| 场景 | 推荐模型 | 为什么 |
+|---|---|---|
+| IDE 智能体编程（规划、改代码、跑测试） | Claude 5（Sonnet/Opus）、GPT-5 | 在真实 issue 修复类基准上得分最高 |
+| 本地/离线代码补全 | 通义千问-Coder、DeepSeek-Coder、Phi | 体积小，笔记本或单卡就能跑 |
+
+### 🖼️ 图像
+
+| 场景 | 推荐模型 | 为什么 |
+|---|---|---|
+| 看图/理解图像（视觉） | GPT-5（视觉）、Gemini、Claude 5、Qwen-VL、InternVL | 读懂截图、图表、文档、照片 |
+| 文生图 | GPT Image（OpenAI）、Imagen（Google）、FLUX（Black Forest Labs）、Stable Diffusion、即梦/豆包（字节跳动） | 从照片级写实到快速低成本迭代都有覆盖 |
+
+### 🎬 视频生成
+
+| 场景 | 推荐模型 | 为什么 |
+|---|---|---|
+| 文生视频 | Sora 2（OpenAI）、Veo（Google DeepMind）、可灵 Kling（快手）、海螺 Hailuo（MiniMax） | 目前写实度与时长的第一梯队 |
+| 图生视频/动画 | 可灵、海螺、Runway Gen-4 | 把一张静态图动画成短视频 |
+
+### 🎙️ 语音音频
+
+| 场景 | 推荐模型 | 为什么 |
+|---|---|---|
+| 语音合成 TTS | OpenAI 语音、ElevenLabs、MiniMax 语音 | 语调自然，覆盖多语言/口音 |
+| 语音克隆 | ElevenLabs、MiniMax、CosyVoice（阿里巴巴） | 几秒参考音频即可克隆声音 |
+
+### 🧩 全模态 Omni（一站式）
+
+| 场景 | 推荐模型 | 为什么 |
+|---|---|---|
+| 一个模型搞定文本+图像+音频+视频输入输出 | GPT-5、Gemini、Qwen-Omni | 不用再拼接多个专用模型 |
+
+### 🤖 智能体与工具调用
+
+| 场景 | 推荐模型 | 为什么 |
+|---|---|---|
+| 自主执行多步任务、操作电脑/工具 | Claude 5（Agent/电脑操作）、智谱 GLM、Kimi K2、GPT-5（函数调用） | 多步规划 + 工具调用基准表现最强 |
+
+### 🏠 本地私有化部署
+
+| 场景 | 推荐模型 | 为什么 |
+|---|---|---|
+| 消费级显卡/笔记本可跑 | Phi、Gemma、通义千问小尺寸、Llama 小尺寸 | 1B–8B 级别，量化后本地可跑 |
+| 企业私有化部署 | Llama 4、通义千问（开源）、DeepSeek-V3、智谱 GLM、Granite（IBM）、Falcon（TII） | Apache 2.0 类许可证，有企业级支持选项 |
+
+---
+
+## 📚 完整机构目录
+
+想按公司浏览？这是同一份全景图按传统方式组织的版本。
 
 ```mermaid
 mindmap
@@ -85,13 +186,7 @@ mindmap
       编程辅助
 ```
 
-> 如果上方的思维导图在 GitHub 上显示为纯文本而非图表（GitHub 的 mermaid 渲染偶尔滞后），可以打开 [mermaid.live](https://mermaid.live) 或在 VS Code 中查看本文件。
-
-下面每个分支都对应一张详情表：Logo 方便快速识别，附组织、模型家族、擅长领域和链接。
-
----
-
-## 🏢 闭源模型（Proprietary）
+### 🏢 闭源模型（Proprietary）
 
 只能通过 API 或应用访问，不开放权重下载的旗舰模型。
 
@@ -112,7 +207,7 @@ mindmap
 | <img src="https://www.google.com/s2/favicons?domain=minimax.io&sz=64" width="24"> | **MiniMax** 🇨🇳 | abab 系列 | 长上下文对话、多模态智能体 | [minimax.io](https://www.minimax.io) |
 | <img src="https://www.google.com/s2/favicons?domain=clova.ai&sz=64" width="24"> | **Naver** 🇰🇷 | HyperCLOVA X | 韩语旗舰模型，中美之外的区域代表 | [clova.ai](https://clova.ai) |
 
-## 🧩 开源模型（Open-Weight）
+### 🧩 开源模型（Open-Weight）
 
 可下载权重、可微调、可私有化部署的模型。
 
@@ -132,9 +227,9 @@ mindmap
 | <img src="https://www.google.com/s2/favicons?domain=falconllm.tii.ae&sz=64" width="24"> | **TII** 🇦🇪 | Falcon 系列 | 中东地区代表性开源模型，阿拉伯语与多语言能力强 | Apache 2.0（Falcon 2+） | [falconllm.tii.ae](https://falconllm.tii.ae) |
 | <img src="https://www.google.com/s2/favicons?domain=allenai.org&sz=64" width="24"> | **艾伦人工智能研究所** 🇺🇸 | OLMo 系列 | 「完全开放」——训练数据、代码、权重全部公开 | Apache 2.0 | [allenai.org/olmo](https://allenai.org/olmo) |
 
-## 🇨🇳 国产大模型生态
+### 🇨🇳 国产大模型生态
 
-单独梳理发展最快的中国市场，因为它同时横跨以上两个分类。
+单独梳理发展最快的中国市场，因为它同时横跨以上两张表。
 
 ```mermaid
 mindmap
@@ -168,22 +263,6 @@ mindmap
 | 中文写作与创意生成 | 文心一言、通义千问 |
 | 智能体 / 工具调用 | 智谱 GLM、Kimi |
 
-## 🖼️ 多模态模型
-
-不止于文本——支持视觉、音频乃至「全模态」任意输入输出的模型。
-
-| | 模型 | 机构 | 支持模态 |
-|---|---|---|---|
-| <img src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" width="24"> | GPT-5（多模态） | OpenAI | 文本、图像、音频、视频 |
-| <img src="https://www.google.com/s2/favicons?domain=deepmind.google&sz=64" width="24"> | Gemini（原生多模态） | Google DeepMind | 文本、图像、音频、视频、代码执行 |
-| <img src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=64" width="24"> | Claude 5（视觉） | Anthropic | 文本、图像、PDF/文档 |
-| <img src="https://www.google.com/s2/favicons?domain=qwen.ai&sz=64" width="24"> | Qwen-VL / Qwen-Omni | 阿里巴巴 | 文本、图像、视频、音频 |
-| <img src="https://www.google.com/s2/favicons?domain=opengvlab.com&sz=64" width="24"> | InternVL | 上海人工智能实验室 | 文本、图像（开源权重） |
-
-## 🛠️ 用大模型做产品
-
-想直接「用」这些模型而不只是了解它们？参考 **[Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps)**，里面有 50+ 可直接运行的项目：RAG 流水线、自主智能体、MCP 服务、语音智能体等。
-
 ## 📊 评测与榜单
 
 选模型离不开评测标准，建议从这里入手：
@@ -195,6 +274,10 @@ mindmap
 - **SWE-bench** — 真实 GitHub issue 修复能力，面向编程智能体。
 - **LiveCodeBench** — 持续刷新、抗数据污染的编程基准。
 
+## 🛠️ 用大模型做产品
+
+想直接「用」这些模型而不只是了解它们？参考 **[Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps)**，里面有 50+ 可直接运行的项目：RAG 流水线、自主智能体、MCP 服务、语音智能体等。
+
 ## 🔗 相关 Awesome 列表
 
 - [uhub/awesome-llm](https://github.com/uhub/awesome-llm)
@@ -204,7 +287,7 @@ mindmap
 
 ## 🤝 贡献指南
 
-发现新模型、Logo 不对、版本号过时？非常欢迎提交 PR，详见 [CONTRIBUTING.md](CONTRIBUTING.md)。大模型行业变化很快，这份清单只有持续更新才有意义。
+发现新模型、Logo 不对、版本号过时，或者有我们没覆盖到的场景？非常欢迎提交 PR，详见 [CONTRIBUTING.md](CONTRIBUTING.md)。大模型行业变化很快，这份清单只有持续更新才有意义。
 
 ## 许可证
 

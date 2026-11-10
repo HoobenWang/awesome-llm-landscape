@@ -32,6 +32,8 @@ Most "awesome LLM" lists are organized by *who made the model*. That's useful on
   - [🎬 Video Generation](#-video-generation)
   - [🎙️ Audio, Voice & Music](#️-audio-voice--music)
   - [🔎 Embeddings, Retrieval & Reranking](#-embeddings-retrieval--reranking)
+  - [👁️ Vision Encoders & Detection](#️-vision-encoders--detection)
+  - [🎧 Speech Recognition & Translation](#-speech-recognition--translation)
   - [🧩 Omni (All-in-One Multimodal)](#-omni-all-in-one-multimodal)
   - [🤖 Agents & Tool Use](#-agents--tool-use)
   - [🏠 Self-Hosted / On-Prem](#-self-hosted--on-prem)
@@ -71,6 +73,11 @@ mindmap
       Text embeddings for RAG
       Vision-language embeddings
       Reranking
+    👁️ Vision Encoders & Detection
+      Feature extraction backbones
+      Segmentation / detection
+    🎧 Speech Recognition
+      Speech-to-text / translation
     🧩 Omni (All-in-One)
       One model, every modality
     🤖 Agents & Tool Use
@@ -90,7 +97,7 @@ Note: a few rows below (image/video/audio generation) aren't *language* models i
 |---|---|---|
 | Everyday Q&A / writing | GPT-5, Claude 5 Sonnet, Gemini, Doubao, Qwen | Best balance of quality, speed, and cost for daily use |
 | Deep reasoning / coding agents | Claude 5 Opus, GPT-5 (o-series), DeepSeek-R1, Qwen3-Max | Strongest step-by-step reasoning and long-horizon planning |
-| Ultra-long documents/codebases (200K–1M+ tokens) | Gemini, DeepSeek, Qwen, Kimi K2 | Native long-context windows without heavy quality drop-off |
+| Ultra-long documents/codebases (200K–1M+ tokens) | Gemini, DeepSeek, Qwen, Kimi K3 | Native long-context windows without heavy quality drop-off |
 | Chinese writing & creative tasks | ERNIE, Qwen, Doubao | Tuned specifically for Chinese nuance and style |
 | Privacy / self-host / offline | Llama 4, Qwen (open), DeepSeek-V3, GLM, Mistral | Download the weights, run on your own hardware |
 | Real-time info / current events | Grok (xAI) | Direct, low-latency access to live X/Twitter data |
@@ -131,10 +138,42 @@ The models underneath every RAG / search / "find similar" pipeline — they turn
 | Scenario | Recommended | Why |
 |---|---|---|
 | Text embeddings for RAG/search | OpenAI text-embedding-3, Cohere Embed, BGE (BAAI), Qwen-Embedding, Voyage AI, Jina Embeddings | Map text to vectors for semantic search and retrieval |
+| Fully open (data + code + weights), long context | Nomic Embed | 8K-token context, Apache 2.0, fully reproducible training recipe |
+| Top MTEB multilingual ranking | GTE (Alibaba), E5 (Microsoft), Snowflake Arctic Embed | Strong general-purpose retrieval accuracy; Apache 2.0 / MIT |
+| Efficient / quantizable at scale | mxbai-embed (Mixedbread AI) | Matryoshka + binary quantization — much cheaper vector storage at near-equal accuracy |
+| Chasing best raw MTEB score, research only | NV-Embed (NVIDIA) | Was #1 on MTEB — but **non-commercial license only** (CC-BY-NC-4.0), not for production use |
 | Vision-language embeddings | SigLIP / SigLIP2 (Google), CLIP (OpenAI) | Map images and text into the same embedding space — zero-shot classification, image search |
 | Reranking retrieved results | Cohere Rerank, BGE-reranker (BAAI), Jina Reranker | Re-score a candidate list for much better top-k precision than embeddings alone |
 
 > These are usually deployed via `sentence-transformers`, `transformers`, or exported to **ONNX** and served with ONNX Runtime for fast CPU/edge inference. ONNX itself is a model *format/runtime* — not a model — so you won't see it as a row here, but you'll see it a lot in the deployment docs for the models above (and for the small open-weight chat models in [Self-Hosted](#-self-hosted--on-prem) below).
+
+### 👁️ Vision Encoders & Detection
+
+Not chat models or image generators — these are the vision *building blocks* other pipelines are built on: general-purpose feature extraction, segmentation, and object detection. Several have real licensing gotchas worth knowing before you build on them.
+
+| Model | Organization | Known For | License / Note | Link |
+|---|---|---|---|---|
+| DINOv2 / DINOv3 | Meta AI | Self-supervised vision backbone — no labels needed, strong general-purpose visual features | DINOv2: Apache 2.0 · **DINOv3: custom license**, requires "Built with DINOv3" attribution + access approval | [ai.meta.com/research/dinov3](https://ai.meta.com/research/dinov3/) |
+| I-JEPA / V-JEPA2 | Meta AI (FAIR) | Predicts representations instead of pixels (JEPA architecture) — efficient self-supervised learning for images (I-JEPA) and video (V-JEPA2) | Research license — verify before commercial use | [ai.meta.com/blog/yann-lecun-ai-model-i-jepa](https://ai.meta.com/blog/yann-lecun-ai-model-i-jepa/) |
+| AIMv2 | Apple | Autoregressive multimodal vision encoder — outperforms CLIP/SigLIP on multimodal image-understanding benchmarks | Apple research/sample-code terms (not standard OSS — verify before commercial use) | [github.com/apple/ml-aim](https://github.com/apple/ml-aim) |
+| EVA-CLIP | BAAI | Scaled-up CLIP training recipe — EVA-CLIP-18B is the largest open CLIP model | MIT | [github.com/baaivision/EVA](https://github.com/baaivision/EVA) |
+| Segment Anything (SAM2 / SAM3) | Meta AI | Promptable image/video segmentation — SAM3 adds text/concept-based segmentation | SAM2: Apache 2.0 · **SAM3: gated "SAM License"** (more restrictive, requires HF access approval) | [ai.meta.com/research/sam3](https://ai.meta.com/research/sam3/) |
+| Grounding DINO | IDEA Research | Open-vocabulary object detection — detect objects from a text description instead of a fixed label set | Apache 2.0 | [github.com/IDEA-Research/GroundingDINO](https://github.com/IDEA-Research/GroundingDINO) |
+| YOLO26 | Ultralytics | Current flagship real-time object detector — NMS-free, fast even on CPU | **AGPL-3.0** (copyleft) for open-source use; commercial license required for closed-source products | [docs.ultralytics.com/models/yolo26](https://docs.ultralytics.com/models/yolo26) |
+
+### 🎧 Speech Recognition & Translation
+
+The counterpart to the text-to-speech models above — turning speech *into* text (or into another language).
+
+| Model | Organization | Known For | License / Note | Link |
+|---|---|---|---|---|
+| Whisper | OpenAI | General-purpose multilingual ASR + translation + language ID | MIT | [github.com/openai/whisper](https://github.com/openai/whisper) |
+| SeamlessM4T | Meta AI | One model for ASR + speech/text translation across ~100 languages | Research / non-commercial — verify exact terms before commercial use | [ai.meta.com/resources/models-and-libraries/seamless-communication-models](https://ai.meta.com/resources/models-and-libraries/seamless-communication-models/) |
+| Paraformer / FunASR | Alibaba DAMO Academy | Chinese-first ASR toolkit — also does VAD, punctuation, speaker ID | MIT | [github.com/modelscope/FunASR](https://github.com/modelscope/FunASR) |
+| Qwen-Audio / Qwen3-Omni | Alibaba | Understands speech, music & sound; Qwen3-Omni natively handles speech in 19 languages in, 10 out | Apache 2.0 (varies by checkpoint) | [qwen.ai](https://qwen.ai) |
+| NVIDIA Canary / Parakeet | NVIDIA | Multilingual ASR + translation (Canary, 25 langs) and fast streaming ASR (Parakeet) | Typically CC-BY-4.0 — confirm per checkpoint | [huggingface.co/nvidia](https://huggingface.co/nvidia) |
+
+> **Also famous, if you're curious:** [AlphaFold](https://deepmind.google/science/alphafold/) (Google DeepMind) is arguably the most famous "foundation model" in all of AI outside language/vision/speech — it predicts 3D protein structure from an amino-acid sequence, and its creators won a Nobel Prize in Chemistry for it in 2024. AlphaFold 2's code is Apache 2.0, but AlphaFold 3's model weights are only available non-commercially via the AlphaFold Server.
 
 ### 🧩 Omni (All-in-One Multimodal)
 
@@ -146,7 +185,7 @@ The models underneath every RAG / search / "find similar" pipeline — they turn
 
 | Scenario | Recommended | Why |
 |---|---|---|
-| Autonomous multi-step tasks, computer/tool use | Claude 5 (agent/computer-use), GLM, Kimi K2, GPT-5 (function calling) | Strongest benchmarks for planning + tool invocation over many steps |
+| Autonomous multi-step tasks, computer/tool use | Claude 5 (agent/computer-use), GLM, Kimi K3, GPT-5 (function calling) | Strongest benchmarks for planning + tool invocation over many steps |
 
 ### 🏠 Self-Hosted / On-Prem
 
@@ -238,8 +277,8 @@ Weights you can download, fine-tune, and self-host.
 | <img src="https://www.google.com/s2/favicons?domain=mistral.ai&sz=64" width="24"> | **Mistral AI** 🇫🇷 | Mistral Large / Small, Mixtral | Efficient MoE architectures, strong multilingual (EU) performance | Apache 2.0 (most variants) | [mistral.ai](https://mistral.ai) |
 | <img src="https://www.google.com/s2/favicons?domain=deepseek.com&sz=64" width="24"> | **DeepSeek** 🇨🇳 | DeepSeek-V3 / R1 | Frontier-level reasoning at a fraction of training/inference cost | MIT / open weights | [deepseek.com](https://www.deepseek.com) |
 | <img src="https://www.google.com/s2/favicons?domain=qwen.ai&sz=64" width="24"> | **Alibaba** 🇨🇳 | Qwen series | Broad size range (0.5B–235B+), strong coding & multilingual | Apache 2.0 (most sizes) | [qwen.ai](https://qwen.ai) |
-| <img src="https://www.google.com/s2/favicons?domain=zhipuai.cn&sz=64" width="24"> | **Zhipu AI** 🇨🇳 | GLM series | Agentic tool-use, bilingual EN/ZH training focus | Apache 2.0 (most variants) | [zhipuai.cn](https://www.zhipuai.cn) |
-| <img src="https://www.google.com/s2/favicons?domain=moonshot.ai&sz=64" width="24"> | **Moonshot AI** 🇨🇳 | Kimi (K2) | Ultra-long context, agentic/tool-use benchmarks | Modified MIT | [moonshot.ai](https://www.moonshot.ai) |
+| <img src="https://www.google.com/s2/favicons?domain=zhipuai.cn&sz=64" width="24"> | **Zhipu AI (rebranded "Z.ai")** 🇨🇳 | GLM series | Agentic tool-use, bilingual EN/ZH training focus; dev/API platform is [bigmodel.cn](https://bigmodel.cn) | Apache 2.0 (most variants) | [zhipuai.cn](https://www.zhipuai.cn) |
+| <img src="https://www.google.com/s2/favicons?domain=moonshot.ai&sz=64" width="24"> | **Moonshot AI** 🇨🇳 | Kimi (K3, successor to K2) | Ultra-long context, agentic/tool-use benchmarks | Modified MIT | [moonshot.ai](https://www.moonshot.ai) |
 | <img src="https://www.google.com/s2/favicons?domain=01.ai&sz=64" width="24"> | **01.AI** 🇨🇳 | Yi series | Bilingual efficiency-focused models | Apache 2.0 | [01.ai](https://www.01.ai) |
 | <img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=64" width="24"> | **Microsoft** 🇺🇸 | Phi series | Small, high-quality "data-optimal" models for edge/on-device | MIT | [azure.microsoft.com/phi](https://azure.microsoft.com/en-us/products/phi) |
 | <img src="https://www.google.com/s2/favicons?domain=ai.google.dev&sz=64" width="24"> | **Google** 🇺🇸 | Gemma series | Lightweight open models derived from Gemini research | Gemma license | [ai.google.dev/gemma](https://ai.google.dev/gemma) |
@@ -259,7 +298,7 @@ mindmap
       DeepSeek
       通义千问 Qwen
       智谱 GLM
-      Kimi K2
+      Kimi K3
       Yi
     闭源 Closed
       文心一言 ERNIE
@@ -278,7 +317,7 @@ mindmap
 | Strength | Recommended Model(s) |
 |---|---|
 | Ultra-long context (1M+ tokens) | DeepSeek, Qwen |
-| Long context (200K+ tokens) | Kimi K2 |
+| Long context (200K+ tokens) | Kimi K3 |
 | Lowest-cost open weights | DeepSeek-V3 |
 | Consumer/C-end products | Doubao |
 | Chinese writing & creative tasks | ERNIE, Qwen |

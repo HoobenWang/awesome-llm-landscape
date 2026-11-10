@@ -32,6 +32,8 @@
   - [🎬 视频生成](#-视频生成)
   - [🎙️ 语音、音频与音乐](#️-语音音频与音乐)
   - [🔎 向量检索与重排序](#-向量检索与重排序)
+  - [👁️ 视觉编码与检测](#️-视觉编码与检测)
+  - [🎧 语音识别与翻译](#-语音识别与翻译)
   - [🧩 全模态 Omni（一站式）](#-全模态-omni一站式)
   - [🤖 智能体与工具调用](#-智能体与工具调用)
   - [🏠 本地私有化部署](#-本地私有化部署)
@@ -71,6 +73,11 @@ mindmap
       文本向量 RAG
       图文向量
       重排序
+    👁️ 视觉编码与检测
+      特征提取骨干网络
+      分割 / 目标检测
+    🎧 语音识别
+      语音转文字/翻译
     🧩 全模态 Omni
       一个模型全搞定
     🤖 智能体与工具调用
@@ -90,7 +97,7 @@ mindmap
 |---|---|---|
 | 日常问答 / 写作 | GPT-5、Claude 5 Sonnet、Gemini、豆包、通义千问 | 质量、速度、成本最均衡，适合日常使用 |
 | 复杂推理 / 编程智能体 | Claude 5 Opus、GPT-5（o 系列）、DeepSeek-R1、通义千问 Max | 多步推理与长程规划能力最强 |
-| 超长文档/代码库（20 万–100 万+ tokens） | Gemini、DeepSeek、通义千问、Kimi K2 | 原生长上下文，质量不会明显下降 |
+| 超长文档/代码库（20 万–100 万+ tokens） | Gemini、DeepSeek、通义千问、Kimi K3 | 原生长上下文，质量不会明显下降 |
 | 中文写作与创意生成 | 文心一言、通义千问、豆包 | 专门针对中文语感与风格优化 |
 | 隐私 / 本地部署 / 离线 | Llama 4、通义千问（开源）、DeepSeek-V3、智谱 GLM、Mistral | 下载权重，跑在自己的硬件上 |
 | 实时信息 / 时事追踪 | Grok（xAI） | 直接、低延迟接入实时 X/Twitter 数据 |
@@ -131,10 +138,42 @@ RAG、搜索、「找相似」这类功能背后都是这类模型——它们�
 | 场景 | 推荐模型 | 为什么 |
 |---|---|---|
 | 文本向量化（RAG/搜索） | OpenAI text-embedding-3、Cohere Embed、BGE（智源 BAAI）、Qwen-Embedding、Voyage AI、Jina Embeddings | 把文本映射成向量，用于语义搜索与检索 |
+| 完全开放（数据+代码+权重），长上下文 | Nomic Embed | 8K token 上下文，Apache 2.0，训练过程完全可复现 |
+| MTEB 多语言榜单靠前 | GTE（阿里巴巴）、E5（微软）、Snowflake Arctic Embed | 通用检索精度强，均为 Apache 2.0 / MIT 许可 |
+| 追求极致精度，仅限研究用途 | NV-Embed（NVIDIA） | 曾登顶 MTEB 榜首——但**仅限非商业使用**（CC-BY-NC-4.0），不能用于生产环境 |
+| 高效/可量化，适合大规模部署 | mxbai-embed（Mixedbread AI） | 支持俄罗斯套娃（Matryoshka）+ 二值量化，向量存储成本大幅降低而精度几乎不变 |
 | 图文向量（Vision-Language Embedding） | SigLIP / SigLIP2（Google）、CLIP（OpenAI） | 把图像和文本映射到同一向量空间——零样本分类、以图搜图 |
 | 检索结果重排序 | Cohere Rerank、BGE-reranker（智源）、Jina Reranker | 对候选结果重新打分，精度远高于只用向量检索 |
 
 > 这类模型通常用 `sentence-transformers`、`transformers` 部署，或者导出为 **ONNX** 格式用 ONNX Runtime 做 CPU/边缘端快速推理。ONNX 本身是一种模型**格式/运行时**，不是某个具体模型——所以这里不会把它列成一行，但在上面这些模型、以及下面[本地私有化部署](#-本地私有化部署)里的小尺寸开源对话模型的部署文档里，你会经常看到它。
+
+### 👁️ 视觉编码与检测
+
+这些不是对话模型，也不是图像生成模型——而是其他视觉应用背后的「基础构件」：通用特征提取、分割、目标检测。其中几个在授权协议上有些坑，值得了解清楚再决定要不要用在产品里。
+
+| 模型 | 机构 | 擅长 | 许可证 / 注意事项 | 链接 |
+|---|---|---|---|---|
+| DINOv2 / DINOv3 | Meta AI | 自监督视觉骨干网络——不需要标注数据，通用视觉特征能力强 | DINOv2：Apache 2.0 · **DINOv3：自定义许可证**，需要「Built with DINOv3」署名 + 申请访问权限 | [ai.meta.com/research/dinov3](https://ai.meta.com/research/dinov3/) |
+| I-JEPA / V-JEPA2 | Meta AI (FAIR) | 预测「表示」而非像素（JEPA 架构）——图像（I-JEPA）和视频（V-JEPA2）高效自监督学习 | 研究许可证——商用前请先核实条款 | [ai.meta.com/blog/yann-lecun-ai-model-i-jepa](https://ai.meta.com/blog/yann-lecun-ai-model-i-jepa/) |
+| AIMv2 | Apple | 自回归多模态视觉编码器——在多模态图像理解基准上超过 CLIP/SigLIP | Apple 研究/示例代码条款（非标准开源许可——商用前请核实） | [github.com/apple/ml-aim](https://github.com/apple/ml-aim) |
+| EVA-CLIP | 智源 BAAI | 大规模 CLIP 训练方案——EVA-CLIP-18B 是目前最大的开源 CLIP 模型 | MIT | [github.com/baaivision/EVA](https://github.com/baaivision/EVA) |
+| Segment Anything（SAM2 / SAM3） | Meta AI | 可提示的图像/视频分割——SAM3 支持基于文本/概念的分割 | SAM2：Apache 2.0 · **SAM3：受限的「SAM License」**（更严格，需申请 HF 访问权限） | [ai.meta.com/research/sam3](https://ai.meta.com/research/sam3/) |
+| Grounding DINO | IDEA Research | 开放词汇目标检测——用文字描述检测物体，而不局限于固定标签集 | Apache 2.0 | [github.com/IDEA-Research/GroundingDINO](https://github.com/IDEA-Research/GroundingDINO) |
+| YOLO26 | Ultralytics | 当前旗舰级实时目标检测器——免 NMS，CPU 上也能快速推理 | **AGPL-3.0**（著佐权/copyleft），开源用途免费；闭源商用需购买商业许可证 | [docs.ultralytics.com/models/yolo26](https://docs.ultralytics.com/models/yolo26) |
+
+### 🎧 语音识别与翻译
+
+与上面的语音合成模型相对——把语音转成文字（或转成另一种语言）。
+
+| 模型 | 机构 | 擅长 | 许可证 / 注意事项 | 链接 |
+|---|---|---|---|---|
+| Whisper | OpenAI | 通用多语言语音识别 + 翻译 + 语种识别 | MIT | [github.com/openai/whisper](https://github.com/openai/whisper) |
+| SeamlessM4T | Meta AI | 一个模型搞定约 100 种语言的语音/文本互译 | 研究/非商业许可——商用前请核实具体条款 | [ai.meta.com/resources/models-and-libraries/seamless-communication-models](https://ai.meta.com/resources/models-and-libraries/seamless-communication-models/) |
+| Paraformer / FunASR | 阿里巴巴达摩院 | 中文优先的语音识别工具包——同时支持 VAD、标点、说话人识别 | MIT | [github.com/modelscope/FunASR](https://github.com/modelscope/FunASR) |
+| Qwen-Audio / Qwen3-Omni | 阿里巴巴 | 理解语音、音乐与声音；Qwen3-Omni 原生支持 19 种语言的语音输入、10 种语言的语音输出 | Apache 2.0（具体版本有差异） | [qwen.ai](https://qwen.ai) |
+| NVIDIA Canary / Parakeet | NVIDIA | 多语言语音识别+翻译（Canary，25 种语言）与快速流式识别（Parakeet） | 通常为 CC-BY-4.0——请按具体版本核实 | [huggingface.co/nvidia](https://huggingface.co/nvidia) |
+
+> **顺带一提，很有名的另一个「基础模型」：** [AlphaFold](https://deepmind.google/science/alphafold/)（Google DeepMind）大概是语言/视觉/语音之外，整个 AI 领域里最出名的「基础模型」——它能根据氨基酸序列预测蛋白质的三维结构，其创造者也因此获得了 2024 年诺贝尔化学奖。AlphaFold 2 的代码是 Apache 2.0，但 AlphaFold 3 的模型权重仅能通过 AlphaFold Server 以非商业方式使用。
 
 ### 🧩 全模态 Omni（一站式）
 
@@ -146,7 +185,7 @@ RAG、搜索、「找相似」这类功能背后都是这类模型——它们�
 
 | 场景 | 推荐模型 | 为什么 |
 |---|---|---|
-| 自主执行多步任务、操作电脑/工具 | Claude 5（Agent/电脑操作）、智谱 GLM、Kimi K2、GPT-5（函数调用） | 多步规划 + 工具调用基准表现最强 |
+| 自主执行多步任务、操作电脑/工具 | Claude 5（Agent/电脑操作）、智谱 GLM、Kimi K3、GPT-5（函数调用） | 多步规划 + 工具调用基准表现最强 |
 
 ### 🏠 本地私有化部署
 
@@ -238,8 +277,8 @@ mindmap
 | <img src="https://www.google.com/s2/favicons?domain=mistral.ai&sz=64" width="24"> | **Mistral AI** 🇫🇷 | Mistral Large / Small、Mixtral | 高效 MoE 架构，欧洲多语言能力强 | Apache 2.0（多数版本） | [mistral.ai](https://mistral.ai) |
 | <img src="https://www.google.com/s2/favicons?domain=deepseek.com&sz=64" width="24"> | **DeepSeek** 🇨🇳 | DeepSeek-V3 / R1 | 以极低训练/推理成本达到第一梯队推理水平 | MIT / 开放权重 | [deepseek.com](https://www.deepseek.com) |
 | <img src="https://www.google.com/s2/favicons?domain=qwen.ai&sz=64" width="24"> | **阿里巴巴** 🇨🇳 | 通义千问 Qwen 系列 | 尺寸覆盖广（0.5B–235B+），编程与多语言能力强 | Apache 2.0（多数尺寸） | [qwen.ai](https://qwen.ai) |
-| <img src="https://www.google.com/s2/favicons?domain=zhipuai.cn&sz=64" width="24"> | **智谱 AI** 🇨🇳 | GLM 系列 | 智能体与工具调用，中英双语训练 | Apache 2.0（多数版本） | [zhipuai.cn](https://www.zhipuai.cn) |
-| <img src="https://www.google.com/s2/favicons?domain=moonshot.ai&sz=64" width="24"> | **月之暗面** 🇨🇳 | Kimi（K2） | 超长上下文、智能体/工具调用基准领先 | 修改版 MIT | [moonshot.ai](https://www.moonshot.ai) |
+| <img src="https://www.google.com/s2/favicons?domain=zhipuai.cn&sz=64" width="24"> | **智谱 AI（已改名 "Z.ai"）** 🇨🇳 | GLM 系列 | 智能体与工具调用，中英双语训练；开发者/API 平台在 [bigmodel.cn](https://bigmodel.cn) | Apache 2.0（多数版本） | [zhipuai.cn](https://www.zhipuai.cn) |
+| <img src="https://www.google.com/s2/favicons?domain=moonshot.ai&sz=64" width="24"> | **月之暗面** 🇨🇳 | Kimi（K3，K2 的继任版本） | 超长上下文、智能体/工具调用基准领先 | 修改版 MIT | [moonshot.ai](https://www.moonshot.ai) |
 | <img src="https://www.google.com/s2/favicons?domain=01.ai&sz=64" width="24"> | **零一万物** 🇨🇳 | Yi 系列 | 中英双语、效率优先 | Apache 2.0 | [01.ai](https://www.01.ai) |
 | <img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=64" width="24"> | **Microsoft** 🇺🇸 | Phi 系列 | 「数据最优」小模型，适合端侧/边缘部署 | MIT | [azure.microsoft.com/phi](https://azure.microsoft.com/en-us/products/phi) |
 | <img src="https://www.google.com/s2/favicons?domain=ai.google.dev&sz=64" width="24"> | **Google** 🇺🇸 | Gemma 系列 | 源自 Gemini 研究成果的轻量级开源模型 | Gemma 许可 | [ai.google.dev/gemma](https://ai.google.dev/gemma) |
@@ -259,7 +298,7 @@ mindmap
       DeepSeek
       通义千问 Qwen
       智谱 GLM
-      Kimi K2
+      Kimi K3
       零一万物 Yi
     闭源 Closed
       文心一言 ERNIE
@@ -278,7 +317,7 @@ mindmap
 | 优势场景 | 推荐模型 |
 |---|---|
 | 超长上下文（100 万+ tokens） | DeepSeek、通义千问 |
-| 长上下文（20 万+ tokens） | Kimi K2 |
+| 长上下文（20 万+ tokens） | Kimi K3 |
 | 性价比最高的开源权重 | DeepSeek-V3 |
 | C 端消费级产品 | 豆包 |
 | 中文写作与创意生成 | 文心一言、通义千问 |

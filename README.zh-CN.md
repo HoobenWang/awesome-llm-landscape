@@ -29,6 +29,7 @@
   - [💬 文本：对话与推理](#-文本对话与推理)
   - [💻 代码](#-代码)
   - [🖼️ 图像](#️-图像)
+  - [✂️ 图像编辑与优化](#️-图像编辑与优化)
   - [🎬 视频生成](#-视频生成)
   - [🌍 世界模型](#-世界模型)
   - [🎙️ 语音、音频与音乐](#️-语音音频与音乐)
@@ -64,6 +65,9 @@ mindmap
     🖼️ 图像
       看图理解
       文生图生成
+    ✂️ 图像编辑与优化
+      指令式编辑
+      放大/修复/去背景
     🎬 视频生成
       文生视频
       图生视频
@@ -115,6 +119,7 @@ mindmap
 |---|---|---|
 | IDE 智能体编程（规划、改代码、跑测试） | Claude 5（Sonnet/Opus）、GPT-5 | 在真实 issue 修复类基准上得分最高 |
 | 本地/离线代码补全 | 通义千问-Coder、DeepSeek-Coder、Phi | 体积小，笔记本或单卡就能跑 |
+| 代码专项旗舰 | Codestral（Mistral） | 代码基准分数高，但⚠️使用 Mistral 的**非商用许可证**（仅限研究/测试，不是标准开源许可证） |
 
 ### 🖼️ 图像
 
@@ -125,6 +130,21 @@ mindmap
 | 商用安全/企业级（知识产权有保障） | [Adobe Firefly](https://www.adobe.com/products/firefly.html) | 仅用授权/Adobe Stock 内容训练，企业使用有完整知识产权赔偿保障 |
 | 图片内文字渲染准确（海报、标识、界面原型） | [Ideogram](https://ideogram.ai) | 在生成图像中渲染清晰、准确文字/排版的能力数一数二 |
 | 矢量图/SVG 输出，适合设计工作 | [Recraft](https://www.recraft.ai) | 原生导出可编辑路径的 SVG 矢量图，支持品牌色板控制 |
+| 开源权重/可本地部署的图像生成 | Stable Diffusion、FLUX.1 [dev]（Black Forest Labs）、Kolors 2.1（快手） | 下载权重本地跑——注意 FLUX [dev] 是**仅限非商用的许可证** |
+
+### ✂️ 图像编辑与优化
+
+用指令修改一张**已有**图片，或者做图像清理——和上面「从零生成」不是一回事。
+
+| 模型 | 机构 | 擅长 | 许可证 / 注意事项 | 链接 |
+|---|---|---|---|---|
+| FLUX.1 Kontext | Black Forest Labs | 指令式图像编辑（比如「把左边那个人去掉」） | [dev]：开源权重，**仅限非商用**；[pro]/[max]：仅限 API | [bfl.ai/models/flux-kontext](https://bfl.ai/models/flux-kontext) |
+| Gemini Flash Image（"Nano Banana"） | Google | 对话式图像编辑+生成，速度快，提示词遵循度高 | 闭源，仅限 API | [ai.google.dev/gemini-api/docs/models/gemini-2.5-flash-image](https://ai.google.dev/gemini-api/docs/models/gemini-2.5-flash-image) |
+| Qwen-Image-Edit | 阿里巴巴 | 语义+外观编辑，多人物场景一致性强 | 开源权重——具体许可证因版本而异，请查看模型卡 | [huggingface.co/Qwen/Qwen-Image-Edit-2511](https://huggingface.co/Qwen/Qwen-Image-Edit-2511) |
+| GPT Image（编辑/局部重绘） | OpenAI | 基于蒙版的局部重绘、多轮编辑、支持多张参考图 | 闭源，仅限 API | [openai.com](https://openai.com) |
+| Adobe Firefly（创成式填充） | Adobe | 直接集成在 Photoshop 里；也接入第三方模型（GPT Image、Nano Banana、FLUX） | 闭源/商用，企业有知识产权赔偿保障 | [helpx.adobe.com/firefly](https://helpx.adobe.com/firefly/web/work-with-images/edit-images/generative-fill.html) |
+| Real-ESRGAN / GFPGAN | 开源社区 | 图像放大（Real-ESRGAN）+ 人脸修复（GFPGAN）——ComfyUI/Automatic1111/Upscayl 默认搭配 | 开源 | [github.com/xinntao/Real-ESRGAN](https://github.com/xinntao/Real-ESRGAN) · [github.com/TencentARC/GFPGAN](https://github.com/TencentARC/GFPGAN) |
+| Remove.bg / BRIA RMBG 2.0 | remove.bg / BRIA AI | 背景去除——Remove.bg 是精度更高（约97%）的闭源 API；RMBG 2.0 是开源权重（约92%） | RMBG 2.0：**CC BY-NC-4.0，仅限非商用** | [remove.bg](https://www.remove.bg) · [github.com/Bria-AI/RMBG-2.0](https://github.com/Bria-AI/RMBG-2.0) |
 
 ### 🎬 视频生成
 
@@ -132,6 +152,7 @@ mindmap
 |---|---|---|
 | 文生视频 | Sora 2（OpenAI）、Veo（Google DeepMind）、可灵 Kling（快手）、海螺 Hailuo（MiniMax）、Luma Dream Machine、[Pika](https://pika.art) | 目前写实度与时长的第一梯队 |
 | 图生视频/动画 | 可灵、海螺、Runway Gen-4、Luma | 把一张静态图动画成短视频 |
+| 开源权重/可本地部署的视频生成 | Wan2.2 万相（阿里巴巴，Apache 2.0）、HunyuanVideo 混元视频（腾讯）、CogVideoX（智谱/清华 THUDM）、LTX-Video（Lightricks） | 下载权重本地跑——真正开放，不像上面这些都是闭源的 |
 
 ### 🌍 世界模型
 
@@ -143,6 +164,8 @@ mindmap
 | 机器人/物理 AI 仿真 | [NVIDIA Cosmos 3](https://www.nvidia.com/en-us/ai/cosmos/) | 面向物理推理与动作预测的开放世界基础模型，提供 Super/Nano/Edge 多种尺寸 |
 
 > 这个方向变化很快，还有几家（腾讯混元世界、Runway 的通用世界模型研究、Odyssey）正在冒头，但官方信息还不够确凿，暂不收录链接，值得持续关注。另外：Meta 的 **V-JEPA2**（见上文[视觉编码与检测](#️-视觉编码与检测)）也被 Meta 定位为用于物理推理的「世界模型」；Google DeepMind 的 **SIMA 2** 是另一个相关但不同的东西——它是一个**在** Genie 这类世界里行动的智能体，而不是生成世界的模型本身。
+>
+> **相关且值得了解——机器人基础模型：** [π0 / π0.5](https://www.physicalintelligence.company/blog/pi0)（Physical Intelligence）和 [Helix](https://www.figure.ai/news/helix)（Figure AI）是面向真实机器人/人形机器人控制的视觉-语言-动作模型——和世界模型（模拟环境）是不同的方向，但解决的是相关的「物理 AI」问题。
 
 ### 🎙️ 语音、音频与音乐
 

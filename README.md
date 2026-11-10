@@ -29,6 +29,7 @@ Most "awesome LLM" lists are organized by *who made the model*. That's useful on
   - [💬 Text: Chat & Reasoning](#-text-chat--reasoning)
   - [💻 Code](#-code)
   - [🖼️ Image](#️-image)
+  - [✂️ Image Editing & Enhancement](#️-image-editing--enhancement)
   - [🎬 Video Generation](#-video-generation)
   - [🌍 World Models](#-world-models)
   - [🎙️ Audio, Voice & Music](#️-audio-voice--music)
@@ -64,6 +65,9 @@ mindmap
     🖼️ Image
       Vision understanding
       Text-to-image generation
+    ✂️ Image Editing & Enhancement
+      Instruction-based editing
+      Upscale / restore / remove BG
     🎬 Video Generation
       Text-to-video
       Image-to-video
@@ -115,6 +119,7 @@ Note: a few rows below (image/video/audio generation) aren't *language* models i
 |---|---|---|
 | IDE copilot / agentic coding (plans, edits, runs tests) | Claude 5 (Sonnet/Opus), GPT-5 | Top scores on SWE-bench-style real-world issue resolution |
 | Local/offline code completion | Qwen-Coder, DeepSeek-Coder, Phi | Small enough to run on a laptop or single GPU |
+| Code-specialized flagship | Codestral (Mistral) | Strong code benchmarks, but ⚠️ ships under Mistral's **Non-Production License** (research/testing only, not a standard open license) |
 
 ### 🖼️ Image
 
@@ -125,6 +130,21 @@ Note: a few rows below (image/video/audio generation) aren't *language* models i
 | Commercially-safe / enterprise (IP indemnified) | [Adobe Firefly](https://www.adobe.com/products/firefly.html) | Trained only on licensed/Adobe Stock content; full IP indemnification for enterprise use |
 | Accurate text rendering inside images (posters, UI mockups) | [Ideogram](https://ideogram.ai) | Best-in-class at rendering legible text/typography within a generated image |
 | Vector/SVG output for design work | [Recraft](https://www.recraft.ai) | Native SVG export with editable vector paths and brand-palette control |
+| Open-weight / self-hostable image generation | Stable Diffusion, FLUX.1 [dev] (Black Forest Labs), Kolors 2.1 (Kuaishou) | Download the weights and run locally — note FLUX [dev] is **non-commercial license only** |
+
+### ✂️ Image Editing & Enhancement
+
+Editing an *existing* image with instructions, or cleaning one up — different from generating one from scratch above.
+
+| Model | Organization | Known For | License / Note | Link |
+|---|---|---|---|---|
+| FLUX.1 Kontext | Black Forest Labs | Instruction-based editing ("remove the person on the left") | [dev]: open weights, **non-commercial license**; [pro]/[max]: API-only | [bfl.ai/models/flux-kontext](https://bfl.ai/models/flux-kontext) |
+| Gemini Flash Image ("Nano Banana") | Google | Conversational image editing + generation, fast, strong prompt adherence | Closed, API-only | [ai.google.dev/gemini-api/docs/models/gemini-2.5-flash-image](https://ai.google.dev/gemini-api/docs/models/gemini-2.5-flash-image) |
+| Qwen-Image-Edit | Alibaba | Semantic + visual-appearance editing, strong multi-person consistency | Open weights — license varies by release, check the model card | [huggingface.co/Qwen/Qwen-Image-Edit-2511](https://huggingface.co/Qwen/Qwen-Image-Edit-2511) |
+| GPT Image (edit/inpainting) | OpenAI | Mask-based inpainting, multi-turn editing, multiple reference images | Closed, API-only | [openai.com](https://openai.com) |
+| Adobe Firefly (Generative Fill) | Adobe | In-app editing inside Photoshop; also hosts partner models (GPT Image, Nano Banana, FLUX) | Closed/commercial, enterprise IP-indemnified | [helpx.adobe.com/firefly](https://helpx.adobe.com/firefly/web/work-with-images/edit-images/generative-fill.html) |
+| Real-ESRGAN / GFPGAN | Open-source community | Upscaling (Real-ESRGAN) + face restoration (GFPGAN) — the default pairing shipped in ComfyUI/Automatic1111/Upscayl | Open-source | [github.com/xinntao/Real-ESRGAN](https://github.com/xinntao/Real-ESRGAN) · [github.com/TencentARC/GFPGAN](https://github.com/TencentARC/GFPGAN) |
+| Remove.bg / BRIA RMBG 2.0 | remove.bg / BRIA AI | Background removal — Remove.bg is the higher-accuracy closed API (~97%); RMBG 2.0 is open weights (~92%) | RMBG 2.0: **CC BY-NC-4.0, non-commercial only** | [remove.bg](https://www.remove.bg) · [github.com/Bria-AI/RMBG-2.0](https://github.com/Bria-AI/RMBG-2.0) |
 
 ### 🎬 Video Generation
 
@@ -132,6 +152,7 @@ Note: a few rows below (image/video/audio generation) aren't *language* models i
 |---|---|---|
 | Text-to-video | Sora 2 (OpenAI), Veo (Google DeepMind), Kling 可灵 (Kuaishou), 海螺 Hailuo (MiniMax), Luma Dream Machine, [Pika](https://pika.art) | Current frontier for realism and shot length |
 | Image-to-video / animation | Kling, Hailuo, Runway Gen-4, Luma | Animate a still image into a short clip |
+| Open-weight / self-hostable video generation | Wan2.2 (Alibaba, Apache 2.0), HunyuanVideo (Tencent), CogVideoX (Zhipu/THUDM), LTX-Video (Lightricks) | Download the weights and run locally — genuinely open, unlike the closed models above |
 
 ### 🌍 World Models
 
@@ -143,6 +164,8 @@ Distinct from video generation above: these don't just produce a linear clip —
 | Robotics / physical-AI simulation | [NVIDIA Cosmos 3](https://www.nvidia.com/en-us/ai/cosmos/) | Open world-foundation model for physical reasoning + action prediction; ships in Super/Nano/Edge sizes |
 
 > This space is moving fast and a few more players (Tencent Hunyuan World, Runway's general-world-model research, Odyssey) are emerging but weren't confident/verified enough to link here yet — worth watching. Also: Meta's **V-JEPA2** (in [Vision Encoders](#️-vision-encoders--detection) above) is marketed by Meta as a "world model" for physical reasoning, and Google DeepMind's **SIMA 2** is a related-but-different thing — an agent that *acts inside* worlds like Genie, rather than a model that generates them.
+>
+> **Adjacent and also worth knowing about — robotics foundation models:** [π0 / π0.5](https://www.physicalintelligence.company/blog/pi0) (Physical Intelligence) and [Helix](https://www.figure.ai/news/helix) (Figure AI) are vision-language-action models for real-world robot/humanoid control — a distinct field from world models (which simulate an environment) but solving a related "physical AI" problem.
 
 ### 🎙️ Audio, Voice & Music
 

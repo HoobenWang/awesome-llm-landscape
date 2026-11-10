@@ -30,7 +30,8 @@
   - [💻 代码](#-代码)
   - [🖼️ 图像](#️-图像)
   - [🎬 视频生成](#-视频生成)
-  - [🎙️ 语音音频](#️-语音音频)
+  - [🎙️ 语音、音频与音乐](#️-语音音频与音乐)
+  - [🔎 向量检索与重排序](#-向量检索与重排序)
   - [🧩 全模态 Omni（一站式）](#-全模态-omni一站式)
   - [🤖 智能体与工具调用](#-智能体与工具调用)
   - [🏠 本地私有化部署](#-本地私有化部署)
@@ -52,6 +53,7 @@ mindmap
       复杂推理编程
       超长文档处理
       中文创作优化
+      实时信息/时事
     💻 代码
       IDE / 智能体编程
       本地离线补全
@@ -61,9 +63,14 @@ mindmap
     🎬 视频生成
       文生视频
       图生视频
-    🎙️ 语音音频
+    🎙️ 语音音频与音乐
       语音合成 TTS
       语音克隆
+      音乐生成
+    🔎 向量检索与重排序
+      文本向量 RAG
+      图文向量
+      重排序
     🧩 全模态 Omni
       一个模型全搞定
     🤖 智能体与工具调用
@@ -86,6 +93,7 @@ mindmap
 | 超长文档/代码库（20 万–100 万+ tokens） | Gemini、DeepSeek、通义千问、Kimi K2 | 原生长上下文，质量不会明显下降 |
 | 中文写作与创意生成 | 文心一言、通义千问、豆包 | 专门针对中文语感与风格优化 |
 | 隐私 / 本地部署 / 离线 | Llama 4、通义千问（开源）、DeepSeek-V3、智谱 GLM、Mistral | 下载权重，跑在自己的硬件上 |
+| 实时信息 / 时事追踪 | Grok（xAI） | 直接、低延迟接入实时 X/Twitter 数据 |
 
 ### 💻 代码
 
@@ -99,21 +107,34 @@ mindmap
 | 场景 | 推荐模型 | 为什么 |
 |---|---|---|
 | 看图/理解图像（视觉） | GPT-5（视觉）、Gemini、Claude 5、Qwen-VL、InternVL | 读懂截图、图表、文档、照片 |
-| 文生图 | GPT Image（OpenAI）、Imagen（Google）、FLUX（Black Forest Labs）、Stable Diffusion、即梦/豆包（字节跳动） | 从照片级写实到快速低成本迭代都有覆盖 |
+| 文生图 | Midjourney、GPT Image（OpenAI）、Imagen（Google）、FLUX（Black Forest Labs）、Stable Diffusion、即梦/豆包（字节跳动） | 从照片级写实到快速低成本迭代都有覆盖 |
 
 ### 🎬 视频生成
 
 | 场景 | 推荐模型 | 为什么 |
 |---|---|---|
-| 文生视频 | Sora 2（OpenAI）、Veo（Google DeepMind）、可灵 Kling（快手）、海螺 Hailuo（MiniMax） | 目前写实度与时长的第一梯队 |
-| 图生视频/动画 | 可灵、海螺、Runway Gen-4 | 把一张静态图动画成短视频 |
+| 文生视频 | Sora 2（OpenAI）、Veo（Google DeepMind）、可灵 Kling（快手）、海螺 Hailuo（MiniMax）、Luma Dream Machine | 目前写实度与时长的第一梯队 |
+| 图生视频/动画 | 可灵、海螺、Runway Gen-4、Luma | 把一张静态图动画成短视频 |
 
-### 🎙️ 语音音频
+### 🎙️ 语音、音频与音乐
 
 | 场景 | 推荐模型 | 为什么 |
 |---|---|---|
 | 语音合成 TTS | OpenAI 语音、ElevenLabs、MiniMax 语音 | 语调自然，覆盖多语言/口音 |
 | 语音克隆 | ElevenLabs、MiniMax、CosyVoice（阿里巴巴） | 几秒参考音频即可克隆声音 |
+| 音乐生成 | Suno、Udio | 一句文字提示生成完整歌曲（人声+伴奏） |
+
+### 🔎 向量检索与重排序
+
+RAG、搜索、「找相似」这类功能背后都是这类模型——它们把文本或图像转成向量，而不是生成文字。
+
+| 场景 | 推荐模型 | 为什么 |
+|---|---|---|
+| 文本向量化（RAG/搜索） | OpenAI text-embedding-3、Cohere Embed、BGE（智源 BAAI）、Qwen-Embedding、Voyage AI、Jina Embeddings | 把文本映射成向量，用于语义搜索与检索 |
+| 图文向量（Vision-Language Embedding） | SigLIP / SigLIP2（Google）、CLIP（OpenAI） | 把图像和文本映射到同一向量空间——零样本分类、以图搜图 |
+| 检索结果重排序 | Cohere Rerank、BGE-reranker（智源）、Jina Reranker | 对候选结果重新打分，精度远高于只用向量检索 |
+
+> 这类模型通常用 `sentence-transformers`、`transformers` 部署，或者导出为 **ONNX** 格式用 ONNX Runtime 做 CPU/边缘端快速推理。ONNX 本身是一种模型**格式/运行时**，不是某个具体模型——所以这里不会把它列成一行，但在上面这些模型、以及下面[本地私有化部署](#-本地私有化部署)里的小尺寸开源对话模型的部署文档里，你会经常看到它。
 
 ### 🧩 全模态 Omni（一站式）
 

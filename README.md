@@ -30,7 +30,8 @@ Most "awesome LLM" lists are organized by *who made the model*. That's useful on
   - [💻 Code](#-code)
   - [🖼️ Image](#️-image)
   - [🎬 Video Generation](#-video-generation)
-  - [🎙️ Audio & Voice](#️-audio--voice)
+  - [🎙️ Audio, Voice & Music](#️-audio-voice--music)
+  - [🔎 Embeddings, Retrieval & Reranking](#-embeddings-retrieval--reranking)
   - [🧩 Omni (All-in-One Multimodal)](#-omni-all-in-one-multimodal)
   - [🤖 Agents & Tool Use](#-agents--tool-use)
   - [🏠 Self-Hosted / On-Prem](#-self-hosted--on-prem)
@@ -52,6 +53,7 @@ mindmap
       Deep reasoning / coding
       Ultra-long documents
       Chinese-optimized writing
+      Real-time / current events
     💻 Code
       IDE / agentic coding
       Local offline completion
@@ -61,9 +63,14 @@ mindmap
     🎬 Video Generation
       Text-to-video
       Image-to-video
-    🎙️ Audio & Voice
+    🎙️ Audio, Voice & Music
       Text-to-speech
       Voice cloning
+      Music generation
+    🔎 Embeddings & Retrieval
+      Text embeddings for RAG
+      Vision-language embeddings
+      Reranking
     🧩 Omni (All-in-One)
       One model, every modality
     🤖 Agents & Tool Use
@@ -86,6 +93,7 @@ Note: a few rows below (image/video/audio generation) aren't *language* models i
 | Ultra-long documents/codebases (200K–1M+ tokens) | Gemini, DeepSeek, Qwen, Kimi K2 | Native long-context windows without heavy quality drop-off |
 | Chinese writing & creative tasks | ERNIE, Qwen, Doubao | Tuned specifically for Chinese nuance and style |
 | Privacy / self-host / offline | Llama 4, Qwen (open), DeepSeek-V3, GLM, Mistral | Download the weights, run on your own hardware |
+| Real-time info / current events | Grok (xAI) | Direct, low-latency access to live X/Twitter data |
 
 ### 💻 Code
 
@@ -99,21 +107,34 @@ Note: a few rows below (image/video/audio generation) aren't *language* models i
 | Scenario | Recommended | Why |
 |---|---|---|
 | Understand/describe an image (vision) | GPT-5 (vision), Gemini, Claude 5, Qwen-VL, InternVL | Read screenshots, charts, documents, photos |
-| Generate an image from text | GPT Image (OpenAI), Imagen (Google), FLUX (Black Forest Labs), Stable Diffusion, 即梦/Doubao (ByteDance) | Range from photoreal to fast/cheap iteration |
+| Generate an image from text | Midjourney, GPT Image (OpenAI), Imagen (Google), FLUX (Black Forest Labs), Stable Diffusion, 即梦/Doubao (ByteDance) | Range from photoreal to fast/cheap iteration |
 
 ### 🎬 Video Generation
 
 | Scenario | Recommended | Why |
 |---|---|---|
-| Text-to-video | Sora 2 (OpenAI), Veo (Google DeepMind), Kling 可灵 (Kuaishou), 海螺 Hailuo (MiniMax) | Current frontier for realism and shot length |
-| Image-to-video / animation | Kling, Hailuo, Runway Gen-4 | Animate a still image into a short clip |
+| Text-to-video | Sora 2 (OpenAI), Veo (Google DeepMind), Kling 可灵 (Kuaishou), 海螺 Hailuo (MiniMax), Luma Dream Machine | Current frontier for realism and shot length |
+| Image-to-video / animation | Kling, Hailuo, Runway Gen-4, Luma | Animate a still image into a short clip |
 
-### 🎙️ Audio & Voice
+### 🎙️ Audio, Voice & Music
 
 | Scenario | Recommended | Why |
 |---|---|---|
 | Text-to-speech | OpenAI audio, ElevenLabs, MiniMax voice | Natural prosody, many languages/accents |
 | Voice cloning | ElevenLabs, MiniMax, CosyVoice (Alibaba) | Few seconds of reference audio to clone a voice |
+| Music generation | Suno, Udio | Full songs (vocals + instrumental) from a text prompt |
+
+### 🔎 Embeddings, Retrieval & Reranking
+
+The models underneath every RAG / search / "find similar" pipeline — they turn text or images into vectors instead of generating text.
+
+| Scenario | Recommended | Why |
+|---|---|---|
+| Text embeddings for RAG/search | OpenAI text-embedding-3, Cohere Embed, BGE (BAAI), Qwen-Embedding, Voyage AI, Jina Embeddings | Map text to vectors for semantic search and retrieval |
+| Vision-language embeddings | SigLIP / SigLIP2 (Google), CLIP (OpenAI) | Map images and text into the same embedding space — zero-shot classification, image search |
+| Reranking retrieved results | Cohere Rerank, BGE-reranker (BAAI), Jina Reranker | Re-score a candidate list for much better top-k precision than embeddings alone |
+
+> These are usually deployed via `sentence-transformers`, `transformers`, or exported to **ONNX** and served with ONNX Runtime for fast CPU/edge inference. ONNX itself is a model *format/runtime* — not a model — so you won't see it as a row here, but you'll see it a lot in the deployment docs for the models above (and for the small open-weight chat models in [Self-Hosted](#-self-hosted--on-prem) below).
 
 ### 🧩 Omni (All-in-One Multimodal)
 

@@ -15,6 +15,10 @@
 A mind-map style, logo-illustrated guide to today's mainstream Large Language Models — who makes them, what they're good at, and how they relate to each other.
 </p>
 
+<p align="center">
+  🌐 <a href="https://hoobenwang.github.io/awesome-llm-landscape/"><b>Live interactive mind map (GitHub Pages)</b></a>
+</p>
+
 Most "awesome LLM" lists are long, flat bullet dumps. This one is organized as a **mind map** first, so you can see the shape of the landscape at a glance, then drill into tables with **logos** for fast visual recognition, plus links to benchmarks and real-world applications.
 
 > Inspired by [uhub/awesome-llm](https://github.com/uhub/awesome-llm), [hannibal046/Awesome-LLM](https://github.com/hannibal046/Awesome-LLM), [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps), and [Awesome-LLM-Evaluation](https://alopatenko.github.io/LLMEvaluation/).

@@ -15,6 +15,10 @@
 一份以<b>思维导图</b>呈现、带<b>品牌 Logo</b> 标识的主流大语言模型（LLM）全景指南——谁在做模型、各家擅长什么、彼此之间是什么关系，一目了然。
 </p>
 
+<p align="center">
+  🌐 <a href="https://hoobenwang.github.io/awesome-llm-landscape/"><b>在线交互式思维导图（GitHub Pages）</b></a>
+</p>
+
 市面上多数「awesome LLM」仓库都是又长又平的列表，很难一眼看出全貌。这份仓库优先用**思维导图**呈现整体脉络，再用带 **Logo** 的表格方便快速识别，并附上评测与实战应用的参考链接。
 
 > 参考自 [uhub/awesome-llm](https://github.com/uhub/awesome-llm)、[hannibal046/Awesome-LLM](https://github.com/hannibal046/Awesome-LLM)、[Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) 以及 [Awesome-LLM-Evaluation](https://alopatenko.github.io/LLMEvaluation/)。

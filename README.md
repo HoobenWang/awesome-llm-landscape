@@ -253,6 +253,9 @@ Not just "small" — these are built specifically for a phone, laptop NPU, or em
 |---|---|---|---|---|
 | Apple Foundation Models | Apple | Powers Siri/Apple Intelligence on iPhone/iPad/Mac; now exposed to third-party apps via the Foundation Models framework (Swift API) | Closed, API-only | [developer.apple.com/documentation/foundationmodels](https://developer.apple.com/documentation/foundationmodels) |
 | MiniCPM | OpenBMB (Tsinghua) | Mature, widely-deployed on-device LLM line — genuinely runs on a phone, not just "small on paper" | Apache 2.0 | [github.com/OpenBMB/MiniCPM](https://github.com/OpenBMB/MiniCPM) |
+| Gemini Nano | Google | Powers on-device Pixel/Android features (Recorder summary, Gboard); runs via the AICore system service, exposed to developers through the ML Kit GenAI APIs | Closed, API-only | [developers.google.com/ml-kit/genai](https://developers.google.com/ml-kit/genai) |
+| Gauss2 Compact | Samsung | The on-device tier of Samsung's 3-tier model family, powering Galaxy AI; multimodal (language + code + image), 9–14 languages | Closed, Galaxy-device-integrated | [news.samsung.com](https://news.samsung.com/global/samsung-electronics-hosts-samsung-developer-conference-korea-2024-unveils-its-improved-gen-ai-model) |
+| BlueLM (蓝心大模型, ~1B on-device tier) | vivo AI Lab | A dedicated small on-device model distinct from vivo's larger cloud-tier models — real open-weight release, not just marketing | Open-weight, **no clear license declared (GitHub shows "NOASSERTION")** — verify before commercial use | [github.com/vivo-ai-lab/BlueLM](https://github.com/vivo-ai-lab/BlueLM) |
 | Aion Instruct (replacing Phi Silica) | Microsoft | NPU/GPU/CPU model for Copilot+ PCs; Phi Silica (NPU-only) is being retired by Jan 2027 in favor of this | Closed, Windows-integrated | [learn.microsoft.com/windows/ai/apis/phi-silica](https://learn.microsoft.com/en-us/windows/ai/apis/phi-silica) |
 | LFM2.5 | Liquid AI | Non-transformer (liquid/hybrid) architecture explicitly built as "device-native" models — 230M to 24B-A2B MoE, plus a vision-language edge variant | Open-weight (license varies by checkpoint — verify before use) | [liquid.ai](https://www.liquid.ai/) |
 | Ministral 3 (3B/8B/14B) | Mistral AI | Explicitly built "for edge and local use" — laptops, RTX PCs, Jetson devices | Apache 2.0 | [mistral.ai/news/mistral-3](https://mistral.ai/news/mistral-3/) |
@@ -352,6 +355,7 @@ Weights you can download, fine-tune, and self-host.
 | <img src="https://www.google.com/s2/favicons?domain=ibm.com&sz=64" width="24"> | **IBM** 🇺🇸 | Granite series | Enterprise-focused, documented training-data provenance | Apache 2.0 | [ibm.com/granite](https://www.ibm.com/granite) |
 | <img src="https://www.google.com/s2/favicons?domain=falconllm.tii.ae&sz=64" width="24"> | **TII** 🇦🇪 | Falcon series | Leading open model from the Middle East, strong Arabic + multilingual support | Apache 2.0 (Falcon 2+) | [falconllm.tii.ae](https://falconllm.tii.ae) |
 | <img src="https://www.google.com/s2/favicons?domain=allenai.org&sz=64" width="24"> | **Allen Institute for AI** 🇺🇸 | OLMo series | "Fully open" — training data, code, and weights all released | Apache 2.0 | [allenai.org/olmo](https://allenai.org/olmo) |
+| <img src="https://www.google.com/s2/favicons?domain=xiaomi.com&sz=64" width="24"> | **Xiaomi** 🇨🇳 | MiMo series | Large-scale open-weight reasoning MoE (MiMo-V2.5-Pro: 1T+ total / 42B active params) | Apache 2.0 | [github.com/XiaomiMiMo/MiMo](https://github.com/XiaomiMiMo/MiMo) |
 
 ### 🇨🇳 Chinese LLM Ecosystem
 

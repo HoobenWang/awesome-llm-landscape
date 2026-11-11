@@ -253,6 +253,9 @@ RAG、搜索、「找相似」这类功能背后都是这类模型——它们�
 |---|---|---|---|---|
 | Apple Foundation Models | 苹果 | 驱动 iPhone/iPad/Mac 上的 Siri/Apple Intelligence；现已通过 Foundation Models 框架（Swift API）开放给第三方应用调用 | 闭源，仅限 API | [developer.apple.com/documentation/foundationmodels](https://developer.apple.com/documentation/foundationmodels) |
 | MiniCPM | 面壁智能 / 清华 | 成熟、被广泛部署的端侧大模型——真正能跑在手机上，不只是「参数小」 | Apache 2.0 | [github.com/OpenBMB/MiniCPM](https://github.com/OpenBMB/MiniCPM) |
+| Gemini Nano | Google | 驱动 Pixel/Android 端侧功能（Recorder 摘要、Gboard 等）；通过 AICore 系统服务运行，开发者可通过 ML Kit GenAI API 调用 | 闭源，仅限 API | [developers.google.com/ml-kit/genai](https://developers.google.com/ml-kit/genai) |
+| Gauss2 Compact | 三星 | 三星「三层模型」中专为端侧设计的一层，驱动 Galaxy AI；多模态（语言+代码+图像），支持 9–14 种语言 | 闭源，与 Galaxy 设备深度集成 | [news.samsung.com](https://news.samsung.com/global/samsung-electronics-hosts-samsung-developer-conference-korea-2024-unveils-its-improved-gen-ai-model) |
+| BlueLM 蓝心大模型（约 1B 端侧版本） | vivo AI Lab | 专门为端侧打造的小模型，区别于 vivo 更大的云端模型——真实开源权重发布，不只是营销噱头 | 开源权重，**未声明明确许可证**（GitHub 显示 "NOASSERTION"）——商用前请核实 | [github.com/vivo-ai-lab/BlueLM](https://github.com/vivo-ai-lab/BlueLM) |
 | Aion Instruct（取代 Phi Silica） | 微软 | 面向 Copilot+ PC 的 NPU/GPU/CPU 模型；原本仅支持 NPU 的 Phi Silica 将在 2027 年 1 月前被其取代 | 闭源，与 Windows 深度集成 | [learn.microsoft.com/windows/ai/apis/phi-silica](https://learn.microsoft.com/en-us/windows/ai/apis/phi-silica) |
 | LFM2.5 | Liquid AI | 非 Transformer 架构（液态/混合架构），明确定位为「设备原生」模型——230M 到 24B-A2B MoE 不等，还有图文边缘变体 | 开源权重（具体许可证因版本而异——使用前请核实） | [liquid.ai](https://www.liquid.ai/) |
 | Ministral 3（3B/8B/14B） | Mistral AI | 明确为「边缘与本地场景」打造——笔记本、RTX PC、Jetson 设备 | Apache 2.0 | [mistral.ai/news/mistral-3](https://mistral.ai/news/mistral-3/) |
@@ -352,6 +355,7 @@ mindmap
 | <img src="https://www.google.com/s2/favicons?domain=ibm.com&sz=64" width="24"> | **IBM** 🇺🇸 | Granite 系列 | 面向企业，训练数据来源公开透明 | Apache 2.0 | [ibm.com/granite](https://www.ibm.com/granite) |
 | <img src="https://www.google.com/s2/favicons?domain=falconllm.tii.ae&sz=64" width="24"> | **TII** 🇦🇪 | Falcon 系列 | 中东地区代表性开源模型，阿拉伯语与多语言能力强 | Apache 2.0（Falcon 2+） | [falconllm.tii.ae](https://falconllm.tii.ae) |
 | <img src="https://www.google.com/s2/favicons?domain=allenai.org&sz=64" width="24"> | **艾伦人工智能研究所** 🇺🇸 | OLMo 系列 | 「完全开放」——训练数据、代码、权重全部公开 | Apache 2.0 | [allenai.org/olmo](https://allenai.org/olmo) |
+| <img src="https://www.google.com/s2/favicons?domain=xiaomi.com&sz=64" width="24"> | **小米** 🇨🇳 | MiMo 系列 | 大规模开源推理 MoE 模型（MiMo-V2.5-Pro：总参数 1T+ / 激活参数 42B） | Apache 2.0 | [github.com/XiaomiMiMo/MiMo](https://github.com/XiaomiMiMo/MiMo) |
 
 ### 🇨🇳 国产大模型生态
 

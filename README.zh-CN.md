@@ -31,6 +31,7 @@
   - [🖼️ 图像](#️-图像)
   - [✂️ 图像编辑与优化](#️-图像编辑与优化)
   - [🎬 视频生成](#-视频生成)
+  - [🧊 3D 生成](#-3d-生成)
   - [🌍 世界模型](#-世界模型)
   - [🎙️ 语音、音频与音乐](#️-语音音频与音乐)
   - [🔎 向量检索与重排序](#-向量检索与重排序)
@@ -71,6 +72,8 @@ mindmap
     🎬 视频生成
       文生视频
       图生视频
+    🧊 3D 生成
+      文字/图片转3D模型
     🌍 世界模型
       可交互/可探索世界
       机器人/物理AI仿真
@@ -154,6 +157,21 @@ mindmap
 | 图生视频/动画 | 可灵、海螺、Runway Gen-4、Luma | 把一张静态图动画成短视频 |
 | 开源权重/可本地部署的视频生成 | Wan2.2 万相（阿里巴巴，Apache 2.0）、HunyuanVideo 混元视频（腾讯）、CogVideoX（智谱/清华 THUDM）、LTX-Video（Lightricks） | 下载权重本地跑——真正开放，不像上面这些都是闭源的 |
 
+### 🧊 3D 生成
+
+文字或图片 → 3D 模型。在游戏开发、VFX、电商产品可视化场景越来越主流——和下面的世界模型不同，世界模型生成的是可探索的**环境**，这里生成的是单个可导出的 3D 资产。
+
+| 模型 | 机构 | 擅长 | 许可证 / 注意事项 | 链接 |
+|---|---|---|---|---|
+| Tripo | VAST | 快速生成网格+PBR材质（最高 200 万面）；适合游戏资产快速迭代 | 闭源，API/SaaS | [tripo3d.ai](https://www.tripo3d.ai) |
+| Meshy | Meshy LLC | 导出格式支持最全；自研「Meshy Edit」支持部件级编辑 | 闭源，API/SaaS | [meshy.ai](https://www.meshy.ai) |
+| Rodin（Hyper3D） | Deemos | 100亿参数扩散 Transformer；在多项对比中排名照片级真实感/可直接用于生产的第一梯队 | 闭源，API/按点数计费 | [hyper3d.ai](https://hyper3d.ai) |
+| Hunyuan3D 2.1 | 腾讯 | 真正开源权重的 3D 生成模型 | 腾讯混元 3D 社区许可证（允许商用，需署名）；**更新的 2.5/3.0 版本仅限 API**——不要和这个开源的 2.1 版本搞混 | [github.com/Tencent-Hunyuan/Hunyuan3D-2.1](https://github.com/Tencent-Hunyuan/Hunyuan3D-2.1) |
+| TRELLIS.2 | 微软 | 40亿参数图生3D，支持 PBR 材质，体素分辨率最高 1536³ | MIT（真正宽松） | [github.com/microsoft/TRELLIS.2](https://github.com/microsoft/TRELLIS.2) |
+| Stable Point Aware 3D（SPAR3D） | Stability AI | 单张图片实时生成 3D，支持背面补全 | Stability AI 社区许可证——使用前请核实商业营收门槛条款 | [github.com/Stability-AI/stable-point-aware-3d](https://github.com/Stability-AI/stable-point-aware-3d) |
+
+> Luma AI 原本也有一款同名「Genie」的 3D 产品，但已于 **2026 年 1 月 1 日停止服务**——注意不要和下面 Google DeepMind 的 **Genie 4** 世界模型搞混，同名但完全是两家不同公司的不同产品。
+
 ### 🌍 世界模型
 
 和上面的视频生成不同：这类模型不是生成一段线性的视频片段，而是生成一个你（或智能体）可以**实时探索、交互**的环境。
@@ -222,7 +240,7 @@ RAG、搜索、「找相似」这类功能背后都是这类模型——它们�
 | NVIDIA Canary / Parakeet | NVIDIA | 多语言语音识别+翻译（Canary，25 种语言）与快速流式识别（Parakeet） | 通常为 CC-BY-4.0——请按具体版本核实 | [huggingface.co/nvidia](https://huggingface.co/nvidia) |
 | Chirp 3 | Google Cloud | 企业级语音识别——20 亿参数，24 种正式支持+77 种以上预览语言，说话人分离能力强 | Google Cloud API（非开源权重） | [cloud.google.com/speech-to-text](https://cloud.google.com/speech-to-text) |
 
-> **顺带一提，很有名的另一个「基础模型」：** [AlphaFold](https://deepmind.google/science/alphafold/)（Google DeepMind）大概是语言/视觉/语音之外，整个 AI 领域里最出名的「基础模型」——它能根据氨基酸序列预测蛋白质的三维结构，其创造者也因此获得了 2024 年诺贝尔化学奖。AlphaFold 2 的代码是 Apache 2.0，但 AlphaFold 3 的模型权重仅能通过 AlphaFold Server 以非商业方式使用。
+> **顺带一提，很有名的另一个「基础模型」：** [AlphaFold](https://deepmind.google/science/alphafold/)（Google DeepMind）大概是语言/视觉/语音之外，整个 AI 领域里最出名的「基础模型」——它能根据氨基酸序列预测蛋白质的三维结构，其创造者也因此获得了 2024 年诺贝尔化学奖。AlphaFold 2 的代码是 Apache 2.0，但 AlphaFold 3 的模型权重仅能通过 AlphaFold Server 以非商业方式使用。再提两个各自领域里很出名的基础模型：[WeatherNext 3](https://developers.google.com/weathernext)（Google DeepMind，GraphCast 的现役旗舰继任者——已经在 Google 搜索/地图/Gemini 的天气预报里实际使用）和 [ESM3](https://www.evolutionaryscale.ai)（EvolutionaryScale，同时对蛋白质的序列/结构/功能进行推理——小尺寸的「ESM3-open」1.4B 版本是 MIT 许可，但旗舰版模型仅限非商业使用）。
 
 ### 🧩 全模态 Omni（一站式）
 

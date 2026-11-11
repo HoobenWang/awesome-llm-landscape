@@ -31,6 +31,7 @@ Most "awesome LLM" lists are organized by *who made the model*. That's useful on
   - [🖼️ Image](#️-image)
   - [✂️ Image Editing & Enhancement](#️-image-editing--enhancement)
   - [🎬 Video Generation](#-video-generation)
+  - [🧊 3D Generation](#-3d-generation)
   - [🌍 World Models](#-world-models)
   - [🎙️ Audio, Voice & Music](#️-audio-voice--music)
   - [🔎 Embeddings, Retrieval & Reranking](#-embeddings-retrieval--reranking)
@@ -71,6 +72,8 @@ mindmap
     🎬 Video Generation
       Text-to-video
       Image-to-video
+    🧊 3D Generation
+      Text/image-to-3D-mesh
     🌍 World Models
       Interactive/playable worlds
       Robotics / physical-AI sim
@@ -154,6 +157,21 @@ Editing an *existing* image with instructions, or cleaning one up — different 
 | Image-to-video / animation | Kling, Hailuo, Runway Gen-4, Luma | Animate a still image into a short clip |
 | Open-weight / self-hostable video generation | Wan2.2 (Alibaba, Apache 2.0), HunyuanVideo (Tencent), CogVideoX (Zhipu/THUDM), LTX-Video (Lightricks) | Download the weights and run locally — genuinely open, unlike the closed models above |
 
+### 🧊 3D Generation
+
+Text or image → 3D mesh. Increasingly mainstream for game dev, VFX, and e-commerce product visualization — distinct from World Models below, which generate explorable *environments*, not a single exportable 3D asset.
+
+| Model | Organization | Known For | License / Note | Link |
+|---|---|---|---|---|
+| Tripo | VAST | Fast mesh + PBR generation (up to 2M faces); popular for rapid game-asset iteration | Closed, API/SaaS | [tripo3d.ai](https://www.tripo3d.ai) |
+| Meshy | Meshy LLC | Widest export-format support; in-house "Meshy Edit" for part-level editing | Closed, API/SaaS | [meshy.ai](https://www.meshy.ai) |
+| Rodin (Hyper3D) | Deemos | 10B-param diffusion transformer; ranks top-tier for photorealistic/production-ready output | Closed, API/credit-based | [hyper3d.ai](https://hyper3d.ai) |
+| Hunyuan3D 2.1 | Tencent | Genuinely open-weight 3D generation | Tencent Hunyuan3D Community License (commercial use OK, requires attribution); **newer 2.5/3.0 are API-only** — don't confuse with this open 2.1 release | [github.com/Tencent-Hunyuan/Hunyuan3D-2.1](https://github.com/Tencent-Hunyuan/Hunyuan3D-2.1) |
+| TRELLIS.2 | Microsoft | 4B-param image-to-3D with PBR materials, up to 1536³ voxel resolution | MIT (genuinely permissive) | [github.com/microsoft/TRELLIS.2](https://github.com/microsoft/TRELLIS.2) |
+| Stable Point Aware 3D (SPAR3D) | Stability AI | Real-time single-image-to-3D with backside completion | Stability AI community license — check the commercial-revenue threshold before relying on it | [github.com/Stability-AI/stable-point-aware-3d](https://github.com/Stability-AI/stable-point-aware-3d) |
+
+> Luma AI had its own 3D product (also called "Genie") but **discontinued it on January 1, 2026** — not to be confused with Google DeepMind's **Genie 4** world model in the section below; same name, unrelated products.
+
 ### 🌍 World Models
 
 Distinct from video generation above: these don't just produce a linear clip — they generate **interactive, explorable environments** you (or an agent) can act inside, in real time.
@@ -222,7 +240,7 @@ The counterpart to the text-to-speech models above — turning speech *into* tex
 | NVIDIA Canary / Parakeet | NVIDIA | Multilingual ASR + translation (Canary, 25 langs) and fast streaming ASR (Parakeet) | Typically CC-BY-4.0 — confirm per checkpoint | [huggingface.co/nvidia](https://huggingface.co/nvidia) |
 | Chirp 3 | Google Cloud | Enterprise ASR — 2B params, 24 GA + 77+ preview languages, strong speaker diarization | Google Cloud API (not open-weight) | [cloud.google.com/speech-to-text](https://cloud.google.com/speech-to-text) |
 
-> **Also famous, if you're curious:** [AlphaFold](https://deepmind.google/science/alphafold/) (Google DeepMind) is arguably the most famous "foundation model" in all of AI outside language/vision/speech — it predicts 3D protein structure from an amino-acid sequence, and its creators won a Nobel Prize in Chemistry for it in 2024. AlphaFold 2's code is Apache 2.0, but AlphaFold 3's model weights are only available non-commercially via the AlphaFold Server.
+> **Also famous, if you're curious:** [AlphaFold](https://deepmind.google/science/alphafold/) (Google DeepMind) is arguably the most famous "foundation model" in all of AI outside language/vision/speech — it predicts 3D protein structure from an amino-acid sequence, and its creators won a Nobel Prize in Chemistry for it in 2024. AlphaFold 2's code is Apache 2.0, but AlphaFold 3's model weights are only available non-commercially via the AlphaFold Server. Two more famous-in-their-field foundation models: [WeatherNext 3](https://developers.google.com/weathernext) (Google DeepMind, the current flagship successor to GraphCast — already live in Search/Maps/Gemini weather forecasts) and [ESM3](https://www.evolutionaryscale.ai) (EvolutionaryScale, reasons jointly over protein sequence/structure/function — the small "ESM3-open" 1.4B variant is MIT, but the flagship model is non-commercial-only).
 
 ### 🧩 Omni (All-in-One Multimodal)
 

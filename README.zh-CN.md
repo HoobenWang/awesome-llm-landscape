@@ -418,11 +418,16 @@ mindmap
 选模型离不开评测标准，建议从这里入手：
 
 - **[Awesome LLM Evaluation](https://alopatenko.github.io/LLMEvaluation/)** — 目前最全面的评测方法论、基准测试与论文合集。
-- **[LMArena（原 Chatbot Arena）](https://lmarena.ai/)** — 众包人类盲测偏好排名。
-- **MMLU / MMLU-Pro** — 通识学科知识基准。
-- **GPQA Diamond** — 研究生水平推理测试题。
-- **SWE-bench** — 真实 GitHub issue 修复能力，面向编程智能体。
+- **[LMArena](https://lmarena.ai/)**（原 Chatbot Arena）— 众包人类盲测偏好排名。
+- **[Humanity's Last Exam（HLE）](https://agi.safe.ai/dashboard)** — 2500 道跨领域专家级题目，专门设计来避免跑分饱和；目前最强的模型也只能拿到不到一半的分数。
+- **[ARC-AGI-3](https://arcprize.org/)** — 交互式智能体推理环境；旗舰模型刚推出时准确率不到 1%（ARC-AGI-1/2 已经跑分饱和，现在该引用这个最新版本）。
+- **[SWE-bench Pro](https://scale.com/research/swe_bench_pro)** — 真实世界、长链路的编程智能体任务；原版 SWE-bench/Verified 被发现存在数据污染后遭到取代——顶尖模型在这里只能拿到约 20%–45% 分数，而在旧版 Verified 上能拿 70%+。
+- **[METR Time Horizon](https://metr.org/)** — 衡量智能体在给定可靠度下，能自主完成多长时间（按人类专家耗时换算）的任务——评估智能体能力趋势的另一个维度，不是知识测验。
+- **GPQA Diamond** — 研究生水平推理测试题；对比中等水平模型仍然有用，但在旗舰模型上正在接近饱和。
+- **MMLU / MMLU-Pro** — 通识学科知识基准；旗舰模型已经跑分饱和，现在主要用作中小型/开源模型的基线对比。
 - **LiveCodeBench** — 持续刷新、抗数据污染的编程基准。
+- **[Artificial Analysis](https://artificialanalysis.ai/leaderboards/models)** — 不是研究基准，而是实时追踪 100+ 个 API 端点价格/速度/质量的实用榜单——真正要选模型部署时该看这个。
+- **[C-Eval](https://github.com/hkust-nlp/ceval) / [CMMLU](https://github.com/haonan-li/CMMLU)** — 标准的中文多任务评测套件，考虑到这份清单里有大量国产模型，这两个尤其相关。
 
 ## 🛠️ 用大模型做产品
 

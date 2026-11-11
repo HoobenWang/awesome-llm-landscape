@@ -418,11 +418,16 @@ mindmap
 Picking a model means knowing how it's measured. Start here:
 
 - **[Awesome LLM Evaluation](https://alopatenko.github.io/LLMEvaluation/)** — the most comprehensive single reference for evaluation methodology, benchmarks, and papers.
-- **[LMArena (formerly Chatbot Arena)](https://lmarena.ai/)** — crowdsourced human head-to-head preference ranking.
-- **MMLU / MMLU-Pro** — broad academic knowledge benchmark.
-- **GPQA Diamond** — graduate-level reasoning questions.
-- **SWE-bench** — real-world GitHub issue resolution for coding agents.
+- **[LMArena](https://lmarena.ai/)** (formerly Chatbot Arena) — crowdsourced human head-to-head preference ranking.
+- **[Humanity's Last Exam (HLE)](https://agi.safe.ai/dashboard)** — 2,500 expert-written questions across many fields, built specifically to stay unsaturated; frontier models still score well under 50%.
+- **[ARC-AGI-3](https://arcprize.org/)** — interactive agentic-reasoning environments; frontier models scored under 1% at launch (ARC-AGI-1/2 are now saturated — this is the current one to cite).
+- **[SWE-bench Pro](https://scale.com/research/swe_bench_pro)** — real-world, long-horizon coding-agent tasks; replaced the original SWE-bench/Verified after those were found to be contaminated — top models score ~20–45% here vs. 70%+ on the old Verified set.
+- **[METR Time Horizon](https://metr.org/)** — measures how long a task (in human-expert-time-equivalent) an agent can complete autonomously at a given reliability — a distinct lens on agentic-capability trends, not a knowledge test.
+- **GPQA Diamond** — graduate-level reasoning questions; still useful for comparing mid-tier models, but approaching saturation at the frontier.
+- **MMLU / MMLU-Pro** — broad academic knowledge benchmark; saturated by frontier models, now mainly useful as a baseline for smaller/open models.
 - **LiveCodeBench** — contamination-resistant, continuously-refreshed coding benchmark.
+- **[Artificial Analysis](https://artificialanalysis.ai/leaderboards/models)** — not a research benchmark, a practical real-time leaderboard tracking price, speed, and quality across 100+ API endpoints — the one to check when you're actually deciding what to deploy.
+- **[C-Eval](https://github.com/hkust-nlp/ceval) / [CMMLU](https://github.com/haonan-li/CMMLU)** — the standard Chinese-language multi-task evaluation suites, relevant given how much of this list is Chinese models.
 
 ## 🛠️ Build With LLMs
 

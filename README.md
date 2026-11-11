@@ -206,6 +206,8 @@ Not chat models or image generators — these are the vision *building blocks* o
 | Segment Anything (SAM2 / SAM3) | Meta AI | Promptable image/video segmentation — SAM3 adds text/concept-based segmentation | SAM2: Apache 2.0 · **SAM3: gated "SAM License"** (more restrictive, requires HF access approval) | [ai.meta.com/research/sam3](https://ai.meta.com/research/sam3/) |
 | Grounding DINO | IDEA Research | Open-vocabulary object detection — detect objects from a text description instead of a fixed label set | Apache 2.0 | [github.com/IDEA-Research/GroundingDINO](https://github.com/IDEA-Research/GroundingDINO) |
 | YOLO26 | Ultralytics | Current flagship real-time object detector — NMS-free, fast even on CPU | **AGPL-3.0** (copyleft) for open-source use; commercial license required for closed-source products | [docs.ultralytics.com/models/yolo26](https://docs.ultralytics.com/models/yolo26) |
+| PaddleOCR (+ RapidOCR) | Baidu (PaddlePaddle) | The default open-source OCR — turns images/PDFs into structured text, 100+ languages; RapidOCR is a lighter ONNX-based alternative commonly paired with it | Apache 2.0 (both) | [github.com/PaddlePaddle/PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR) · [github.com/RapidAI/RapidOCR](https://github.com/RapidAI/RapidOCR) |
+| InsightFace | DeepInsight (open-source) | The de facto standard toolkit for face detection, recognition, and analysis (age/gender/landmarks) | No repo-wide OSS license declared — some pretrained model packs are research/non-commercial only, check per-model before commercial use | [github.com/deepinsight/insightface](https://github.com/deepinsight/insightface) |
 
 ### 🎧 Speech Recognition & Translation
 
@@ -239,7 +241,7 @@ The counterpart to the text-to-speech models above — turning speech *into* tex
 | Scenario | Recommended | Why |
 |---|---|---|
 | Runs on a consumer GPU / laptop (1B–8B) | Qwen3 (0.6B–8B), Llama 3.2 (1B/3B), Phi-4-mini, Gemma 3 (1B–12B) | Current generation of small instruct models; quantizes down to run locally |
-| Phone / on-device / edge | MiniCPM (OpenBMB), Gemma 3n, SmolLM2/SmolLM3 (Hugging Face) | Specifically tuned for phones and constrained edge hardware, not just "small" — see also the dedicated edge-model research note below |
+| Phone / on-device / edge | MiniCPM, Gemma 3n, SmolLM2/SmolLM3 (Hugging Face) | Specifically tuned for phones and constrained edge hardware, not just "small" — see the dedicated [On-Device / Edge Models](#-on-device--edge-models) table below for details |
 | Small vision-language (lightweight multimodal) | SmolVLM, Moondream, PaliGemma 2 (Google) | Image understanding that still fits on modest hardware |
 | Enterprise on-prem deployment | Llama 4, Qwen (open), DeepSeek-V3, GLM, Granite (IBM), Falcon (TII) | Apache-2.0-style licenses, enterprise support options |
 
@@ -250,6 +252,7 @@ Not just "small" — these are built specifically for a phone, laptop NPU, or em
 | Model | Organization | What Makes It "Edge" | Open/Closed | Link |
 |---|---|---|---|---|
 | Apple Foundation Models | Apple | Powers Siri/Apple Intelligence on iPhone/iPad/Mac; now exposed to third-party apps via the Foundation Models framework (Swift API) | Closed, API-only | [developer.apple.com/documentation/foundationmodels](https://developer.apple.com/documentation/foundationmodels) |
+| MiniCPM | OpenBMB (Tsinghua) | Mature, widely-deployed on-device LLM line — genuinely runs on a phone, not just "small on paper" | Apache 2.0 | [github.com/OpenBMB/MiniCPM](https://github.com/OpenBMB/MiniCPM) |
 | Aion Instruct (replacing Phi Silica) | Microsoft | NPU/GPU/CPU model for Copilot+ PCs; Phi Silica (NPU-only) is being retired by Jan 2027 in favor of this | Closed, Windows-integrated | [learn.microsoft.com/windows/ai/apis/phi-silica](https://learn.microsoft.com/en-us/windows/ai/apis/phi-silica) |
 | LFM2.5 | Liquid AI | Non-transformer (liquid/hybrid) architecture explicitly built as "device-native" models — 230M to 24B-A2B MoE, plus a vision-language edge variant | Open-weight (license varies by checkpoint — verify before use) | [liquid.ai](https://www.liquid.ai/) |
 | Ministral 3 (3B/8B/14B) | Mistral AI | Explicitly built "for edge and local use" — laptops, RTX PCs, Jetson devices | Apache 2.0 | [mistral.ai/news/mistral-3](https://mistral.ai/news/mistral-3/) |

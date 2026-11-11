@@ -206,6 +206,8 @@ RAG、搜索、「找相似」这类功能背后都是这类模型——它们�
 | Segment Anything（SAM2 / SAM3） | Meta AI | 可提示的图像/视频分割——SAM3 支持基于文本/概念的分割 | SAM2：Apache 2.0 · **SAM3：受限的「SAM License」**（更严格，需申请 HF 访问权限） | [ai.meta.com/research/sam3](https://ai.meta.com/research/sam3/) |
 | Grounding DINO | IDEA Research | 开放词汇目标检测——用文字描述检测物体，而不局限于固定标签集 | Apache 2.0 | [github.com/IDEA-Research/GroundingDINO](https://github.com/IDEA-Research/GroundingDINO) |
 | YOLO26 | Ultralytics | 当前旗舰级实时目标检测器——免 NMS，CPU 上也能快速推理 | **AGPL-3.0**（著佐权/copyleft），开源用途免费；闭源商用需购买商业许可证 | [docs.ultralytics.com/models/yolo26](https://docs.ultralytics.com/models/yolo26) |
+| PaddleOCR（+ RapidOCR） | 百度（飞桨 PaddlePaddle） | 最常用的开源 OCR——把图片/PDF 转成结构化文字，支持 100+ 语言；RapidOCR 是常搭配使用的轻量级 ONNX 版本 | Apache 2.0（两者均是） | [github.com/PaddlePaddle/PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR) · [github.com/RapidAI/RapidOCR](https://github.com/RapidAI/RapidOCR) |
+| InsightFace | DeepInsight（开源社区） | 事实标准的人脸检测/识别/分析工具包（年龄、性别、关键点等） | 仓库未声明统一开源许可证——部分预训练模型包仅限研究/非商用，商用前请逐一核实 | [github.com/deepinsight/insightface](https://github.com/deepinsight/insightface) |
 
 ### 🎧 语音识别与翻译
 
@@ -239,7 +241,7 @@ RAG、搜索、「找相似」这类功能背后都是这类模型——它们�
 | 场景 | 推荐模型 | 为什么 |
 |---|---|---|
 | 消费级显卡/笔记本可跑（1B–8B） | 通义千问 Qwen3（0.6B–8B）、Llama 3.2（1B/3B）、Phi-4-mini、Gemma 3（1B–12B） | 当前这一代小尺寸指令模型，量化后本地可跑 |
-| 手机 / 端侧 / 边缘设备 | MiniCPM（面壁智能/清华）、Gemma 3n、SmolLM2/SmolLM3（Hugging Face） | 专门针对手机和资源受限的边缘硬件调优，不只是「尺寸小」——另见下方端侧模型专项调研 |
+| 手机 / 端侧 / 边缘设备 | MiniCPM、Gemma 3n、SmolLM2/SmolLM3（Hugging Face） | 专门针对手机和资源受限的边缘硬件调优，不只是「尺寸小」——详见下方[端侧/边缘设备模型](#-端侧--边缘设备模型)表格 |
 | 轻量级多模态（小尺寸视觉语言模型） | SmolVLM、Moondream、PaliGemma 2（Google） | 图像理解能力在普通硬件上也能跑起来 |
 | 企业私有化部署 | Llama 4、通义千问（开源）、DeepSeek-V3、智谱 GLM、Granite（IBM）、Falcon（TII） | Apache 2.0 类许可证，有企业级支持选项 |
 
@@ -250,6 +252,7 @@ RAG、搜索、「找相似」这类功能背后都是这类模型——它们�
 | 模型 | 机构 | 「端侧」特性 | 开源/闭源 | 链接 |
 |---|---|---|---|---|
 | Apple Foundation Models | 苹果 | 驱动 iPhone/iPad/Mac 上的 Siri/Apple Intelligence；现已通过 Foundation Models 框架（Swift API）开放给第三方应用调用 | 闭源，仅限 API | [developer.apple.com/documentation/foundationmodels](https://developer.apple.com/documentation/foundationmodels) |
+| MiniCPM | 面壁智能 / 清华 | 成熟、被广泛部署的端侧大模型——真正能跑在手机上，不只是「参数小」 | Apache 2.0 | [github.com/OpenBMB/MiniCPM](https://github.com/OpenBMB/MiniCPM) |
 | Aion Instruct（取代 Phi Silica） | 微软 | 面向 Copilot+ PC 的 NPU/GPU/CPU 模型；原本仅支持 NPU 的 Phi Silica 将在 2027 年 1 月前被其取代 | 闭源，与 Windows 深度集成 | [learn.microsoft.com/windows/ai/apis/phi-silica](https://learn.microsoft.com/en-us/windows/ai/apis/phi-silica) |
 | LFM2.5 | Liquid AI | 非 Transformer 架构（液态/混合架构），明确定位为「设备原生」模型——230M 到 24B-A2B MoE 不等，还有图文边缘变体 | 开源权重（具体许可证因版本而异——使用前请核实） | [liquid.ai](https://www.liquid.ai/) |
 | Ministral 3（3B/8B/14B） | Mistral AI | 明确为「边缘与本地场景」打造——笔记本、RTX PC、Jetson 设备 | Apache 2.0 | [mistral.ai/news/mistral-3](https://mistral.ai/news/mistral-3/) |

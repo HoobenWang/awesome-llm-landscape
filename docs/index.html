@@ -56,9 +56,17 @@
     padding: 28px 16px 8px;
     text-align: center;
   }
-  h1 {
-    font-size: clamp(1.4rem, 4vw, 2.1rem);
+  .brand {
     margin: 0 0 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+  h1 {
+    font-size: clamp(1.6rem, 4.5vw, 2.4rem);
+    margin: 0 0 8px;
     background: linear-gradient(90deg, var(--accent), var(--accent-2));
     -webkit-background-clip: text;
     background-clip: text;
@@ -151,8 +159,9 @@
 <body>
 
 <header>
-  <h1 data-i18n="title">怎么选模型？· Which Model Should You Use?</h1>
-  <p class="subtitle" data-i18n="subtitle">从你想做的事出发，直接找到合适的模型</p>
+  <p class="brand">🧠 Awesome LLM Landscape</p>
+  <h1 data-i18n="title">怎么选模型？</h1>
+  <p class="subtitle" data-i18n="subtitle">从你想做的事出发——聊天、写代码、生成图片、做视频——直接找到合适的模型</p>
   <div class="controls">
     <button id="btn-mode-scenario" aria-pressed="true" data-i18n="modeScenario">🎯 按场景</button>
     <button id="btn-mode-org" aria-pressed="false" data-i18n="modeOrg">📚 按机构</button>
@@ -211,8 +220,8 @@
 
   const i18n = {
     zh: {
-      title: "怎么选模型？· Which Model Should You Use?",
-      subtitle: "从你想做的事出发，直接找到合适的模型",
+      title: "怎么选模型？",
+      subtitle: "从你想做的事出发——聊天、写代码、生成图片、做视频——直接找到合适的模型",
       modeScenario: "🎯 按场景",
       modeOrg: "📚 按机构",
       scenarioTitle: "🎯 按场景选模型",
@@ -334,7 +343,7 @@
     },
     en: {
       title: "Which Model Should You Use?",
-      subtitle: "Start from what you're trying to do, land on the right model",
+      subtitle: "Start from what you're trying to do — chat, code, generate an image, make a video — and land on the right model",
       modeScenario: "🎯 By Scenario",
       modeOrg: "📚 By Organization",
       scenarioTitle: "🎯 Pick by What You're Doing",

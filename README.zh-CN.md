@@ -263,7 +263,7 @@ RAG、搜索、「找相似」这类功能背后都是这类模型——它们�
 
 > **以下是部署平台/工具，不是模型**，别搞混了：**Qualcomm AI Hub**（把 300+ 个开源模型编译适配到骁龙 NPU/GPU/CPU 上运行）、**Intel OpenVINO** 和 **AMD Ryzen AI Software**（分别是 Intel Core Ultra 和 AMD Ryzen AI NPU 的对应工具链——至此苹果/谷歌/高通/Intel/AMD 五大 NPU 厂商就齐了）、**llama.cpp / GGUF**（把模型量化到能在 CPU/边缘硬件上跑的标准格式）、**Core ML / LiteRT（原 TensorFlow Lite）/ MediaPipe**（苹果和谷歌各自的移动端推理运行时）。和前面 ONNX 那条注释是一个道理——它们都是在跑 MiniCPM、通义千问、Gemma、Whisper（本仓库都已收录）这类模型，而不是模型本身。
 >
-> **NAS「AI 相册」类应用**（群晖 Synology Photos、威联通 QNAP QuMagie，以及 [TrailSnap](https://github.com/LC044/TrailSnap) 这类自托管应用）也没有自己专属的 NAS 模型——它们跑的就是上面[视觉编码与检测](#️-视觉编码与检测)里那套开源 CV 模型（PaddleOCR、InsightFace、CLIP、YOLO），通过 TensorFlow Lite / ONNX Runtime / OpenCV DNN 跑在纯 CPU 上，不需要 GPU。
+> **NAS「AI 相册」类应用**没有自己专属的模型——具体扒了一下各家实际用的是什么：**群晖 Synology Photos** 跑的是 OpenCV 的 DNN 模块 + TensorFlow Lite + ONNX Runtime，纯 Celeron CPU 就能跑；**威联通 QNAP QuMagie** 用的是 **Google ML Kit Face Detection**（经典的非生成式人脸检测 SDK，不是 Gemini Nano）做本地人脸检测；**绿联（UGREEN）新出的 AI NAS 产品线**是这几家里最「大模型化」的，直接内置了本仓库通义千问系列里的 **Qwen3.5-4B**，通过 llama.cpp 跑推理。像 [TrailSnap](https://github.com/LC044/TrailSnap) 这类自托管应用也是同样的模式，用的就是上面[视觉编码与检测](#️-视觉编码与检测)里那套开源 CV 模型（PaddleOCR、InsightFace、CLIP、YOLO）。
 
 ---
 

@@ -261,7 +261,9 @@ RAG、搜索、「找相似」这类功能背后都是这类模型——它们�
 | Ministral 3（3B/8B/14B） | Mistral AI | 明确为「边缘与本地场景」打造——笔记本、RTX PC、Jetson 设备 | Apache 2.0 | [mistral.ai/news/mistral-3](https://mistral.ai/news/mistral-3/) |
 | Falcon-Edge（Falcon-E） | TII | 1B/3B，三元 BitNet 架构（1.58-bit 权重）——专为 CPU（而非 GPU）运行设计 | 许可证未确认——请查看 HF 模型卡 | [huggingface.co/blog/tiiuae/falcon-edge](https://huggingface.co/blog/tiiuae/falcon-edge) |
 
-> **以下是部署平台/工具，不是模型**，别搞混了：**Qualcomm AI Hub**（把 300+ 个开源模型编译适配到骁龙 NPU/GPU/CPU 上运行）、**llama.cpp / GGUF**（把模型量化到能在 CPU/边缘硬件上跑的标准格式）、**Core ML / LiteRT（原 TensorFlow Lite）/ MediaPipe**（苹果和谷歌各自的移动端推理运行时）。和前面 ONNX 那条注释是一个道理。
+> **以下是部署平台/工具，不是模型**，别搞混了：**Qualcomm AI Hub**（把 300+ 个开源模型编译适配到骁龙 NPU/GPU/CPU 上运行）、**Intel OpenVINO** 和 **AMD Ryzen AI Software**（分别是 Intel Core Ultra 和 AMD Ryzen AI NPU 的对应工具链——至此苹果/谷歌/高通/Intel/AMD 五大 NPU 厂商就齐了）、**llama.cpp / GGUF**（把模型量化到能在 CPU/边缘硬件上跑的标准格式）、**Core ML / LiteRT（原 TensorFlow Lite）/ MediaPipe**（苹果和谷歌各自的移动端推理运行时）。和前面 ONNX 那条注释是一个道理——它们都是在跑 MiniCPM、通义千问、Gemma、Whisper（本仓库都已收录）这类模型，而不是模型本身。
+>
+> **NAS「AI 相册」类应用**（群晖 Synology Photos、威联通 QNAP QuMagie，以及 [TrailSnap](https://github.com/LC044/TrailSnap) 这类自托管应用）也没有自己专属的 NAS 模型——它们跑的就是上面[视觉编码与检测](#️-视觉编码与检测)里那套开源 CV 模型（PaddleOCR、InsightFace、CLIP、YOLO），通过 TensorFlow Lite / ONNX Runtime / OpenCV DNN 跑在纯 CPU 上，不需要 GPU。
 
 ---
 

@@ -261,7 +261,9 @@ Not just "small" — these are built specifically for a phone, laptop NPU, or em
 | Ministral 3 (3B/8B/14B) | Mistral AI | Explicitly built "for edge and local use" — laptops, RTX PCs, Jetson devices | Apache 2.0 | [mistral.ai/news/mistral-3](https://mistral.ai/news/mistral-3/) |
 | Falcon-Edge (Falcon-E) | TII | 1B/3B, ternary BitNet (1.58-bit weights) — built to run on CPU instead of GPU | License unconfirmed — check the HF model card | [huggingface.co/blog/tiiuae/falcon-edge](https://huggingface.co/blog/tiiuae/falcon-edge) |
 
-> **These are deployment *platforms/tooling*, not models** — don't confuse them for one: **Qualcomm AI Hub** (compiles 300+ open models for Snapdragon NPU/GPU/CPU execution), **llama.cpp / GGUF** (the standard format for quantizing a model to run on CPU/edge hardware), and **Core ML / LiteRT (formerly TensorFlow Lite) / MediaPipe** (Apple's and Google's mobile inference runtimes). Same idea as the ONNX note above.
+> **These are deployment *platforms/tooling*, not models** — don't confuse them for one: **Qualcomm AI Hub** (compiles 300+ open models for Snapdragon NPU/GPU/CPU execution), **Intel OpenVINO** and **AMD Ryzen AI Software** (the Intel/AMD equivalents for Core Ultra and Ryzen AI NPUs — rounding out NPU-vendor coverage alongside Apple/Google/Qualcomm), **llama.cpp / GGUF** (the standard format for quantizing a model to run on CPU/edge hardware), and **Core ML / LiteRT (formerly TensorFlow Lite) / MediaPipe** (Apple's and Google's mobile inference runtimes). Same idea as the ONNX note above — all of these *run* models like MiniCPM, Qwen, Gemma, and Whisper (already in this repo) on specific hardware, rather than being models themselves.
+>
+> **NAS-based "AI photo" apps** (Synology Photos, QNAP QuMagie, and self-hosted apps like [TrailSnap](https://github.com/LC044/TrailSnap)) don't have their own NAS-specific model either — they run the same open CV stack from [Vision Encoders & Detection](#️-vision-encoders--detection) above (PaddleOCR, InsightFace, CLIP, YOLO) via TensorFlow Lite / ONNX Runtime / OpenCV DNN, CPU-only, no GPU needed.
 
 ---
 

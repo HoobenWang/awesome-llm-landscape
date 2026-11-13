@@ -43,6 +43,7 @@
   - [📱 端侧 / 边缘设备模型](#-端侧--边缘设备模型)
 - [📚 完整机构目录](#-完整机构目录)
 - [📊 评测与榜单](#-评测与榜单)
+- [🧰 跑起来：工具链与基础设施](#-跑起来工具链与基础设施)
 - [🛠️ 用大模型做产品](#️-用大模型做产品)
 - [🔗 相关 Awesome 列表](#-相关-awesome-列表)
 - [🤝 贡献指南](#-贡献指南)
@@ -249,6 +250,7 @@ RAG、搜索、「找相似」这类功能背后都是这类模型——它们�
 | 场景 | 推荐模型 | 为什么 |
 |---|---|---|
 | 一个模型搞定文本+图像+音频+视频输入输出 | GPT-5、Gemini、Qwen-Omni | 不用再拼接多个专用模型 |
+| 开源权重的统一理解**与**生成 | Janus 系列（DeepSeek） | 一个模型同时做图像理解和图像生成，不用再拆成 VLM + 扩散模型两套 |
 
 ### 🤖 智能体与工具调用
 
@@ -378,6 +380,7 @@ mindmap
 | <img src="https://www.google.com/s2/favicons?domain=falconllm.tii.ae&sz=64" width="24"> | **TII** 🇦🇪 | Falcon 系列 | 中东地区代表性开源模型，阿拉伯语与多语言能力强 | Apache 2.0（Falcon 2+） | [falconllm.tii.ae](https://falconllm.tii.ae) |
 | <img src="https://www.google.com/s2/favicons?domain=allenai.org&sz=64" width="24"> | **艾伦人工智能研究所** 🇺🇸 | OLMo 系列 | 「完全开放」——训练数据、代码、权重全部公开 | Apache 2.0 | [allenai.org/olmo](https://allenai.org/olmo) |
 | <img src="https://www.google.com/s2/favicons?domain=xiaomi.com&sz=64" width="24"> | **小米** 🇨🇳 | MiMo 系列 | 大规模开源推理 MoE 模型（MiMo-V2.5-Pro：总参数 1T+ / 激活参数 42B） | Apache 2.0 | [github.com/XiaomiMiMo/MiMo](https://github.com/XiaomiMiMo/MiMo) |
+| <img src="https://www.google.com/s2/favicons?domain=github.com&sz=64" width="24"> | **RWKV Foundation** 🌏 | RWKV 系列（RWKV-7 "Goose"） | 非 Transformer 路线的大模型——RNN 架构（线性时间、常数空间、无 KV-cache），却能像 Transformer 一样并行训练 | Apache 2.0 | [github.com/BlinkDL/RWKV-LM](https://github.com/BlinkDL/RWKV-LM) |
 
 ### 🇨🇳 国产大模型生态
 
@@ -431,9 +434,21 @@ mindmap
 - **[Artificial Analysis](https://artificialanalysis.ai/leaderboards/models)** — 不是研究基准，而是实时追踪 100+ 个 API 端点价格/速度/质量的实用榜单——真正要选模型部署时该看这个。
 - **[C-Eval](https://github.com/hkust-nlp/ceval) / [CMMLU](https://github.com/haonan-li/CMMLU)** — 标准的中文多任务评测套件，考虑到这份清单里有大量国产模型，这两个尤其相关。
 
+## 🧰 跑起来：工具链与基础设施
+
+从上面的表格里选定模型之后，这些是把它真正跑起来、做推理、做微调的主流工具。（筛选自 [uhub/awesome-llm](https://github.com/uhub/awesome-llm) 的工具链部分。）
+
+| 需求 | 主流选择 | 说明 |
+|---|---|---|
+| 本地跑一个模型 | [Ollama](https://github.com/ollama/ollama)（MIT）、[llama.cpp](https://github.com/ggml-org/llama.cpp)（MIT） | Ollama 一键省事；llama.cpp 适合深度控制。大多数「本地大模型」应用都靠这两个 |
+| 生产环境推理服务 | [vLLM](https://github.com/vllm-project/vllm)（Apache 2.0）、[SGLang](https://github.com/sgl-project/sglang)、[TensorRT-LLM](https://github.com/NVIDIA/TensorRT-LLM)（NVIDIA） | 高吞吐推理引擎——vLLM 是大多数部署的默认选择 |
+| 微调 / 训练 | [Unsloth](https://github.com/unslothai/unsloth)（Apache 2.0）、[LLaMA-Factory](https://github.com/hiyouga/LlamaFactory)（Apache 2.0）、[ms-swift](https://github.com/modelscope/ms-swift)（魔搭 ModelScope） | 又快又省显存的微调；ms-swift 覆盖 600+ 模型，国产模型基本都有 |
+| RAG / 文档流水线 | [RAGFlow](https://github.com/infiniflow/ragflow)（Apache 2.0）、[LlamaIndex](https://github.com/run-llama/llama_index)（MIT）、[GraphRAG](https://github.com/microsoft/graphrag)（MIT） | 配合上面[向量检索与重排序](#-向量检索与重排序)里的向量模型一起用 |
+| 一个 API 调多家 | [LiteLLM](https://github.com/BerriAI/litellm)、[one-api](https://github.com/songquanpeng/one-api)（MIT） | 统一网关，打通 OpenAI/Anthropic/Google/国产各家 API，带成本追踪与故障转移 |
+
 ## 🛠️ 用大模型做产品
 
-想直接「用」这些模型而不只是了解它们？参考 **[Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps)**，里面有 50+ 可直接运行的项目：RAG 流水线、自主智能体、MCP 服务、语音智能体等。
+想直接「用」这些模型而不只是了解它们？参考 **[Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps)** ——100+ 个开源可直接运行的项目（Apache 2.0），按场景组织：Agent 技能、入门/进阶智能体、多智能体团队、语音智能体、生成式 UI、游戏智能体、MCP 智能体、RAG 流水线、记忆体应用、微调配方等。克隆下来几分钟就能跑起来。
 
 ## 🔗 相关 Awesome 列表
 

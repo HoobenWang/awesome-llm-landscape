@@ -43,6 +43,7 @@ Most "awesome LLM" lists are organized by *who made the model*. That's useful on
   - [📱 On-Device / Edge Models](#-on-device--edge-models)
 - [📚 Full Directory by Organization](#-full-directory-by-organization)
 - [📊 Evaluation & Benchmarks](#-evaluation--benchmarks)
+- [🧰 Run It: Tooling & Infrastructure](#-run-it-tooling--infrastructure)
 - [🛠️ Build With LLMs](#️-build-with-llms)
 - [🔗 Related Awesome Lists](#-related-awesome-lists)
 - [🤝 Contributing](#-contributing)
@@ -249,6 +250,7 @@ The counterpart to the text-to-speech models above — turning speech *into* tex
 | Scenario | Recommended | Why |
 |---|---|---|
 | One model for text + image + audio + video in/out | GPT-5, Gemini, Qwen-Omni | Avoids stitching together separate specialized models |
+| Open-weight unified understanding **and** generation | Janus series (DeepSeek) | One model that both understands images and generates them, instead of separate VLM + diffusion models |
 
 ### 🤖 Agents & Tool Use
 
@@ -378,6 +380,7 @@ Weights you can download, fine-tune, and self-host.
 | <img src="https://www.google.com/s2/favicons?domain=falconllm.tii.ae&sz=64" width="24"> | **TII** 🇦🇪 | Falcon series | Leading open model from the Middle East, strong Arabic + multilingual support | Apache 2.0 (Falcon 2+) | [falconllm.tii.ae](https://falconllm.tii.ae) |
 | <img src="https://www.google.com/s2/favicons?domain=allenai.org&sz=64" width="24"> | **Allen Institute for AI** 🇺🇸 | OLMo series | "Fully open" — training data, code, and weights all released | Apache 2.0 | [allenai.org/olmo](https://allenai.org/olmo) |
 | <img src="https://www.google.com/s2/favicons?domain=xiaomi.com&sz=64" width="24"> | **Xiaomi** 🇨🇳 | MiMo series | Large-scale open-weight reasoning MoE (MiMo-V2.5-Pro: 1T+ total / 42B active params) | Apache 2.0 | [github.com/XiaomiMiMo/MiMo](https://github.com/XiaomiMiMo/MiMo) |
+| <img src="https://www.google.com/s2/favicons?domain=github.com&sz=64" width="24"> | **RWKV Foundation** 🌏 | RWKV series (RWKV-7 "Goose") | The non-transformer LLM alternative — RNN-based (linear time, constant space, no KV-cache), trains in parallel like a transformer | Apache 2.0 | [github.com/BlinkDL/RWKV-LM](https://github.com/BlinkDL/RWKV-LM) |
 
 ### 🇨🇳 Chinese LLM Ecosystem
 
@@ -431,9 +434,21 @@ Picking a model means knowing how it's measured. Start here:
 - **[Artificial Analysis](https://artificialanalysis.ai/leaderboards/models)** — not a research benchmark, a practical real-time leaderboard tracking price, speed, and quality across 100+ API endpoints — the one to check when you're actually deciding what to deploy.
 - **[C-Eval](https://github.com/hkust-nlp/ceval) / [CMMLU](https://github.com/haonan-li/CMMLU)** — the standard Chinese-language multi-task evaluation suites, relevant given how much of this list is Chinese models.
 
+## 🧰 Run It: Tooling & Infrastructure
+
+Once you've picked a model from the tables above, these are the mainstream tools for actually running, serving, and fine-tuning it. (Curated from [uhub/awesome-llm](https://github.com/uhub/awesome-llm)'s tooling section.)
+
+| What you need | Mainstream options | Notes |
+|---|---|---|
+| Run a model locally | [Ollama](https://github.com/ollama/ollama) (MIT), [llama.cpp](https://github.com/ggml-org/llama.cpp) (MIT) | Ollama for one-command convenience; llama.cpp when you need control. Both power most "local LLM" apps |
+| Serve in production | [vLLM](https://github.com/vllm-project/vllm) (Apache 2.0), [SGLang](https://github.com/sgl-project/sglang), [TensorRT-LLM](https://github.com/NVIDIA/TensorRT-LLM) (NVIDIA) | High-throughput serving engines — vLLM is the default for most deployments |
+| Fine-tune / train | [Unsloth](https://github.com/unslothai/unsloth) (Apache 2.0), [LLaMA-Factory](https://github.com/hiyouga/LlamaFactory) (Apache 2.0), [ms-swift](https://github.com/modelscope/ms-swift) (ModelScope) | Fast, memory-efficient fine-tuning; ms-swift covers 600+ models incl. most Chinese ones |
+| RAG / document pipelines | [RAGFlow](https://github.com/infiniflow/ragflow) (Apache 2.0), [LlamaIndex](https://github.com/run-llama/llama_index) (MIT), [GraphRAG](https://github.com/microsoft/graphrag) (MIT) | Pair these with the embedding models in the [Embeddings](#-embeddings-retrieval--reranking) section above |
+| One API for many providers | [LiteLLM](https://github.com/BerriAI/litellm), [one-api](https://github.com/songquanpeng/one-api) (MIT) | Unified gateway across OpenAI/Anthropic/Google/Chinese providers, with cost tracking and failover |
+
 ## 🛠️ Build With LLMs
 
-Want to *use* these models instead of just reading about them? See **[Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps)** for 50+ real, runnable projects: RAG pipelines, autonomous agents, MCP servers, voice agents, and more.
+Want to *use* these models instead of just reading about them? See **[Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps)** — 100+ open-source, runnable projects (Apache 2.0) organized by use case: agent skills, starter & advanced agents, multi-agent teams, voice AI agents, generative UI, game-playing agents, MCP agents, RAG pipelines, memory apps, and fine-tuning recipes. Clone any of them and have it running in minutes.
 
 ## 🔗 Related Awesome Lists
 

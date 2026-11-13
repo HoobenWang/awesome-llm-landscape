@@ -135,7 +135,7 @@ mindmap
 | 商用安全/企业级（知识产权有保障） | [Adobe Firefly](https://www.adobe.com/products/firefly.html) | 仅用授权/Adobe Stock 内容训练，企业使用有完整知识产权赔偿保障 |
 | 图片内文字渲染准确（海报、标识、界面原型） | [Ideogram](https://ideogram.ai) | 在生成图像中渲染清晰、准确文字/排版的能力数一数二 |
 | 矢量图/SVG 输出，适合设计工作 | [Recraft](https://www.recraft.ai) | 原生导出可编辑路径的 SVG 矢量图，支持品牌色板控制 |
-| 开源权重/可本地部署的图像生成 | Stable Diffusion、FLUX.1 [dev]（Black Forest Labs）、Kolors 2.1（快手）、[Z-Image](https://huggingface.co/Tongyi-MAI/Z-Image-Turbo)（阿里，Apache 2.0） | 下载权重本地跑——注意 FLUX [dev] 是**仅限非商用的许可证** |
+| 开源权重/可本地部署的图像生成 | Stable Diffusion、FLUX.1 [dev]（Black Forest Labs）、Kolors 2.1（快手）、[Z-Image](https://huggingface.co/Tongyi-MAI/Z-Image-Turbo)（阿里，Apache 2.0）、[Qwen-Image](https://huggingface.co/Qwen/Qwen-Image-2.1)（阿里） | 下载权重本地跑——许可证坑：FLUX [dev]**仅限非商用**；Qwen-Image 虽然「开源权重」但挂的是**仅限研究的许可证**（商用需另找阿里签协议） |
 
 ### ✂️ 图像编辑与优化
 
@@ -376,7 +376,7 @@ mindmap
 | <img src="https://www.google.com/s2/favicons?domain=01.ai&sz=64" width="24"> | **零一万物** 🇨🇳 | Yi 系列 | 中英双语、效率优先 | Apache 2.0 | [01.ai](https://www.01.ai) |
 | <img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=64" width="24"> | **Microsoft** 🇺🇸 | Phi 系列 | 「数据最优」小模型，适合端侧/边缘部署 | MIT | [azure.microsoft.com/phi](https://azure.microsoft.com/en-us/products/phi) |
 | <img src="https://www.google.com/s2/favicons?domain=ai.google.dev&sz=64" width="24"> | **Google** 🇺🇸 | Gemma 4 家族（及专项变体：PaliGemma——图文理解、MedGemma——医疗、EmbeddingGemma——向量化、ShieldGemma 2——安全/内容分类（含暴力、色情等）、FunctionGemma——端侧函数调用） | 源自 Gemini 研究成果的轻量级开源模型 | Gemma 许可 | [deepmind.google/models/gemma](https://deepmind.google/models/gemma/) |
-| <img src="https://www.google.com/s2/favicons?domain=nvidia.com&sz=64" width="24"> | **NVIDIA** 🇺🇸 | Nemotron 系列 | 面向 NVIDIA GPU 优化/蒸馏，训练后处理工具链完善 | NVIDIA Open Model License | [nvidia.com/nemotron](https://www.nvidia.com/en-us/ai/nemotron/) |
+| <img src="https://www.google.com/s2/favicons?domain=nvidia.com&sz=64" width="24"> | **NVIDIA** 🇺🇸 | Nemotron 系列 | 面向 NVIDIA GPU 优化/蒸馏，训练后处理工具链完善 | NVIDIA Open Model License | [nvidia.com/nemotron](https://developer.nvidia.com/nemotron) |
 | <img src="https://www.google.com/s2/favicons?domain=ibm.com&sz=64" width="24"> | **IBM** 🇺🇸 | Granite 系列 | 面向企业，训练数据来源公开透明 | Apache 2.0 | [ibm.com/granite](https://www.ibm.com/granite) |
 | <img src="https://www.google.com/s2/favicons?domain=falconllm.tii.ae&sz=64" width="24"> | **TII** 🇦🇪 | Falcon 系列 | 中东地区代表性开源模型，阿拉伯语与多语言能力强 | Apache 2.0（Falcon 2+） | [falconllm.tii.ae](https://falconllm.tii.ae) |
 | <img src="https://www.google.com/s2/favicons?domain=allenai.org&sz=64" width="24"> | **艾伦人工智能研究所** 🇺🇸 | OLMo 系列 | 「完全开放」——训练数据、代码、权重全部公开 | Apache 2.0 | [allenai.org/olmo](https://allenai.org/olmo) |
@@ -426,7 +426,7 @@ mindmap
 
 - **[Awesome LLM Evaluation](https://alopatenko.github.io/LLMEvaluation/)** — 目前最全面的评测方法论、基准测试与论文合集。
 - **[LMArena](https://lmarena.ai/)**（原 Chatbot Arena）— 众包人类盲测偏好排名。
-- **[Humanity's Last Exam（HLE）](https://agi.safe.ai/dashboard)** — 2500 道跨领域专家级题目，专门设计来避免跑分饱和；目前最强的模型也只能拿到不到一半的分数。
+- **[Humanity's Last Exam（HLE）](https://agi.safe.ai/)** — 2500 道跨领域专家级题目，专门设计来避免跑分饱和；目前最强的模型也只能拿到不到一半的分数。
 - **[ARC-AGI-3](https://arcprize.org/)** — 交互式智能体推理环境；旗舰模型刚推出时准确率不到 1%（ARC-AGI-1/2 已经跑分饱和，现在该引用这个最新版本）。
 - **[SWE-bench Pro](https://scale.com/research/swe_bench_pro)** — 真实世界、长链路的编程智能体任务；原版 SWE-bench/Verified 被发现存在数据污染后遭到取代——顶尖模型在这里只能拿到约 20%–45% 分数，而在旧版 Verified 上能拿 70%+。
 - **[METR Time Horizon](https://metr.org/)** — 衡量智能体在给定可靠度下，能自主完成多长时间（按人类专家耗时换算）的任务——评估智能体能力趋势的另一个维度，不是知识测验。

@@ -135,7 +135,7 @@ Note: a few rows below (image/video/audio generation) aren't *language* models i
 | Commercially-safe / enterprise (IP indemnified) | [Adobe Firefly](https://www.adobe.com/products/firefly.html) | Trained only on licensed/Adobe Stock content; full IP indemnification for enterprise use |
 | Accurate text rendering inside images (posters, UI mockups) | [Ideogram](https://ideogram.ai) | Best-in-class at rendering legible text/typography within a generated image |
 | Vector/SVG output for design work | [Recraft](https://www.recraft.ai) | Native SVG export with editable vector paths and brand-palette control |
-| Open-weight / self-hostable image generation | Stable Diffusion, FLUX.1 [dev] (Black Forest Labs), Kolors 2.1 (Kuaishou), [Z-Image](https://huggingface.co/Tongyi-MAI/Z-Image-Turbo) (Alibaba, Apache 2.0) | Download the weights and run locally — note FLUX [dev] is **non-commercial license only** |
+| Open-weight / self-hostable image generation | Stable Diffusion, FLUX.1 [dev] (Black Forest Labs), Kolors 2.1 (Kuaishou), [Z-Image](https://huggingface.co/Tongyi-MAI/Z-Image-Turbo) (Alibaba, Apache 2.0), [Qwen-Image](https://huggingface.co/Qwen/Qwen-Image-2.1) (Alibaba) | Download the weights and run locally — license gotchas: FLUX [dev] is **non-commercial only**, and despite "open weights" Qwen-Image ships under a **research-only license** (commercial use needs a separate Alibaba agreement) |
 
 ### ✂️ Image Editing & Enhancement
 
@@ -376,7 +376,7 @@ Weights you can download, fine-tune, and self-host.
 | <img src="https://www.google.com/s2/favicons?domain=01.ai&sz=64" width="24"> | **01.AI** 🇨🇳 | Yi series | Bilingual efficiency-focused models | Apache 2.0 | [01.ai](https://www.01.ai) |
 | <img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=64" width="24"> | **Microsoft** 🇺🇸 | Phi series | Small, high-quality "data-optimal" models for edge/on-device | MIT | [azure.microsoft.com/phi](https://azure.microsoft.com/en-us/products/phi) |
 | <img src="https://www.google.com/s2/favicons?domain=ai.google.dev&sz=64" width="24"> | **Google** 🇺🇸 | Gemma 4 family (plus specialized variants: PaliGemma — vision-language, MedGemma — medical, EmbeddingGemma — embeddings, ShieldGemma 2 — safety/content classifier (incl. violence, explicit content), FunctionGemma — edge function-calling) | Lightweight open models derived from Gemini research | Gemma license | [deepmind.google/models/gemma](https://deepmind.google/models/gemma/) |
-| <img src="https://www.google.com/s2/favicons?domain=nvidia.com&sz=64" width="24"> | **NVIDIA** 🇺🇸 | Nemotron series | Distilled/optimized for NVIDIA GPU inference, strong post-training tooling | NVIDIA Open Model License | [nvidia.com/nemotron](https://www.nvidia.com/en-us/ai/nemotron/) |
+| <img src="https://www.google.com/s2/favicons?domain=nvidia.com&sz=64" width="24"> | **NVIDIA** 🇺🇸 | Nemotron series | Distilled/optimized for NVIDIA GPU inference, strong post-training tooling | NVIDIA Open Model License | [nvidia.com/nemotron](https://developer.nvidia.com/nemotron) |
 | <img src="https://www.google.com/s2/favicons?domain=ibm.com&sz=64" width="24"> | **IBM** 🇺🇸 | Granite series | Enterprise-focused, documented training-data provenance | Apache 2.0 | [ibm.com/granite](https://www.ibm.com/granite) |
 | <img src="https://www.google.com/s2/favicons?domain=falconllm.tii.ae&sz=64" width="24"> | **TII** 🇦🇪 | Falcon series | Leading open model from the Middle East, strong Arabic + multilingual support | Apache 2.0 (Falcon 2+) | [falconllm.tii.ae](https://falconllm.tii.ae) |
 | <img src="https://www.google.com/s2/favicons?domain=allenai.org&sz=64" width="24"> | **Allen Institute for AI** 🇺🇸 | OLMo series | "Fully open" — training data, code, and weights all released | Apache 2.0 | [allenai.org/olmo](https://allenai.org/olmo) |
@@ -426,7 +426,7 @@ Picking a model means knowing how it's measured. Start here:
 
 - **[Awesome LLM Evaluation](https://alopatenko.github.io/LLMEvaluation/)** — the most comprehensive single reference for evaluation methodology, benchmarks, and papers.
 - **[LMArena](https://lmarena.ai/)** (formerly Chatbot Arena) — crowdsourced human head-to-head preference ranking.
-- **[Humanity's Last Exam (HLE)](https://agi.safe.ai/dashboard)** — 2,500 expert-written questions across many fields, built specifically to stay unsaturated; frontier models still score well under 50%.
+- **[Humanity's Last Exam (HLE)](https://agi.safe.ai/)** — 2,500 expert-written questions across many fields, built specifically to stay unsaturated; frontier models still score well under 50%.
 - **[ARC-AGI-3](https://arcprize.org/)** — interactive agentic-reasoning environments; frontier models scored under 1% at launch (ARC-AGI-1/2 are now saturated — this is the current one to cite).
 - **[SWE-bench Pro](https://scale.com/research/swe_bench_pro)** — real-world, long-horizon coding-agent tasks; replaced the original SWE-bench/Verified after those were found to be contaminated — top models score ~20–45% here vs. 70%+ on the old Verified set.
 - **[METR Time Horizon](https://metr.org/)** — measures how long a task (in human-expert-time-equivalent) an agent can complete autonomously at a given reliability — a distinct lens on agentic-capability trends, not a knowledge test.

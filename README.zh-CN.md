@@ -114,7 +114,7 @@ mindmap
 | 复杂推理 / 编程智能体 | Claude 5 Opus、GPT-5（o 系列）、DeepSeek-R1、通义千问 Max | 多步推理与长程规划能力最强 |
 | 超长文档/代码库（20 万–100 万+ tokens） | Gemini、DeepSeek、通义千问、Kimi K3 | 原生长上下文，质量不会明显下降 |
 | 中文写作与创意生成 | 文心一言、通义千问、豆包 | 专门针对中文语感与风格优化 |
-| 隐私 / 本地部署 / 离线 | Llama 4、通义千问（开源）、DeepSeek-V3、智谱 GLM、Mistral | 下载权重，跑在自己的硬件上 |
+| 隐私 / 本地部署 / 离线 | Llama 4、通义千问（开源）、DeepSeek-V4、智谱 GLM、Mistral | 下载权重，跑在自己的硬件上 |
 | 实时信息 / 时事追踪 | Grok（xAI） | 直接、低延迟接入实时 X/Twitter 数据 |
 | 情感陪伴/角色扮演对话 | CharacterGLM（清华 + 智谱 AI） | 真正独立训练的模型，专门面向有人设、有情感表达的对话——不只是「让通用模型扮演角色」 |
 
@@ -135,7 +135,7 @@ mindmap
 | 商用安全/企业级（知识产权有保障） | [Adobe Firefly](https://www.adobe.com/products/firefly.html) | 仅用授权/Adobe Stock 内容训练，企业使用有完整知识产权赔偿保障 |
 | 图片内文字渲染准确（海报、标识、界面原型） | [Ideogram](https://ideogram.ai) | 在生成图像中渲染清晰、准确文字/排版的能力数一数二 |
 | 矢量图/SVG 输出，适合设计工作 | [Recraft](https://www.recraft.ai) | 原生导出可编辑路径的 SVG 矢量图，支持品牌色板控制 |
-| 开源权重/可本地部署的图像生成 | Stable Diffusion、FLUX.1 [dev]（Black Forest Labs）、Kolors 2.1（快手） | 下载权重本地跑——注意 FLUX [dev] 是**仅限非商用的许可证** |
+| 开源权重/可本地部署的图像生成 | Stable Diffusion、FLUX.1 [dev]（Black Forest Labs）、Kolors 2.1（快手）、[Z-Image](https://huggingface.co/Tongyi-MAI/Z-Image-Turbo)（阿里，Apache 2.0） | 下载权重本地跑——注意 FLUX [dev] 是**仅限非商用的许可证** |
 
 ### ✂️ 图像编辑与优化
 
@@ -157,7 +157,7 @@ mindmap
 |---|---|---|
 | 文生视频 | Sora 2（OpenAI）、Veo（Google DeepMind）、可灵 Kling（快手）、海螺 Hailuo（MiniMax）、Luma Dream Machine、[Pika](https://pika.art) | 目前写实度与时长的第一梯队 |
 | 图生视频/动画 | 可灵、海螺、Runway Gen-4、Luma | 把一张静态图动画成短视频 |
-| 开源权重/可本地部署的视频生成 | Wan2.2 万相（阿里巴巴，Apache 2.0）、HunyuanVideo 混元视频（腾讯）、CogVideoX（智谱/清华 THUDM）、LTX-Video（Lightricks） | 下载权重本地跑——真正开放，不像上面这些都是闭源的 |
+| 开源权重/可本地部署的视频生成 | Wan2.2 万相（阿里巴巴，Apache 2.0）、HunyuanVideo 混元视频（腾讯）、CogVideoX（智谱/清华 THUDM）、LTX-2.5（Lightricks） | 下载权重本地跑——真正开放，不像上面这些都是闭源的 |
 
 ### 🧊 3D 生成
 
@@ -204,6 +204,7 @@ RAG、搜索、「找相似」这类功能背后都是这类模型——它们�
 | 场景 | 推荐模型 | 为什么 |
 |---|---|---|
 | 文本向量化（RAG/搜索） | OpenAI text-embedding-3、Cohere Embed、BGE（智源 BAAI）、Qwen-Embedding、Voyage AI、Jina Embeddings | 把文本映射成向量，用于语义搜索与检索 |
+| 经典主力向量模型 | [all-MiniLM-L6-v2 / all-mpnet-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2)（SBERT / sentence-transformers） | Hugging Face 上下载量最高的向量模型（1.7 亿+次下载）——默认的「够用就好、开箱即跑」选择；Apache 2.0 |
 | 完全开放（数据+代码+权重），长上下文 | Nomic Embed | 8K token 上下文，Apache 2.0，训练过程完全可复现 |
 | MTEB 多语言榜单靠前 | GTE（阿里巴巴）、E5（微软）、Snowflake Arctic Embed | 通用检索精度强，均为 Apache 2.0 / MIT 许可 |
 | 追求极致精度，仅限研究用途 | NV-Embed（NVIDIA） | 曾登顶 MTEB 榜首——但**仅限非商业使用**（CC-BY-NC-4.0），不能用于生产环境 |
@@ -265,7 +266,7 @@ RAG、搜索、「找相似」这类功能背后都是这类模型——它们�
 | 消费级显卡/笔记本可跑（1B–8B） | 通义千问 Qwen3（0.6B–8B）、Llama 3.2（1B/3B）、Phi-4-mini、Gemma 3（1B–12B） | 当前这一代小尺寸指令模型，量化后本地可跑 |
 | 手机 / 端侧 / 边缘设备 | MiniCPM、Gemma 3n、SmolLM2/SmolLM3（Hugging Face） | 专门针对手机和资源受限的边缘硬件调优，不只是「尺寸小」——详见下方[端侧/边缘设备模型](#-端侧--边缘设备模型)表格 |
 | 轻量级多模态（小尺寸视觉语言模型） | SmolVLM、Moondream、PaliGemma 2（Google） | 图像理解能力在普通硬件上也能跑起来 |
-| 企业私有化部署 | Llama 4、通义千问（开源）、DeepSeek-V3、智谱 GLM、Granite（IBM）、Falcon（TII） | Apache 2.0 类许可证，有企业级支持选项 |
+| 企业私有化部署 | Llama 4、通义千问（开源）、DeepSeek-V4、智谱 GLM、Granite（IBM）、Falcon（TII） | Apache 2.0 类许可证，有企业级支持选项 |
 
 ### 📱 端侧 / 边缘设备模型
 
@@ -357,7 +358,7 @@ mindmap
 | <img src="https://www.google.com/s2/favicons?domain=hunyuan.tencent.com&sz=64" width="24"> | **腾讯** 🇨🇳 | 混元 Hunyuan 系列 | 微信/游戏/云生态集成 | [hunyuan.tencent.com](https://hunyuan.tencent.com) |
 | <img src="https://www.google.com/s2/favicons?domain=sensetime.com&sz=64" width="24"> | **商汤科技** 🇨🇳 | 日日新 SenseChat | 视觉起家，多模态感知 + 大模型能力强 | [sensetime.com](https://www.sensetime.com) |
 | <img src="https://www.google.com/s2/favicons?domain=xfyun.cn&sz=64" width="24"> | **科大讯飞** 🇨🇳 | 星火 Spark | 语音 + 语言，教育与政务场景 | [xfyun.cn](https://www.xfyun.cn) |
-| <img src="https://www.google.com/s2/favicons?domain=minimax.io&sz=64" width="24"> | **MiniMax** 🇨🇳 | abab 系列 | 长上下文对话、多模态智能体 | [minimax.io](https://www.minimax.io) |
+| <img src="https://www.google.com/s2/favicons?domain=minimax.io&sz=64" width="24"> | **MiniMax** 🇨🇳 | MiniMax-M3 / H3 系列（原 "abab"） | 长上下文对话、多模态智能体 | [minimax.io](https://www.minimax.io) |
 | <img src="https://www.google.com/s2/favicons?domain=clova.ai&sz=64" width="24"> | **Naver** 🇰🇷 | HyperCLOVA X | 韩语旗舰模型，中美之外的区域代表 | [clova.ai](https://clova.ai) |
 
 ### 🧩 开源模型（Open-Weight）
@@ -368,7 +369,7 @@ mindmap
 |---|---|---|---|---|---|
 | <img src="https://www.google.com/s2/favicons?domain=meta.com&sz=64" width="24"> | **Meta** 🇺🇸 | Llama 4（Scout / Maverick / Behemoth） | 开源权重的事实标杆，生态与工具链极其丰富 | 社区自定义许可 | [llama.com](https://www.llama.com) |
 | <img src="https://www.google.com/s2/favicons?domain=mistral.ai&sz=64" width="24"> | **Mistral AI** 🇫🇷 | Mistral Large / Small、Mixtral | 高效 MoE 架构，欧洲多语言能力强 | Apache 2.0（多数版本） | [mistral.ai](https://mistral.ai) |
-| <img src="https://www.google.com/s2/favicons?domain=deepseek.com&sz=64" width="24"> | **DeepSeek** 🇨🇳 | DeepSeek-V3 / R1 | 以极低训练/推理成本达到第一梯队推理水平 | MIT / 开放权重 | [deepseek.com](https://www.deepseek.com) |
+| <img src="https://www.google.com/s2/favicons?domain=deepseek.com&sz=64" width="24"> | **DeepSeek** 🇨🇳 | DeepSeek-V4 / R1 | 以极低训练/推理成本达到第一梯队推理水平 | MIT / 开放权重 | [deepseek.com](https://www.deepseek.com) |
 | <img src="https://www.google.com/s2/favicons?domain=qwen.ai&sz=64" width="24"> | **阿里巴巴** 🇨🇳 | 通义千问 Qwen 系列 | 尺寸覆盖广（0.5B–235B+），编程与多语言能力强 | Apache 2.0（多数尺寸） | [qwen.ai](https://qwen.ai) |
 | <img src="https://www.google.com/s2/favicons?domain=zhipuai.cn&sz=64" width="24"> | **智谱 AI（已改名 "Z.ai"）** 🇨🇳 | GLM 系列（最新旗舰：GLM-5.3） | 智能体与工具调用，中英双语训练；开发者/API 平台在 [bigmodel.cn](https://bigmodel.cn) | Apache 2.0（多数版本） | [zhipuai.cn](https://www.zhipuai.cn) |
 | <img src="https://www.google.com/s2/favicons?domain=moonshot.ai&sz=64" width="24"> | **月之暗面** 🇨🇳 | Kimi（K3，K2 的继任版本） | 超长上下文、智能体/工具调用基准领先 | 修改版 MIT | [moonshot.ai](https://www.moonshot.ai) |
@@ -381,6 +382,7 @@ mindmap
 | <img src="https://www.google.com/s2/favicons?domain=allenai.org&sz=64" width="24"> | **艾伦人工智能研究所** 🇺🇸 | OLMo 系列 | 「完全开放」——训练数据、代码、权重全部公开 | Apache 2.0 | [allenai.org/olmo](https://allenai.org/olmo) |
 | <img src="https://www.google.com/s2/favicons?domain=xiaomi.com&sz=64" width="24"> | **小米** 🇨🇳 | MiMo 系列 | 大规模开源推理 MoE 模型（MiMo-V2.5-Pro：总参数 1T+ / 激活参数 42B） | Apache 2.0 | [github.com/XiaomiMiMo/MiMo](https://github.com/XiaomiMiMo/MiMo) |
 | <img src="https://www.google.com/s2/favicons?domain=github.com&sz=64" width="24"> | **RWKV Foundation** 🌏 | RWKV 系列（RWKV-7 "Goose"） | 非 Transformer 路线的大模型——RNN 架构（线性时间、常数空间、无 KV-cache），却能像 Transformer 一样并行训练 | Apache 2.0 | [github.com/BlinkDL/RWKV-LM](https://github.com/BlinkDL/RWKV-LM) |
+| <img src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" width="24"> | **OpenAI** 🇺🇸 | gpt-oss 系列（20B / 120B） | OpenAI 的开源权重 GPT 系列——它唯一有权重可下载的模型 | Apache 2.0 | [huggingface.co/openai/gpt-oss-20b](https://huggingface.co/openai/gpt-oss-20b) |
 
 ### 🇨🇳 国产大模型生态
 
@@ -413,7 +415,7 @@ mindmap
 |---|---|
 | 超长上下文（100 万+ tokens） | DeepSeek、通义千问 |
 | 长上下文（20 万+ tokens） | Kimi K3 |
-| 性价比最高的开源权重 | DeepSeek-V3 |
+| 性价比最高的开源权重 | DeepSeek-V4 |
 | C 端消费级产品 | 豆包 |
 | 中文写作与创意生成 | 文心一言、通义千问 |
 | 智能体 / 工具调用 | 智谱 GLM、Kimi |

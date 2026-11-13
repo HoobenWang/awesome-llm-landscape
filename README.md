@@ -114,7 +114,7 @@ Note: a few rows below (image/video/audio generation) aren't *language* models i
 | Deep reasoning / coding agents | Claude 5 Opus, GPT-5 (o-series), DeepSeek-R1, Qwen3-Max | Strongest step-by-step reasoning and long-horizon planning |
 | Ultra-long documents/codebases (200K–1M+ tokens) | Gemini, DeepSeek, Qwen, Kimi K3 | Native long-context windows without heavy quality drop-off |
 | Chinese writing & creative tasks | ERNIE, Qwen, Doubao | Tuned specifically for Chinese nuance and style |
-| Privacy / self-host / offline | Llama 4, Qwen (open), DeepSeek-V3, GLM, Mistral | Download the weights, run on your own hardware |
+| Privacy / self-host / offline | Llama 4, Qwen (open), DeepSeek-V4, GLM, Mistral | Download the weights, run on your own hardware |
 | Real-time info / current events | Grok (xAI) | Direct, low-latency access to live X/Twitter data |
 | Emotionally-expressive character/companion chat | CharacterGLM (Tsinghua + Zhipu AI) | A genuinely separate trained checkpoint for persona-based, emotionally-expressive dialogue — not just "prompt a general model to roleplay" |
 
@@ -135,7 +135,7 @@ Note: a few rows below (image/video/audio generation) aren't *language* models i
 | Commercially-safe / enterprise (IP indemnified) | [Adobe Firefly](https://www.adobe.com/products/firefly.html) | Trained only on licensed/Adobe Stock content; full IP indemnification for enterprise use |
 | Accurate text rendering inside images (posters, UI mockups) | [Ideogram](https://ideogram.ai) | Best-in-class at rendering legible text/typography within a generated image |
 | Vector/SVG output for design work | [Recraft](https://www.recraft.ai) | Native SVG export with editable vector paths and brand-palette control |
-| Open-weight / self-hostable image generation | Stable Diffusion, FLUX.1 [dev] (Black Forest Labs), Kolors 2.1 (Kuaishou) | Download the weights and run locally — note FLUX [dev] is **non-commercial license only** |
+| Open-weight / self-hostable image generation | Stable Diffusion, FLUX.1 [dev] (Black Forest Labs), Kolors 2.1 (Kuaishou), [Z-Image](https://huggingface.co/Tongyi-MAI/Z-Image-Turbo) (Alibaba, Apache 2.0) | Download the weights and run locally — note FLUX [dev] is **non-commercial license only** |
 
 ### ✂️ Image Editing & Enhancement
 
@@ -157,7 +157,7 @@ Editing an *existing* image with instructions, or cleaning one up — different 
 |---|---|---|
 | Text-to-video | Sora 2 (OpenAI), Veo (Google DeepMind), Kling 可灵 (Kuaishou), 海螺 Hailuo (MiniMax), Luma Dream Machine, [Pika](https://pika.art) | Current frontier for realism and shot length |
 | Image-to-video / animation | Kling, Hailuo, Runway Gen-4, Luma | Animate a still image into a short clip |
-| Open-weight / self-hostable video generation | Wan2.2 (Alibaba, Apache 2.0), HunyuanVideo (Tencent), CogVideoX (Zhipu/THUDM), LTX-Video (Lightricks) | Download the weights and run locally — genuinely open, unlike the closed models above |
+| Open-weight / self-hostable video generation | Wan2.2 (Alibaba, Apache 2.0), HunyuanVideo (Tencent), CogVideoX (Zhipu/THUDM), LTX-2.5 (Lightricks) | Download the weights and run locally — genuinely open, unlike the closed models above |
 
 ### 🧊 3D Generation
 
@@ -204,6 +204,7 @@ The models underneath every RAG / search / "find similar" pipeline — they turn
 | Scenario | Recommended | Why |
 |---|---|---|
 | Text embeddings for RAG/search | OpenAI text-embedding-3, Cohere Embed, BGE (BAAI), Qwen-Embedding, Voyage AI, Jina Embeddings | Map text to vectors for semantic search and retrieval |
+| Classic workhorse embeddings | [all-MiniLM-L6-v2 / all-mpnet-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2) (SBERT / sentence-transformers) | The most-downloaded embedding models on Hugging Face (170M+ downloads) — the default "good enough, just works" choice; Apache 2.0 |
 | Fully open (data + code + weights), long context | Nomic Embed | 8K-token context, Apache 2.0, fully reproducible training recipe |
 | Top MTEB multilingual ranking | GTE (Alibaba), E5 (Microsoft), Snowflake Arctic Embed | Strong general-purpose retrieval accuracy; Apache 2.0 / MIT |
 | Efficient / quantizable at scale | mxbai-embed (Mixedbread AI) | Matryoshka + binary quantization — much cheaper vector storage at near-equal accuracy |
@@ -265,7 +266,7 @@ The counterpart to the text-to-speech models above — turning speech *into* tex
 | Runs on a consumer GPU / laptop (1B–8B) | Qwen3 (0.6B–8B), Llama 3.2 (1B/3B), Phi-4-mini, Gemma 3 (1B–12B) | Current generation of small instruct models; quantizes down to run locally |
 | Phone / on-device / edge | MiniCPM, Gemma 3n, SmolLM2/SmolLM3 (Hugging Face) | Specifically tuned for phones and constrained edge hardware, not just "small" — see the dedicated [On-Device / Edge Models](#-on-device--edge-models) table below for details |
 | Small vision-language (lightweight multimodal) | SmolVLM, Moondream, PaliGemma 2 (Google) | Image understanding that still fits on modest hardware |
-| Enterprise on-prem deployment | Llama 4, Qwen (open), DeepSeek-V3, GLM, Granite (IBM), Falcon (TII) | Apache-2.0-style licenses, enterprise support options |
+| Enterprise on-prem deployment | Llama 4, Qwen (open), DeepSeek-V4, GLM, Granite (IBM), Falcon (TII) | Apache-2.0-style licenses, enterprise support options |
 
 ### 📱 On-Device / Edge Models
 
@@ -357,7 +358,7 @@ Flagship models you access only through an API or app — weights are not releas
 | <img src="https://www.google.com/s2/favicons?domain=hunyuan.tencent.com&sz=64" width="24"> | **Tencent** 🇨🇳 | Hunyuan (混元) series | WeChat/gaming/cloud ecosystem integration | [hunyuan.tencent.com](https://hunyuan.tencent.com) |
 | <img src="https://www.google.com/s2/favicons?domain=sensetime.com&sz=64" width="24"> | **SenseTime** 🇨🇳 | SenseChat (日日新) | Vision-heritage lab, strong multimodal perception + LLM | [sensetime.com](https://www.sensetime.com) |
 | <img src="https://www.google.com/s2/favicons?domain=xfyun.cn&sz=64" width="24"> | **iFlytek** 🇨🇳 | Spark (讯飞星火) | Speech + language, education & government sectors | [xfyun.cn](https://www.xfyun.cn) |
-| <img src="https://www.google.com/s2/favicons?domain=minimax.io&sz=64" width="24"> | **MiniMax** 🇨🇳 | abab series | Long-context chat, multimodal agents | [minimax.io](https://www.minimax.io) |
+| <img src="https://www.google.com/s2/favicons?domain=minimax.io&sz=64" width="24"> | **MiniMax** 🇨🇳 | MiniMax-M3 / H3 series (formerly "abab") | Long-context chat, multimodal agents | [minimax.io](https://www.minimax.io) |
 | <img src="https://www.google.com/s2/favicons?domain=clova.ai&sz=64" width="24"> | **Naver** 🇰🇷 | HyperCLOVA X | Korean-language flagship, regional alternative to US/China giants | [clova.ai](https://clova.ai) |
 
 ### 🧩 Open-Weight Models
@@ -368,7 +369,7 @@ Weights you can download, fine-tune, and self-host.
 |---|---|---|---|---|---|
 | <img src="https://www.google.com/s2/favicons?domain=meta.com&sz=64" width="24"> | **Meta** 🇺🇸 | Llama 4 (Scout / Maverick / Behemoth) | The reference open-weight baseline, huge ecosystem/tooling | Custom community license | [llama.com](https://www.llama.com) |
 | <img src="https://www.google.com/s2/favicons?domain=mistral.ai&sz=64" width="24"> | **Mistral AI** 🇫🇷 | Mistral Large / Small, Mixtral | Efficient MoE architectures, strong multilingual (EU) performance | Apache 2.0 (most variants) | [mistral.ai](https://mistral.ai) |
-| <img src="https://www.google.com/s2/favicons?domain=deepseek.com&sz=64" width="24"> | **DeepSeek** 🇨🇳 | DeepSeek-V3 / R1 | Frontier-level reasoning at a fraction of training/inference cost | MIT / open weights | [deepseek.com](https://www.deepseek.com) |
+| <img src="https://www.google.com/s2/favicons?domain=deepseek.com&sz=64" width="24"> | **DeepSeek** 🇨🇳 | DeepSeek-V4 / R1 | Frontier-level reasoning at a fraction of training/inference cost | MIT / open weights | [deepseek.com](https://www.deepseek.com) |
 | <img src="https://www.google.com/s2/favicons?domain=qwen.ai&sz=64" width="24"> | **Alibaba** 🇨🇳 | Qwen series | Broad size range (0.5B–235B+), strong coding & multilingual | Apache 2.0 (most sizes) | [qwen.ai](https://qwen.ai) |
 | <img src="https://www.google.com/s2/favicons?domain=zhipuai.cn&sz=64" width="24"> | **Zhipu AI (rebranded "Z.ai")** 🇨🇳 | GLM series (latest flagship: GLM-5.3) | Agentic tool-use, bilingual EN/ZH training focus; dev/API platform is [bigmodel.cn](https://bigmodel.cn) | Apache 2.0 (most variants) | [zhipuai.cn](https://www.zhipuai.cn) |
 | <img src="https://www.google.com/s2/favicons?domain=moonshot.ai&sz=64" width="24"> | **Moonshot AI** 🇨🇳 | Kimi (K3, successor to K2) | Ultra-long context, agentic/tool-use benchmarks | Modified MIT | [moonshot.ai](https://www.moonshot.ai) |
@@ -381,6 +382,7 @@ Weights you can download, fine-tune, and self-host.
 | <img src="https://www.google.com/s2/favicons?domain=allenai.org&sz=64" width="24"> | **Allen Institute for AI** 🇺🇸 | OLMo series | "Fully open" — training data, code, and weights all released | Apache 2.0 | [allenai.org/olmo](https://allenai.org/olmo) |
 | <img src="https://www.google.com/s2/favicons?domain=xiaomi.com&sz=64" width="24"> | **Xiaomi** 🇨🇳 | MiMo series | Large-scale open-weight reasoning MoE (MiMo-V2.5-Pro: 1T+ total / 42B active params) | Apache 2.0 | [github.com/XiaomiMiMo/MiMo](https://github.com/XiaomiMiMo/MiMo) |
 | <img src="https://www.google.com/s2/favicons?domain=github.com&sz=64" width="24"> | **RWKV Foundation** 🌏 | RWKV series (RWKV-7 "Goose") | The non-transformer LLM alternative — RNN-based (linear time, constant space, no KV-cache), trains in parallel like a transformer | Apache 2.0 | [github.com/BlinkDL/RWKV-LM](https://github.com/BlinkDL/RWKV-LM) |
+| <img src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" width="24"> | **OpenAI** 🇺🇸 | gpt-oss series (20B / 120B) | OpenAI's open-weight GPT-family models — its only models with downloadable weights | Apache 2.0 | [huggingface.co/openai/gpt-oss-20b](https://huggingface.co/openai/gpt-oss-20b) |
 
 ### 🇨🇳 Chinese LLM Ecosystem
 
@@ -413,7 +415,7 @@ mindmap
 |---|---|
 | Ultra-long context (1M+ tokens) | DeepSeek, Qwen |
 | Long context (200K+ tokens) | Kimi K3 |
-| Lowest-cost open weights | DeepSeek-V3 |
+| Lowest-cost open weights | DeepSeek-V4 |
 | Consumer/C-end products | Doubao |
 | Chinese writing & creative tasks | ERNIE, Qwen |
 | Agentic tool-use | GLM, Kimi |
